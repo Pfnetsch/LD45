@@ -107,14 +107,14 @@ public class HexMap : MonoBehaviour
         if (position.x >= this.startColumn && position.y >= this.startRow && position.x < this.startColumn + this.numColumns &&
             position.y < this.startRow + this.numRows)
         {
-            this.hexes[position.x, position.y].upgrade();
+            this.hexes[position.y, position.x].upgrade();
             this.updateMap();
         }
     }
 
     public void plantVegetation(Vector3Int position, Vegetation vegetation)
     {
-        this.hexes[position.x, position.y].setVegetation(vegetation);
+        this.hexes[position.y, position.x].setVegetation(vegetation);
         this.updateMap();
     }
 }
