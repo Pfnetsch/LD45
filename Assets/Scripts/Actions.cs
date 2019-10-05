@@ -30,7 +30,7 @@ public class Actions : MonoBehaviour
     {
         if (index == 0)
         {
-            Vegetation treeZeroSprite = new TestTree();
+            Vegetation treeZeroSprite = new FirTree();
 
             treeZeroSprite.getTileForLevel(0);
         }
