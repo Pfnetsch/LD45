@@ -19,9 +19,12 @@ public class HexMap : MonoBehaviour
     private int startRow = 0;
     private int startColumn = 0;
 
+    // graphic tiles
+    public Tilemap overlayTilemap;
     public Tilemap foregroundTilemap;
     public Tilemap backgroundTilemap;
     
+    // hexdata
     private Hex[,] hexes;
 
 
