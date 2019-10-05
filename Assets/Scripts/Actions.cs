@@ -30,9 +30,10 @@ public class Actions : MonoBehaviour
     {
         if (index == 0)
         {
-            Vegetation treeZeroSprite = new FirTree();
+            HighlightController highLightControl = GetComponent<HighlightController>();
+            Vegetation treeZeroSprite = new LeafTree();
 
-            treeZeroSprite.getTileForLevel(0);
+            highLightControl.highlightTile = treeZeroSprite.getTileForLevel(0);
         }
     }
 
