@@ -12,14 +12,17 @@ public class HighlightController : MonoBehaviour
 	public Boolean highlightActive = false;
 	
 	Grid grid;
+	private HexMap hexMap;
 
 	private Vector3Int lastTilePos;
+
+	private Boolean buttonDown = false;
 
 	// Start is called before the first frame update
 	void Start()
     {
 		grid = FindObjectOfType<Grid>();
-		highlightTilemap = FindObjectOfType<Tilemap>();
+		hexMap = FindObjectOfType<HexMap>();
     }
 
     // Update is called once per frame
@@ -40,6 +43,17 @@ public class HighlightController : MonoBehaviour
 		    highlightTilemap.SetTile(lastTilePos, null);
 		    highlightTilemap.SetTile(posInt, highlightTile);
 		    lastTilePos = posInt;
+	    }
+
+	    if (Input.GetMouseButtonDown(0) && buttonDown == false)
+	    {
+		    buttonDown = true;
+		    hexMap.upgradeTile(posInt);
+	    }
+
+	    if (Input.GetMouseButtonUp(0) && buttonDown)
+	    {
+		    buttonDown = false;
 	    }
     }
 }

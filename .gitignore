@@ -37,3 +37,4 @@ sysinfo.txt
 
 # IntelliJ
 .idea/
+.DS_Store
