@@ -54,7 +54,7 @@ public class HexMap : MonoBehaviour
 
                 if (column == 1 && row == 1)
                 {
-                    h.setVegetation(new TestTree());
+                    h.setVegetation(new LeafTree());
                 }
             }
         }
