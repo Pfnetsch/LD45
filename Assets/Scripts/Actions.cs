@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Actions : MonoBehaviour
 {
+    public HighlightController highLightController;
+    public Tile highLightTile;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,10 +33,12 @@ public class Actions : MonoBehaviour
     {
         if (index == 0)
         {
-            HighlightController highLightControl = GetComponent<HighlightController>();
             Vegetation treeZeroSprite = new LeafTree();
-
-            highLightControl.highlightTile = treeZeroSprite.getTileForLevel(0);
+            highLightController.highlightTile = treeZeroSprite.getTileForLevel(0);
+        }
+        else if (index == 1)
+        {
+            highLightController.highlightTile = highLightTile;
         }
     }
 
