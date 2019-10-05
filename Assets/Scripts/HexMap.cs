@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 
 public class HexMap : MonoBehaviour
@@ -18,7 +19,9 @@ public class HexMap : MonoBehaviour
     private int startRow = 0;
     private int startColumn = 0;
 
-    public Tilemap tilemap;
+    public Tilemap foregroundTilemap;
+    public Tilemap backgroundTilemap;
+    
     private Hex[,] hexes;
 
 
@@ -26,6 +29,7 @@ public class HexMap : MonoBehaviour
     void Start()
     {
         generateMap();
+        
     }
 
     // Update is called once per frame
@@ -47,6 +51,11 @@ public class HexMap : MonoBehaviour
                 Hex h = new Hex(this);
 
                 hexes[column, row] = h;
+
+                if (column == 1 && row == 1)
+                {
+                    h.setVegetation(new TestTree());
+                }
             }
         }
 
@@ -79,8 +88,26 @@ public class HexMap : MonoBehaviour
                         break;
                 }
 
-                tilemap.SetTile(new Vector3Int(row + startRow, column + startColumn, 0), tile);
+                backgroundTilemap.SetTile(new Vector3Int(row + startRow, column + startColumn, 0), tile);
+                
+                // tile not empty => render foreground
+                if (!hexes[column, row].isEmpty())
+                {
+                    foregroundTilemap.SetTile(new Vector3Int(row + startRow, column + startColumn, 0), hexes[column, row].getCurrentTile());
+                }
             }
         }
+    }
+
+    public void upgradeTile(Vector3Int position)
+    {
+        this.hexes[position.x, position.y].upgrade();
+        this.updateMap();
+    }
+
+    public void plantVegetation(Vector3Int position, Vegetation vegetation)
+    {
+        this.hexes[position.x, position.y].setVegetation(vegetation);
+        this.updateMap();
     }
 }
