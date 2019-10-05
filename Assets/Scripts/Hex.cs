@@ -1,18 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Tilemaps;
 
-public class Hex : MonoBehaviour
+public class Hex
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public enum TERRAIN_TYPE { DEFAULT, PLAINS, MARSH, DESERT, OCEAN }
 
-    // Update is called once per frame
-    void Update()
+    public TERRAIN_TYPE terrainType;
+
+    public readonly HexMap HexMap;
+    
+    public Hex(HexMap hexMap, TERRAIN_TYPE terrainType = TERRAIN_TYPE.DEFAULT)
     {
-        
+        this.HexMap = hexMap;
+        this.terrainType = terrainType;
     }
+    
 }
