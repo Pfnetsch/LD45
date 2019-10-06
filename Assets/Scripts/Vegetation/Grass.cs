@@ -7,19 +7,38 @@ public class Grass: Vegetation
 {
     public Grass()
     {
-        this.name = "Grass";
-        this.tiles = new Dictionary<int, Tile>();
+        name = "Grass";
+        
+        // mid/high
+        waterReq = 0.7;
+        
+        // low
+        waterMod = 0.2;
+        
+        // none
+        flammability = 0.0;
+        
+        // none
+        infestability = 0.0;
+        
+        // low
+        co2Usage = 0.2;
+        
+        // high
+        growrate = 0.8;
+        
+        tiles = new Dictionary<int, Tile>();
 
         Tile temp = AssetDatabase.LoadAssetAtPath("Assets/Tiles/Grass/Grass1_1.asset", typeof(Tile)) as Tile;
-        this.tiles.Add(0, temp);
+        tiles.Add(0, temp);
         
         temp = AssetDatabase.LoadAssetAtPath("Assets/Tiles/Grass/Grass1_2.asset", typeof(Tile)) as Tile;
-        this.tiles.Add(1, temp);
+        tiles.Add(1, temp);
         
         temp = AssetDatabase.LoadAssetAtPath("Assets/Tiles/Grass/Grass1_3.asset", typeof(Tile)) as Tile;
-        this.tiles.Add(2, temp);
+        tiles.Add(2, temp);
         
         temp = AssetDatabase.LoadAssetAtPath("Assets/Tiles/Grass/Grass1_4.asset", typeof(Tile)) as Tile;
-        this.tiles.Add(3, temp);
+        tiles.Add(3, temp);
     }
 }
