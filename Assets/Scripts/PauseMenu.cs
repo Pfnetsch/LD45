@@ -9,24 +9,14 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject pauseMenuUI;
 
-    bool firstRun = true;
-
     // Update is called once per frame
     void Update()
     {
         // Resume();
-        if(Input.GetKeyDown(KeyCode.Escape) && !firstRun)
+        if(Input.GetKeyDown(KeyCode.Escape) && gameIsPaused)
         {
-            if(gameIsPaused)
-            {
-                Resume();
-            }
-            else
-            {
-                Pause();
-            }
+            Resume();
         }
-        firstRun = false;
     }
 
     public void Resume() // set to public in order to access via a button
@@ -54,5 +44,10 @@ public class PauseMenu : MonoBehaviour
     {
         // to be implemented
         Debug.Log("To be implemented");
+    }
+
+    public void PauseButtonClicked()
+    {
+        Pause();
     }
 }
