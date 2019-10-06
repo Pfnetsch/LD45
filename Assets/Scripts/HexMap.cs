@@ -19,6 +19,7 @@ public class HexMap : MonoBehaviour
     public const double FIRE_SPREAD = 0.1;
     public const double INFESTATION_SPREAD = 0.1;
     public const double INFESTATION_MULT = 0.5;
+    public const double GROW_MULT = 0.1;
     
 
     public Tile defaultTile;
@@ -45,7 +46,7 @@ public class HexMap : MonoBehaviour
     private Boolean lightning = false;
     
     // global co2
-    private double co2 = 10000.0;
+    private double co2Goal = 10000.0;
     private double co2change = 0.0;
 
 
@@ -118,7 +119,7 @@ public class HexMap : MonoBehaviour
         }
     }
 
-    void updateMapVisuals()
+    public void updateMapVisuals()
     {
         for (int column = 0; column < numColumns; column++)
         {
@@ -243,8 +244,6 @@ public class HexMap : MonoBehaviour
                 hexes[column, row].setWaterLevel(newWater[column, row]);
             }
         }
-        
-        updateMapVisuals();
     }
 
     public void doFireTick()
@@ -263,7 +262,6 @@ public class HexMap : MonoBehaviour
             if (Random.Range(0.0f, 1.0f) < flammability1 * FIRE_SPREAD)
             {
                 getHexAt(vegetationHexes[index].y, vegetationHexes[index].x).setBurning(true);
-                updateMapVisuals();
             }
         }
         
@@ -279,7 +277,6 @@ public class HexMap : MonoBehaviour
             if (Random.Range(0.0f, 1.0f) < flammability * FIRE_SPREAD)
             {
                 hex.setBurning(true);
-                updateMapVisuals();
                 return;
             }
         }
@@ -287,12 +284,11 @@ public class HexMap : MonoBehaviour
 
     public void doInfestationTick()
     {
-        
+        // TODO
     }
 
     public void doCO2Tick()
     {
-        co2change = 0.0;
         foreach (var hex in hexes)
         {
             if (!hex.hasVegetation()) continue;
@@ -310,7 +306,17 @@ public class HexMap : MonoBehaviour
             // normal consumption
             co2change += hex.getVegetation().getCO2Usage();
         }
+    }
 
-        co2 -= co2change;
+    public void doGrowTick()
+    {
+        foreach (var hex in hexes)
+        {
+            if (!hex.hasVegetation()) continue;
+
+            if (!hex.isMaxLevel()) continue;
+            
+            hex.doGrowTick();
+        }
     }
 }

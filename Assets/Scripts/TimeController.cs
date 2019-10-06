@@ -36,6 +36,8 @@ public class TimeController : MonoBehaviour
             hexMap.doFireTick();
             hexMap.doInfestationTick();
             hexMap.doCO2Tick();
+            hexMap.doGrowTick();
+            hexMap.updateMapVisuals();
             tickCount = 0;
         }
     }

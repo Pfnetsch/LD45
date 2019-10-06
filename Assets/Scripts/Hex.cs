@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Random = UnityEngine.Random;
 
 public class Hex
 {
@@ -115,9 +116,30 @@ public class Hex
         return infested;
     }
 
+    public Boolean isMaxLevel()
+    {
+        if (!hasVegetation())
+        {
+            return false;
+        }
+            
+        return level < vegetation.getMaxLevel();
+    }
+
     public Vector3Int getPosition()
     {
         return new Vector3Int(r, q, 0);
+    }
+
+    public void doGrowTick()
+    {
+        if (Random.Range(0.0f, 1.0f) < vegetation.getGrowrate() * HexMap.GROW_MULT)
+        {
+            if (level < vegetation.getMaxLevel())
+            {
+                level++;
+            }
+        }
     }
 
 
