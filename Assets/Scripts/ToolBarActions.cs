@@ -10,6 +10,8 @@ public class ToolBarActions : MonoBehaviour
     public HighlightController highlightController;
     public GameObject bottomRightToolTip;
 
+    private Vegetation _veggie;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,19 +29,19 @@ public class ToolBarActions : MonoBehaviour
         switch (index)
         {
             case 0: // Grass
-                highlightController.veggieToPlant = new Grass();
+                highlightController.veggieToPlant = _veggie;
                 break;
 
             case 1: // Shrub
-                highlightController.veggieToPlant = new Shrub();
+                highlightController.veggieToPlant = _veggie;
                 break;
 
             case 2: // Tree 1 // Leaf
-                highlightController.veggieToPlant = new LeafTree();
+                highlightController.veggieToPlant = _veggie;
                 break;
 
             case 3: // Tree 2 // Fir
-                highlightController.veggieToPlant = new FirTree();
+                highlightController.veggieToPlant = _veggie;
                 break;
 
             default:
@@ -49,28 +51,29 @@ public class ToolBarActions : MonoBehaviour
 
     public void ToolBarPointerEnter(int index)
     {
-        //switch (index)
-        //{
-        //    case 0: // Grass
-        //        highlightController.veggieToPlant = new Grass();
-        //        break;
+        switch (index)
+        {
+            case 0: // Grass
+                _veggie = new Grass();
+                break;
 
-        //    case 1: // Shrub
-        //        highlightController.veggieToPlant = new Shrub();
-        //        break;
+            case 1: // Shrub
+                _veggie = new Shrub();
+                break;
 
-        //    case 2: // Tree 1 // Leaf
-        //        highlightController.veggieToPlant = new LeafTree();
-        //        break;
+            case 2: // Tree 1 // Leaf
+                _veggie = new LeafTree();
+                break;
 
-        //    case 3: // Tree 2 // Fir
-        //        highlightController.veggieToPlant = new FirTree();
-        //        break;
+            case 3: // Tree 2 // Fir
+                _veggie = new FirTree();
+                break;
 
-        //    default:
-        //        break;
-        //}
+            default:
+                break;
+        }
 
+        bottomRightToolTip.GetComponent<ToolTipList>().Veggie = _veggie;
         bottomRightToolTip.SetActive(true);
     }
 
