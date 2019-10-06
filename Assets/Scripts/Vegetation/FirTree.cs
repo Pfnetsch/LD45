@@ -10,7 +10,7 @@ public class FirTree: Vegetation
         name = "FirTree";
     
         // high
-        waterReq = 0.8;
+        waterReq = 0.6;
         
         // high
         waterMod = 0.8;

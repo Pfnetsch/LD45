@@ -31,8 +31,8 @@ public class HexMap : MonoBehaviour
     //public Tile oceanTile;
 
 
-    public int numRows = 50;
-    public int numColumns = 50;
+    public int numRows;
+    public int numColumns;
     private int startRow = 0;
     private int startColumn = 0;
 
@@ -242,24 +242,20 @@ public class HexMap : MonoBehaviour
         {
             for (int row = 0; row < numRows; row++)
             {
-                Hex[] neighbours = hexes[column, row].getNeighbours();
-                double newWaterLevel = 0.0;
+                Hex currentHex = hexes[column, row];
+                Hex[] neighbours = currentHex.getNeighbours();
+                double newWaterLevel = currentHex.getWaterLevel();
 
                 foreach (Hex neighbour in neighbours)
                 {
-                    if (neighbour.getWaterLevel() > hexes[column, row].getWaterLevel() && neighbour.getWaterLevel() > newWaterLevel)
+                    if (neighbour.getWaterLevel() > newWaterLevel)
                     {
                         newWaterLevel = neighbour.getWaterLevel();
                     }
                 }
 
                 // TODO: adjust water spread formula
-                newWater[column, row] = newWaterLevel * WATER_SPREAD;
-
-                if (newWater[column, row] > 1.0)
-                {
-                    newWater[column, row] = 1.0;
-                }
+                newWater[column, row] = Math.Min(newWaterLevel, newWaterLevel * WATER_SPREAD + (currentHex.hasVegetation() ? ( currentHex.getVegetation().getWaterMod() * 0.5) : 0));
             }
         }
 
