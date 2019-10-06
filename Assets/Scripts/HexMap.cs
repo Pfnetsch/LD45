@@ -33,10 +33,11 @@ public class HexMap : MonoBehaviour
 
     public int numRows;
     public int numColumns;
-    private int startRow = 0;
-    private int startColumn = 0;
+    private int startRow;
+    private int startColumn;
 
     // graphic tiles
+    private Grid grid;
     public Tilemap overlayTilemap;
     public Tilemap foregroundTilemap;
     public Tilemap backgroundTilemap;
@@ -61,7 +62,9 @@ public class HexMap : MonoBehaviour
         startDate = DateTime.Now;
         endDate = startDate.AddMinutes(MAX_GAME_TIME_MIN);
 
+        grid = FindObjectOfType<Grid>();
         generateMap();
+        CenterMainCameraOnGrid();
     }
 
     // Update is called once per frame
@@ -84,6 +87,15 @@ public class HexMap : MonoBehaviour
         return startDate.AddSeconds(elapsed);
     }
 
+    public void CenterMainCameraOnGrid()
+    {
+        float gridWidth = numColumns * grid.cellSize.x / 2f;
+        float gridHeight = numRows * grid.cellSize.y / 2f;
+
+        Camera.main.transform.Translate(new Vector3(gridWidth, gridHeight, 0));
+        Camera.main.GetComponent<cameraRTS>().SetGridSizeAndStoreInitialPosition(gridWidth, gridHeight);
+    }
+
     public Boolean isTimeElapsed()
     {
         return (DateTime.Now - startDate).TotalMinutes >= MAX_GAME_TIME_MIN;
@@ -96,7 +108,6 @@ public class HexMap : MonoBehaviour
 
         Maps startMap = new Maps(); // make a new maps object
         startMap.CreateNewStartMap();
-        
 
         for (int column = 0; column < numColumns; column++)
         {
@@ -201,9 +212,7 @@ public class HexMap : MonoBehaviour
 
     public void upgradeTile(Vector3Int position)
     {
-        if (position.x >= this.startColumn && position.y >= this.startRow &&
-            position.x < this.startColumn + this.numColumns &&
-            position.y < this.startRow + this.numRows)
+        if (position.x >= this.startColumn && position.y >= this.startRow && position.x < this.startColumn + this.numColumns && position.y < this.startRow + this.numRows)
         {
             this.hexes[position.y, position.x].upgrade();
             this.updateMapVisuals();
@@ -220,9 +229,7 @@ public class HexMap : MonoBehaviour
         if (hex.isWaterSource())
             return false;
         
-        if (position.x >= this.startColumn && position.y >= this.startRow &&
-            position.x < this.startColumn + this.numColumns &&
-            position.y < this.startRow + this.numRows)
+        if (position.x >= this.startColumn && position.y >= this.startRow && position.x < this.startColumn + this.numColumns && position.y < this.startRow + this.numRows)
         {
             return hex.getWaterLevel() >= vegetation.getWaterRequirement();
         }
@@ -232,8 +239,7 @@ public class HexMap : MonoBehaviour
     
     public void plantVegetation(Vector3Int position, Vegetation vegetation)
     {
-        if (position.x >= this.startColumn && position.y >= this.startRow && position.x < this.startColumn + this.numColumns &&
-               position.y < this.startRow + this.numRows)
+        if (position.x >= this.startColumn && position.y >= this.startRow && position.x < this.startColumn + this.numColumns && position.y < this.startRow + this.numRows)
         {
             if (canGrow(position, vegetation))
             {

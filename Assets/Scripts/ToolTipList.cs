@@ -86,6 +86,8 @@ public class ToolTipList : MonoBehaviour
         _propWaterLevel.transform.localPosition = new Vector3(-100, 30, 0);
         _propWaterLevel.GetComponent<ToolTipItem>().toolTipImage.sprite = AssetDatabase.LoadAssetAtPath("Assets/Sprites/Properties/Wasserstand.svg", typeof(Sprite)) as Sprite;
         _propWaterLevel.GetComponent<ToolTipItem>().toolTipText.text = "Water Level";
+
+        gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -98,8 +100,7 @@ public class ToolTipList : MonoBehaviour
     {
         if (_veggie != null)
         {
-            locked = true;
-            // Hex
+             // Hex
             _propWaterLevel.SetActive(false);
 
             // Veggie
@@ -122,6 +123,7 @@ public class ToolTipList : MonoBehaviour
             _propInfestability.GetComponent<ToolTipItem>().slider.value = (float)_veggie.getInfestability();
 
             gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 310);
+            gameObject.SetActive(true);
         }
         else if (_hex != null)
         {
@@ -138,6 +140,11 @@ public class ToolTipList : MonoBehaviour
             _propWaterLevel.GetComponent<ToolTipItem>().slider.value = (float)_hex.getWaterLevel();
 
             gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 60);
+            gameObject.SetActive(true);
+        }
+        else
+        {
+            gameObject.SetActive(false);
         }
     }
 }

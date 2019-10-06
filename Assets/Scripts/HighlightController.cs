@@ -14,16 +14,17 @@ public class HighlightController : MonoBehaviour
 	public Boolean highlightActive = false;
 
     private ToolTipList tooltipList;
+
     private Grid grid;
-	private HexMap hexMap;
+    private HexMap hexMap;
 	private Vector3Int lastTilePos;
 	private Boolean buttonDown = false;
 
 	// Start is called before the first frame update
 	void Start()
     {
-		grid = FindObjectOfType<Grid>();
-		hexMap = FindObjectOfType<HexMap>();
+        grid = FindObjectOfType<Grid>();
+        hexMap = FindObjectOfType<HexMap>();
         tooltipList = Resources.FindObjectsOfTypeAll<ToolTipList>()[0];
     }
 
@@ -39,7 +40,7 @@ public class HighlightController : MonoBehaviour
 
         // get tile for mousepos
         Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-	    Vector3Int posInt = grid.LocalToCell(pos);
+        Vector3Int posInt = grid.LocalToCell(pos);
 
 	    if (lastTilePos != posInt)
 	    {
@@ -62,7 +63,6 @@ public class HighlightController : MonoBehaviour
                 highlightTilemap.SetTile(posInt, highlightTile);
             }
 
-            tooltipList.gameObject.SetActive(true);
             tooltipList.Hex = hexMap.getHexAt(posInt.y, posInt.x);
 
             lastTilePos = posInt;

@@ -75,14 +75,14 @@ public class ToolBarActions : MonoBehaviour
 
         ToolTipList.GetComponent<ToolTipList>().Veggie = _veggie;
         ToolTipList.GetComponent<ToolTipList>().locked = true;
-        ToolTipList.SetActive(true);
     }
 
     public void ToolBarPointerExit(int index)
     {
+        ToolTipList.GetComponent<ToolTipList>().locked = false;
+
         if (highlightController.veggieToPlant == null)
         {
-            ToolTipList.GetComponent<ToolTipList>().locked = false;
             ToolTipList.SetActive(false);
         }
     }
