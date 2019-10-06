@@ -1459,7 +1459,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   highlightController: {fileID: 0}
-  bottomRightToolTip: {fileID: 7306771918513033209}
+  ToolTipList: {fileID: 7306771918513033209}
 --- !u!1 &7152903701387719509
 GameObject:
   m_ObjectHideFlags: 0

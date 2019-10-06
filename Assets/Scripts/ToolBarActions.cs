@@ -8,14 +8,14 @@ using UnityEngine.UI;
 public class ToolBarActions : MonoBehaviour
 {
     public HighlightController highlightController;
-    public GameObject bottomRightToolTip;
+    public GameObject ToolTipList;
 
     private Vegetation _veggie;
 
     // Start is called before the first frame update
     void Start()
     {
-        bottomRightToolTip.SetActive(false);
+        ToolTipList.SetActive(false);
     }
 
     // Update is called once per frame
@@ -73,13 +73,13 @@ public class ToolBarActions : MonoBehaviour
                 break;
         }
 
-        bottomRightToolTip.GetComponent<ToolTipList>().Veggie = _veggie;
-        bottomRightToolTip.SetActive(true);
+        ToolTipList.GetComponent<ToolTipList>().Veggie = _veggie;
+        ToolTipList.SetActive(true);
     }
 
     public void ToolBarPointerExit(int index)
     {
-        if (highlightController.veggieToPlant == null) bottomRightToolTip.SetActive(false);
+        if (highlightController.veggieToPlant == null) ToolTipList.SetActive(false);
     }
 
 }
