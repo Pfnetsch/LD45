@@ -12,7 +12,7 @@ public class HighlightController : MonoBehaviour
     public Vegetation veggieToPlant;
 	public Boolean highlightActive = false;
 
-	Grid grid;
+    Grid grid;
 	private HexMap hexMap;
 
 	private Vector3Int lastTilePos;
@@ -45,6 +45,8 @@ public class HighlightController : MonoBehaviour
 
 		    if (veggieToPlant != null) highlightTilemap.SetTile(posInt, veggieToPlant.getTileForLevel(0));
             else highlightTilemap.SetTile(posInt, highlightTile);
+
+
 
             lastTilePos = posInt;
 	    }
