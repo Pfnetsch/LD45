@@ -8,6 +8,9 @@ public class FirTree: Vegetation
     public FirTree()
     {
         this.name = "FirTree";
+        
+        
+        // Tiles
         this.tiles = new Dictionary<int, Tile>();
 
         Tile temp = AssetDatabase.LoadAssetAtPath("Assets/Tiles/Trees/FirTree1_1.asset", typeof(Tile)) as Tile;

@@ -11,10 +11,19 @@ public class Vegetation
     protected int maxLevel = 0;
     
     // water modifier (<1.0f for reduction, >1.0f for increase)
-    protected float waterMod = 1.0f;
+    protected double waterMod = 1.0;
     
-    // add more properties
+    // required water level
+    protected double waterReq = 0.2;
 
+    protected double flammability = 0.0;
+
+    protected double infestability = 0.0;
+
+    protected double co2Usage = 0.0;
+
+    protected double growrate = 0.0;
+    
     public int getMaxLevel()
     {
         return this.tiles.Count - 1;
