@@ -49,12 +49,34 @@ public class ToolBarActions : MonoBehaviour
 
     public void ToolBarPointerEnter(int index)
     {
+        //switch (index)
+        //{
+        //    case 0: // Grass
+        //        highlightController.veggieToPlant = new Grass();
+        //        break;
+
+        //    case 1: // Shrub
+        //        highlightController.veggieToPlant = new Shrub();
+        //        break;
+
+        //    case 2: // Tree 1 // Leaf
+        //        highlightController.veggieToPlant = new LeafTree();
+        //        break;
+
+        //    case 3: // Tree 2 // Fir
+        //        highlightController.veggieToPlant = new FirTree();
+        //        break;
+
+        //    default:
+        //        break;
+        //}
+
         bottomRightToolTip.SetActive(true);
     }
 
     public void ToolBarPointerExit(int index)
     {
-        bottomRightToolTip.SetActive(false);
+        if (highlightController.veggieToPlant == null) bottomRightToolTip.SetActive(false);
     }
 
 }
