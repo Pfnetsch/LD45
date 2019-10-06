@@ -51,7 +51,10 @@ public class Maps
 
             for (col = 0; col < dataValues.Length; col++)
             {
+<<<<<<< Updated upstream
                 // values are written into 2D-map-array, note that y-axis is inverted as in csv file
+=======
+>>>>>>> Stashed changes
                 uint.TryParse(dataValues[col], out startMap[col, row]);
             }
 
