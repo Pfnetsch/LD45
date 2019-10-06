@@ -34,8 +34,10 @@ public class HighlightController : MonoBehaviour
 		    return;
 	    }
 
-	    // get tile for mousepos
-	    Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (Input.GetKeyDown(KeyCode.Escape)) veggieToPlant = null;
+
+        // get tile for mousepos
+        Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 	    Vector3Int posInt = grid.LocalToCell(pos);
 
 	    if (lastTilePos != posInt)
@@ -44,12 +46,10 @@ public class HighlightController : MonoBehaviour
 		    highlightTilemap.SetTile(lastTilePos, null);
 
             if (veggieToPlant != null) highlightTilemap.SetTile(posInt, veggieToPlant.getTileForLevel(0));
-            else
-            {
-                highlightTilemap.SetTile(posInt, highlightTile);
-                tooltipList.gameObject.SetActive(true);
-                if (tooltipList.Veggie == null) tooltipList.Hex = hexMap.getHexAt(posInt.y, posInt.x);
-            }
+            else highlightTilemap.SetTile(posInt, highlightTile);
+
+            tooltipList.gameObject.SetActive(true);
+            tooltipList.Hex = hexMap.getHexAt(posInt.y, posInt.x);
 
             lastTilePos = posInt;
 	    }

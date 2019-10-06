@@ -6,6 +6,7 @@ using UnityEngine;
 public class ToolTipList : MonoBehaviour
 {
     public GameObject toolTipEntry;
+    public bool locked;
 
     private Vegetation _veggie;
     private Hex _hex;
@@ -24,18 +25,24 @@ public class ToolTipList : MonoBehaviour
     public Vegetation Veggie { get => _veggie;
         set
         {
-            _veggie = value;
-            _hex = null;
-            UpdateToolTipItems();
+            if (!locked)
+            {
+                _veggie = value;
+                _hex = null;
+                UpdateToolTipItems();
+            }
         }
     }
 
     public Hex Hex { get => _hex;
         set
         {
-            _hex = value;
-            _veggie = null;
-            UpdateToolTipItems();
+            if (!locked)
+            {
+                _hex = value;
+                _veggie = null;
+                UpdateToolTipItems();
+            }
         }
     }
 
@@ -91,6 +98,7 @@ public class ToolTipList : MonoBehaviour
     {
         if (_veggie != null)
         {
+            locked = true;
             // Hex
             _propWaterLevel.SetActive(false);
 
