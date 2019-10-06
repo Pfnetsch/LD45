@@ -48,7 +48,7 @@ public class HighlightController : MonoBehaviour
             {
                 highlightTilemap.SetTile(posInt, highlightTile);
                 tooltipList.gameObject.SetActive(true);
-                tooltipList.Hex = hexMap.getHexAt(posInt.y, posInt.x);
+                if (tooltipList.Veggie == null) tooltipList.Hex = hexMap.getHexAt(posInt.y, posInt.x);
             }
 
             lastTilePos = posInt;
