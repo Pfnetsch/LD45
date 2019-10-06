@@ -8,6 +8,7 @@ using UnityEngine.Tilemaps;
 public class HighlightController : MonoBehaviour
 {
 	public Tilemap highlightTilemap;
+    public Tilemap topTilemap;
 	public Tile highlightTile;
     public Vegetation veggieToPlant;
 	public Boolean highlightActive = false;
@@ -43,10 +44,24 @@ public class HighlightController : MonoBehaviour
 		    // tile changed, unhighlight last tile
 		    highlightTilemap.SetTile(lastTilePos, null);
 
-		    if (veggieToPlant != null) highlightTilemap.SetTile(posInt, veggieToPlant.getTileForLevel(0));
-            else highlightTilemap.SetTile(posInt, highlightTile);
-
-
+            if (veggieToPlant != null)
+            {
+                // if veggi is selected
+                highlightTilemap.SetTile(posInt, veggieToPlant.getTileForLevel(0));
+                // Debug.Log("Here 1");
+                Debug.Log(!hexMap.canGrow(posInt, veggieToPlant));
+                if (!hexMap.canGrow(posInt, veggieToPlant))
+                {
+                    Debug.Log("Here 2");
+                    topTilemap.SetTileFlags(posInt, TileFlags.None);
+                    topTilemap.SetColor(posInt, Color.white);
+                }
+            } 
+            else
+            {
+                highlightTilemap.SetTile(posInt, highlightTile);
+                highlightTilemap.SetColor(posInt, Color.black);
+            }
 
             lastTilePos = posInt;
 	    }
