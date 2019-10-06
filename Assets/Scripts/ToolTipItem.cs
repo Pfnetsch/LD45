@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StatusBar : MonoBehaviour
+public class ToolTipItem : MonoBehaviour
 {
+    public SVGImage toolTipImage;
+    public Text toolTipText;
     public Slider slider;
     public Image sliderFill;
+    public bool revertColors;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +24,6 @@ public class StatusBar : MonoBehaviour
 
     public void StatusBarOnValueChanged(float value)
     {
-        sliderFill.color = Color.Lerp(Color.red, Color.green, value);
+        sliderFill.color = Color.Lerp(Color.red, Color.green, revertColors ? -value : value);
     }
 }

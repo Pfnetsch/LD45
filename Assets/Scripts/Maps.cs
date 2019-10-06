@@ -3,17 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
-public class Maps : MonoBehaviour
+public class Maps 
 {
-    public uint[,] startMap = new uint[50,50]; // create two dimensional array for hex map
+    public Maps() { }
 
-    void Start()
+    public void CreateNewStartMap()
     {
         LoadMapFromCSV();
     }
 
+    public uint GetTileAtPosition(int x, int y)
+    {
+        if ( (x > 50) || (y > 50) ||
+             (x < 0 ) || (y < 0 )    )
+        {
+            Debug.Log("Cannot access this coordinates of the map!");
+            return 0;
+        }
+        else
+        {
+            return startMap[x, y];
+        }
+    }
+
+    private uint[,] startMap = new uint[50, 50]; // create two dimensional array for hex map
+
     private void LoadMapFromCSV()
     {
+        // read csv file
         StreamReader strReader = new StreamReader("Map_Matrix.csv");
         bool endOfFile = false;
 
@@ -22,8 +39,9 @@ public class Maps : MonoBehaviour
 
         while (!endOfFile)
         {
+            // read one line into a string
             string dataString = strReader.ReadLine();
-            if (dataString == null)
+            if (dataString == null) // eof
             {
                 endOfFile = true;
                 break;
@@ -33,23 +51,13 @@ public class Maps : MonoBehaviour
 
             for (col = 0; col < dataValues.Length; col++)
             {
-                uint.TryParse(dataValues[col], out startMap[row, col]);
+                // values are written into 2D-map-array, note that y-axis is inverted as in csv file
+                uint.TryParse(dataValues[col], out startMap[col, row]);
             }
 
             row++;
         }
 
         Debug.Log(startMap.Length);
-    }
-
-    // Update is called once per frame
-    void BuildToHexMap()
-    {
-        
-    }
-
-    void GenerateRandomStones(uint numOfStones)
-    {
-
     }
 }

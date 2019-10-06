@@ -28,8 +28,8 @@ public class HexMap : MonoBehaviour
     //public Tile oceanTile;
 
 
-    public int numRows = 30;
-    public int numColumns = 60;
+    public int numRows = 50;
+    public int numColumns = 50;
     private int startRow = 0;
     private int startColumn = 0;
 
@@ -64,18 +64,31 @@ public class HexMap : MonoBehaviour
     virtual public void generateMap()
     {
         // Generate a map filled with ocean
-
         hexes = new Hex[numColumns, numRows];
+
+        Maps startMap = new Maps(); // make a new maps object
+        startMap.CreateNewStartMap();
+        
 
         for (int column = 0; column < numColumns; column++)
         {
             for (int row = 0; row < numRows; row++)
             {
-                Hex h = new Hex(this, column, row, Hex.TERRAIN_TYPE.DESERT);
-
-                if (column == 1 && row == 1)
+                Hex h;
+                switch(startMap.GetTileAtPosition(row, column))
                 {
-                    h.terrainType = Hex.TERRAIN_TYPE.OCEAN;
+                    case 0:
+                        h = new Hex(this, column, row, Hex.TERRAIN_TYPE.DESERT);
+                        break;
+                    case 1:
+                        h = new Hex(this, column, row, Hex.TERRAIN_TYPE.PLAINS);
+                        break;
+                    case 2:
+                        h = new Hex(this, column, row, Hex.TERRAIN_TYPE.OCEAN);
+                        break;
+                    default:
+                        h = new Hex(this, column, row, Hex.TERRAIN_TYPE.DEFAULT);
+                        break;
                 }
                 
                 hexes[column, row] = h;
