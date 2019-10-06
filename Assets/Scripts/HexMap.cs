@@ -84,6 +84,11 @@ public class HexMap : MonoBehaviour
         return startDate.AddSeconds(elapsed);
     }
 
+    public Boolean isTimeElapsed()
+    {
+        return (DateTime.Now - startDate).TotalMinutes >= MAX_GAME_TIME_MIN;
+    }
+
     virtual public void generateMap()
     {
         // Generate a map filled with ocean
