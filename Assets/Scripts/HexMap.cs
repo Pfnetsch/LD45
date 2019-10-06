@@ -146,7 +146,7 @@ public class HexMap : MonoBehaviour
                position.y < this.startRow + this.numRows)
         {
             this.hexes[position.y, position.x].setVegetation(vegetation);
-            this.updateMap();
+            this.updateMapVisuals();
         }
     }
 
