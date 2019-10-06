@@ -183,9 +183,14 @@ public class HexMap : MonoBehaviour
             position.x < this.startColumn + this.numColumns &&
             position.y < this.startRow + this.numRows)
         {
-            return getHexAt(position.y, position.x).getWaterLevel() >= vegetation.getWaterRequirement();
+            if (getHexAt(position.y, position.x).getWaterLevel() >= vegetation.getWaterRequirement() &&  // vegetation has enough water
+               !getHexAt(position.y, position.x).isWaterSource())           // tile is no water source
+            {
+                return true;
+            }   
+            // return getHexAt(position.y, position.x).getWaterLevel() >= vegetation.getWaterRequirement();
         }
-
+        // Debug.Log("Cannot Grow here");
         return false;
     }
     
