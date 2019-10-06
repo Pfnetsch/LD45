@@ -212,11 +212,19 @@ public class HexMap : MonoBehaviour
 
     public Boolean canGrow(Vector3Int position, Vegetation vegetation)
     {
+        Hex hex = getHexAt(position.y, position.x);
+        
+        if (hex.hasVegetation())
+            return false;
+
+        if (hex.isWaterSource())
+            return false;
+        
         if (position.x >= this.startColumn && position.y >= this.startRow &&
             position.x < this.startColumn + this.numColumns &&
             position.y < this.startRow + this.numRows)
         {
-            return getHexAt(position.y, position.x).getWaterLevel() >= vegetation.getWaterRequirement();
+            return hex.getWaterLevel() >= vegetation.getWaterRequirement();
         }
 
         return false;

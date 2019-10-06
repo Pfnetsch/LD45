@@ -9,6 +9,7 @@ public class HighlightController : MonoBehaviour
 {
 	public Tilemap highlightTilemap;
 	public Tile highlightTile;
+	public Tile notAllowedTile;
     public Vegetation veggieToPlant;
 	public Boolean highlightActive = false;
 
@@ -43,8 +44,18 @@ public class HighlightController : MonoBehaviour
 		    // tile changed, unhighlight last tile
 		    highlightTilemap.SetTile(lastTilePos, null);
 
-            if (veggieToPlant != null) highlightTilemap.SetTile(posInt, veggieToPlant.getTileForLevel(0));
-            else
+		    if (veggieToPlant != null)
+		    {
+			    if (!hexMap.canGrow(posInt, veggieToPlant))
+			    {
+				    highlightTilemap.SetTile(posInt, notAllowedTile); 
+			    }
+			    else
+			    {
+				    highlightTilemap.SetTile(posInt, veggieToPlant.getTileForLevel(0));
+			    }
+		    }
+		    else
             {
                 highlightTilemap.SetTile(posInt, highlightTile);
                 tooltipList.gameObject.SetActive(true);
@@ -60,14 +71,12 @@ public class HighlightController : MonoBehaviour
 
 		    Debug.Log(posInt);
 		    
-            if (veggieToPlant != null)
+            if (veggieToPlant != null && hexMap.canGrow(posInt, veggieToPlant))
             {
                 hexMap.plantVegetation(posInt, veggieToPlant);
                 veggieToPlant = null;
             }
-            else
-                hexMap.upgradeTile(posInt);
-        }
+	    }
 
 	    if (Input.GetMouseButtonUp(0) && buttonDown)
 	    {
