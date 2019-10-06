@@ -51,6 +51,7 @@ public class Maps
 
             for (col = 0; col < dataValues.Length; col++)
             {
+                // values are written into 2D-map-array, note that y-axis is inverted as in csv file
                 uint.TryParse(dataValues[col], out startMap[col, row]);
             }
 
@@ -58,10 +59,5 @@ public class Maps
         }
 
         Debug.Log(startMap.Length);
-    }
-
-    void GenerateRandomStones(uint numOfStones)
-    {
-
     }
 }

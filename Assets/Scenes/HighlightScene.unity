@@ -800,11 +800,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e22edf020ea44fea9814d054caedd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultTile: {fileID: 11400000, guid: 1a276dccad6524d71bb9489e8333bde9, type: 2}
-  desertTile: {fileID: 11400000, guid: 427aebc2536a01a4abdc57bba3689b47, type: 2}
-  plainsTile: {fileID: 11400000, guid: 8862738d71dfaf343a7282d8ced32cf7, type: 2}
-  marshTile: {fileID: 11400000, guid: dd21dab0d74b6b040bf94d1ed7a8e795, type: 2}
-  oceanTile: {fileID: 11400000, guid: 89732de61de35604e928194226c9cb8e, type: 2}
+  defaultTile: {fileID: 11400000, guid: 89732de61de35604e928194226c9cb8e, type: 2}
   numRows: 50
   numColumns: 50
   overlayTilemap: {fileID: 0}
