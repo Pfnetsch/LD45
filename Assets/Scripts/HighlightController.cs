@@ -43,7 +43,7 @@ public class HighlightController : MonoBehaviour
 		    // tile changed, unhighlight last tile
 		    highlightTilemap.SetTile(lastTilePos, null);
 
-            if (veggieToPlant != null) highlightTilemap.SetTile(posInt, veggieToPlant.getTileForLevel(0));
+		    if (veggieToPlant != null) highlightTilemap.SetTile(posInt, veggieToPlant.getTileForLevel(0));
             else highlightTilemap.SetTile(posInt, highlightTile);
 
             lastTilePos = posInt;
@@ -53,6 +53,8 @@ public class HighlightController : MonoBehaviour
 	    {
 		    buttonDown = true;
 
+		    Debug.Log(posInt);
+		    
             if (veggieToPlant != null)
             {
                 hexMap.plantVegetation(posInt, veggieToPlant);

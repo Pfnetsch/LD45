@@ -10,6 +10,9 @@ public class Vegetation
     protected String name = "empty";
     protected int maxLevel = 0;
     
+    // water modifier (<1.0f for reduction, >1.0f for increase)
+    protected float waterMod = 1.0f;
+    
     // add more properties
 
     public int getMaxLevel()
