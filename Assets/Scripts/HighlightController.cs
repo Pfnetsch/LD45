@@ -12,11 +12,10 @@ public class HighlightController : MonoBehaviour
     public Vegetation veggieToPlant;
 	public Boolean highlightActive = false;
 
-    Grid grid;
+    private ToolTipList tooltipList;
+    private Grid grid;
 	private HexMap hexMap;
-
 	private Vector3Int lastTilePos;
-
 	private Boolean buttonDown = false;
 
 	// Start is called before the first frame update
@@ -24,6 +23,7 @@ public class HighlightController : MonoBehaviour
     {
 		grid = FindObjectOfType<Grid>();
 		hexMap = FindObjectOfType<HexMap>();
+        tooltipList = Resources.FindObjectsOfTypeAll<ToolTipList>()[0];
     }
 
     // Update is called once per frame
@@ -43,10 +43,13 @@ public class HighlightController : MonoBehaviour
 		    // tile changed, unhighlight last tile
 		    highlightTilemap.SetTile(lastTilePos, null);
 
-		    if (veggieToPlant != null) highlightTilemap.SetTile(posInt, veggieToPlant.getTileForLevel(0));
-            else highlightTilemap.SetTile(posInt, highlightTile);
-
-
+            if (veggieToPlant != null) highlightTilemap.SetTile(posInt, veggieToPlant.getTileForLevel(0));
+            else
+            {
+                highlightTilemap.SetTile(posInt, highlightTile);
+                tooltipList.gameObject.SetActive(true);
+                tooltipList.Hex = hexMap.getHexAt(posInt.y, posInt.x);
+            }
 
             lastTilePos = posInt;
 	    }
