@@ -9,13 +9,15 @@ using UnityEngine.Tilemaps;
 public class HexMap : MonoBehaviour
 {
     // adjust water generation
-    private const double WATER_SPREAD = 1.4;
+    private const double WATER_SPREAD = 1.5;
+    public const double WATER_LEVEL_HIGH = 0.4;
+    public const double WATER_LEVEL_MID = 0.2;
 
     public Tile defaultTile;
-    public Tile desertTile;
-    public Tile plainsTile;
-    public Tile marshTile;
-    public Tile oceanTile;
+    //public Tile desertTile;
+    //public Tile plainsTile;
+    //public Tile marshTile;
+    //public Tile oceanTile;
 
 
     public int numRows = 50;
@@ -112,29 +114,42 @@ public class HexMap : MonoBehaviour
         {
             for (int row = 0; row < numRows; row++)
             {
-                Tile tile;
-                switch (hexes[column, row].terrainType)
+                Hex currentHex = hexes[column, row];
+                Tile tile = defaultTile;
+                Color tileColor;
+
+                if (currentHex.terrainType == Hex.TERRAIN_TYPE.OCEAN)
                 {
-                    case Hex.TERRAIN_TYPE.DESERT:
-                        tile = desertTile;
-                        break;
-                    case Hex.TERRAIN_TYPE.MARSH:
-                        tile = marshTile;
-                        break;
-                    case Hex.TERRAIN_TYPE.OCEAN:
-                        tile = oceanTile;
-                        break;
-                    case Hex.TERRAIN_TYPE.PLAINS:
-                        tile = plainsTile;
-                        break;
-                    default:
-                        tile = defaultTile;
-                        break;
+                    //6BDEFF
+                    tileColor = new Color(0x6b/255.0f, 0xde/255.0f, 0xff/255.0f);
+                }
+                else if (currentHex.terrainType == Hex.TERRAIN_TYPE.DESERT)
+                {
+                    double waterLevel = currentHex.getWaterLevel();
+                    if (waterLevel > WATER_LEVEL_HIGH)
+                    {
+                        //99701C
+                        tileColor = new Color(0x99/255.0f, 0x70/255.0f, 0x1C/255.0f);
+                    }
+                    else if (waterLevel > WATER_LEVEL_MID)
+                    {
+                        //D3A450
+                        tileColor = new Color(0xD3/255.0f, 0xA4/255.0f, 0x50/255.0f);
+                    }
+                    else
+                    {
+                        //FFDA83
+                        tileColor = new Color(0xFF/255.0f, 0xDA/255.0f, 0x83/255.0f);
+                    }
+                }
+                else
+                {
+                    tileColor = Color.magenta;
                 }
 
                 backgroundTilemap.SetTile(new Vector3Int(row + startRow, column + startColumn, 0), tile);
                 backgroundTilemap.SetTileFlags(new Vector3Int(row + startRow, column + startColumn, 0), TileFlags.None);
-                backgroundTilemap.SetColor(new Vector3Int(row + startRow, column + startColumn, 0), new Color(0.0f,0.0f,(float)hexes[column, row].getWaterLevel()));
+                backgroundTilemap.SetColor(new Vector3Int(row + startRow, column + startColumn, 0), tileColor);
 
 
                 // tile not empty => render foreground
@@ -188,6 +203,11 @@ public class HexMap : MonoBehaviour
 
                 // TODO: adjust water spread formula
                 newWater[column, row] = newWaterLevel / 6.0 * WATER_SPREAD;
+
+                if (newWater[column, row] > 1.0)
+                {
+                    newWater[column, row] = 1.0;
+                }
             }
         }
 
