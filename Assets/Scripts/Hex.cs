@@ -18,6 +18,7 @@ public class Hex
     private int level = 0;
     private double waterLevel = 0.0;
     private Boolean burning = false;
+    private Boolean infested = false;
 
     public Hex(HexMap hexMap, int q, int r, TERRAIN_TYPE terrainType = TERRAIN_TYPE.DEFAULT)
     {
@@ -107,6 +108,11 @@ public class Hex
     public Boolean isBurning()
     {
         return burning;
+    }
+
+    public Boolean isInfested()
+    {
+        return infested;
     }
 
     public Vector3Int getPosition()

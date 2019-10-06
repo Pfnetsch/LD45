@@ -17,6 +17,8 @@ public class HexMap : MonoBehaviour
     public const double WATER_LEVEL_MID = 0.2;
 
     public const double FIRE_SPREAD = 0.1;
+    public const double INFESTATION_SPREAD = 0.1;
+    public const double INFESTATION_MULT = 0.5;
     
 
     public Tile defaultTile;
@@ -41,6 +43,9 @@ public class HexMap : MonoBehaviour
     
     // states
     private Boolean lightning = false;
+    
+    // global co2
+    private double co2 = 10000.0;
 
 
     // Start is called before the first frame update
@@ -269,5 +274,28 @@ public class HexMap : MonoBehaviour
     public void doInfestationTick()
     {
         
+    }
+
+    public void doCO2Tick()
+    {
+        foreach (var hex in hexes)
+        {
+            if (!hex.hasVegetation()) continue;
+            
+            // burning tiles dont consume co2
+            if (hex.isBurning()) continue;
+
+            if (hex.isInfested())
+            {
+                // TODO: infested tiles consume less co2
+                co2 -= hex.getVegetation().getCO2Usage() * INFESTATION_MULT;
+                continue;
+            }
+            
+            // normal consumption
+            co2 -= hex.getVegetation().getCO2Usage();
+        }
+
+        Debug.Log(co2);
     }
 }
