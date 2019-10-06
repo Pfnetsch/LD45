@@ -11,7 +11,7 @@ public class LeafTree: Vegetation
         name = "LeafTree";
         
         // very high
-        waterReq = 1.0;
+        waterReq = 0.7;
         
         // high
         waterMod = 0.8;

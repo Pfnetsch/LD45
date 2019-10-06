@@ -27,7 +27,7 @@ public class Hex
         this.q = q;
         this.r = r;
         this.terrainType = terrainType;
-        this.vegetation = new Vegetation();
+        this.vegetation = null;
     }
 
     public Boolean hasVegetation()
@@ -66,6 +66,7 @@ public class Hex
 
     public Boolean isEmpty()
     {
+        return vegetation == null;
         return vegetation.getName().Equals("empty");
     }
 
@@ -92,7 +93,6 @@ public class Hex
     
     public double getMaxWaterLevel()
     {
-        // TODO: return real max level which is modified by vegetation
         return 1.0;
     }
 
@@ -133,7 +133,7 @@ public class Hex
 
     public void doGrowTick()
     {
-        if (Random.Range(0.0f, 1.0f) < vegetation.getGrowrate() * HexMap.GROW_MULT)
+        if (Random.Range(0.0f, 1.0f) <= vegetation.getGrowrate() * HexMap.GROW_MULT)
         {
             if (level < vegetation.getMaxLevel())
             {

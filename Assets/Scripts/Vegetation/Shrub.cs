@@ -13,7 +13,7 @@ public class Shrub: Vegetation
         waterReq = 0.2;
         
         // mid
-        waterMod = 0.5;
+        waterMod = 0.3;
         
         // high
         flammability = 0.8;

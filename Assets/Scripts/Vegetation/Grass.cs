@@ -10,7 +10,7 @@ public class Grass: Vegetation
         name = "Grass";
         
         // mid/high
-        waterReq = 0.7;
+        waterReq = 0.5;
         
         // low
         waterMod = 0.2;
