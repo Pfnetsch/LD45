@@ -74,12 +74,14 @@ public class HexMap : MonoBehaviour
         return 1 - co2change / co2Goal;
     }
 
-    public double getDate()
+    public DateTime getDate()
     {
         DateTime now = DateTime.Now;
         
         // map 20min to 40yr
-        return 0.0;
+        double elapsed = (now - startDate).TotalSeconds * 1614400;
+
+        return startDate.AddSeconds(elapsed);
     }
 
     virtual public void generateMap()

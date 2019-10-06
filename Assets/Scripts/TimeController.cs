@@ -38,6 +38,8 @@ public class TimeController : MonoBehaviour
             hexMap.doCO2Tick();
             hexMap.doGrowTick();
             hexMap.updateMapVisuals();
+
+            Debug.Log(hexMap.getDate());
             tickCount = 0;
         }
     }
