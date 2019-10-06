@@ -48,7 +48,7 @@ public class HexMap : MonoBehaviour
         {
             for (int row = 0; row < numRows; row++)
             {
-                Hex h = new Hex(this);
+                Hex h = new Hex(this, Hex.TERRAIN_TYPE.DESERT);
 
                 hexes[column, row] = h;
 
