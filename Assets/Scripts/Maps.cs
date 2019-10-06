@@ -3,14 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
-public class Maps : MonoBehaviour
+public class Maps 
 {
-    public uint[,] startMap = new uint[50,50]; // create two dimensional array for hex map
+    public Maps() { }
 
-    void Start()
+    public void CreateNewStartMap()
     {
         LoadMapFromCSV();
     }
+
+    public uint getTileAtPosition(int x, int y)
+    {
+        if ( (x > 50) || (y > 50) ||
+             (x < 0 ) || (y < 0 )    )
+        {
+            Debug.Log("Cannot access this coordinates of the map!");
+            return 0;
+        }
+
+        return startMap[x,y];
+    }
+
+    private uint[,] startMap = new uint[50, 50]; // create two dimensional array for hex map
 
     private void LoadMapFromCSV()
     {
@@ -40,12 +54,6 @@ public class Maps : MonoBehaviour
         }
 
         Debug.Log(startMap.Length);
-    }
-
-    // Update is called once per frame
-    void BuildToHexMap()
-    {
-        
     }
 
     void GenerateRandomStones(uint numOfStones)
