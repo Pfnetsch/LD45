@@ -20,6 +20,8 @@ public class HexMap : MonoBehaviour
     public const double INFESTATION_SPREAD = 0.1;
     public const double INFESTATION_MULT = 0.5;
     public const double GROW_MULT = 0.1;
+
+    public const double MAX_GAME_TIME_MIN = 20;
     
 
     public Tile defaultTile;
@@ -49,18 +51,35 @@ public class HexMap : MonoBehaviour
     private double co2Goal = 10000.0;
     private double co2change = 0.0;
 
+    private DateTime startDate;
+    private DateTime endDate;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        generateMap();
+        startDate = DateTime.Now;
+        endDate = startDate.AddMinutes(MAX_GAME_TIME_MIN);
 
+        generateMap();
     }
 
     // Update is called once per frame
     void Update()
     {
 
+    }
+    public double getCO2Level()
+    {
+        return 1 - co2change / co2Goal;
+    }
+
+    public double getDate()
+    {
+        DateTime now = DateTime.Now;
+        
+        // map 20min to 40yr
+        return 0.0;
     }
 
     virtual public void generateMap()
