@@ -10,10 +10,10 @@ public class Grass: Vegetation
         name = "Grass";
         
         // mid/high
-        waterReq = 0.2;
+        waterReq = 0.7;
         
         // low
-        waterMod = 1.0;
+        waterMod = 0.2;
         
         // none
         flammability = 0.0;
@@ -22,10 +22,10 @@ public class Grass: Vegetation
         infestability = 0.0;
         
         // low
-        co2Usage = 0.0;
+        co2Usage = 0.2;
         
         // high
-        growrate = 0.0;
+        growrate = 0.8;
         
         tiles = new Dictionary<int, Tile>();
 

@@ -10,22 +10,22 @@ public class FirTree: Vegetation
         name = "FirTree";
     
         // high
-        waterReq = 0.2;
+        waterReq = 0.8;
         
         // high
-        waterMod = 1.0;
+        waterMod = 0.8;
         
         // high
-        flammability = 0.0;
+        flammability = 0.8;
         
         // mid
-        infestability = 0.0;
+        infestability = 0.5;
         
         // high
-        co2Usage = 0.0;
+        co2Usage = 0.8;
         
         // low
-        growrate = 0.0;
+        growrate = 0.2;
         
         // Tiles
         tiles = new Dictionary<int, Tile>();

@@ -13,19 +13,19 @@ public class Shrub: Vegetation
         waterReq = 0.2;
         
         // mid
-        waterMod = 1.0;
+        waterMod = 0.5;
         
         // high
-        flammability = 0.0;
+        flammability = 0.8;
         
         // none
         infestability = 0.0;
         
         // mid
-        co2Usage = 0.0;
+        co2Usage = 0.5;
         
         // mid
-        growrate = 0.0;
+        growrate = 0.5;
         
         tiles = new Dictionary<int, Tile>();
 

@@ -11,22 +11,22 @@ public class LeafTree: Vegetation
         name = "LeafTree";
         
         // very high
-        waterReq = 0.2;
+        waterReq = 1.0;
         
         // high
-        waterMod = 1.0;
+        waterMod = 0.8;
         
         // mid
-        flammability = 0.0;
+        flammability = 0.5;
         
         // high
-        infestability = 0.0;
+        infestability = 0.8;
         
         // very high
-        co2Usage = 0.0;
+        co2Usage = 1.0;
         
         // low
-        growrate = 0.0;
+        growrate = 0.2;
         
         tiles = new Dictionary<int, Tile>();
 

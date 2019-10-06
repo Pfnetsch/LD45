@@ -43,4 +43,34 @@ public class Vegetation
         Debug.Log("Bad level");
         return new Tile();
     }
+
+    public double getWaterMod()
+    {
+        return waterMod;
+    }
+
+    public double getWaterRequirement()
+    {
+        return waterReq;
+    }
+    
+    public double getFlammability()
+    {
+        return flammability;
+    }
+    
+    public double getInfestability()
+    {
+        return infestability;
+    }
+    
+    public double getCO2Usage()
+    {
+        return co2Usage;
+    }
+    
+    public double getGrowrate()
+    {
+        return growrate;
+    }
 }
