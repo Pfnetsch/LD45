@@ -9,7 +9,7 @@ using UnityEngine.Tilemaps;
 public class HexMap : MonoBehaviour
 {
     // adjust water generation
-    private const double WATER_SPREAD = 1.5;
+    private const double WATER_SPREAD = 0.6;
     public const double WATER_LEVEL_HIGH = 0.4;
     public const double WATER_LEVEL_MID = 0.2;
 
@@ -190,14 +190,14 @@ public class HexMap : MonoBehaviour
 
                 foreach (Hex neighbour in neighbours)
                 {
-                    if (neighbour.getWaterLevel() > hexes[column, row].getWaterLevel())
+                    if (neighbour.getWaterLevel() > hexes[column, row].getWaterLevel() && neighbour.getWaterLevel() > newWaterLevel)
                     {
-                        newWaterLevel += neighbour.getWaterLevel();
+                        newWaterLevel = neighbour.getWaterLevel();
                     }
                 }
 
                 // TODO: adjust water spread formula
-                newWater[column, row] = newWaterLevel / 6.0 * WATER_SPREAD;
+                newWater[column, row] = newWaterLevel * WATER_SPREAD;
 
                 if (newWater[column, row] > 1.0)
                 {
