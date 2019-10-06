@@ -83,7 +83,7 @@ public class HexMap : MonoBehaviour
         }
         catch
         {
-            Debug.LogError("GetHexAt: " + x + "," + y);
+            //Debug.LogError("GetHexAt: " + x + "," + y);
             return null;
         }
     }
