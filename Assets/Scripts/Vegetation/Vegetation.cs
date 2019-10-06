@@ -8,12 +8,11 @@ public class Vegetation
 {
     protected Dictionary<int, Tile> tiles = new Dictionary<int, Tile>();
     protected String name = "empty";
-    protected int maxLevel = 0;
     
     // water modifier (<1.0f for reduction, >1.0f for increase)
     protected double waterMod = 1.0;
     
-    // required water level
+    // properties [0.0-1.0]?
     protected double waterReq = 0.2;
 
     protected double flammability = 0.0;
@@ -40,10 +39,38 @@ public class Vegetation
         {
             return tiles[level];
         }
-        else
-        {
-            Debug.Log("Bad level");
-            return new Tile();
-        }
+
+        Debug.Log("Bad level");
+        return new Tile();
+    }
+
+    public double getWaterMod()
+    {
+        return waterMod;
+    }
+
+    public double getWaterRequirement()
+    {
+        return waterReq;
+    }
+    
+    public double getFlammability()
+    {
+        return flammability;
+    }
+    
+    public double getInfestability()
+    {
+        return infestability;
+    }
+    
+    public double getCO2Usage()
+    {
+        return co2Usage;
+    }
+    
+    public double getGrowrate()
+    {
+        return growrate;
     }
 }
