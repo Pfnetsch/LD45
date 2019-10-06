@@ -1,25 +1,33 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Xml;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
+using Random = UnityEngine.Random;
 
 public class HexMap : MonoBehaviour
 {
     // adjust water generation
-    private const double WATER_SPREAD = 1.4;
+    public const double WATER_SPREAD = 0.6;
+    public const double WATER_LEVEL_HIGH = 0.4;
+    public const double WATER_LEVEL_MID = 0.2;
+
+    public const double FIRE_SPREAD = 0.1;
+    
 
     public Tile defaultTile;
-    public Tile desertTile;
-    public Tile plainsTile;
-    public Tile marshTile;
-    public Tile oceanTile;
+    //public Tile desertTile;
+    //public Tile plainsTile;
+    //public Tile marshTile;
+    //public Tile oceanTile;
 
 
-    public int numRows = 30;
-    public int numColumns = 60;
+    public int numRows = 50;
+    public int numColumns = 50;
     private int startRow = 0;
     private int startColumn = 0;
 
@@ -30,6 +38,9 @@ public class HexMap : MonoBehaviour
 
     // hexdata
     private Hex[,] hexes;
+    
+    // states
+    private Boolean lightning = false;
 
 
     // Start is called before the first frame update
@@ -48,18 +59,31 @@ public class HexMap : MonoBehaviour
     virtual public void generateMap()
     {
         // Generate a map filled with ocean
-
         hexes = new Hex[numColumns, numRows];
+
+        Maps startMap = new Maps(); // make a new maps object
+        startMap.CreateNewStartMap();
+        
 
         for (int column = 0; column < numColumns; column++)
         {
             for (int row = 0; row < numRows; row++)
             {
-                Hex h = new Hex(this, column, row, Hex.TERRAIN_TYPE.DESERT);
-
-                if (column == 1 && row == 1)
+                Hex h;
+                switch(startMap.GetTileAtPosition(row, column))
                 {
-                    h.terrainType = Hex.TERRAIN_TYPE.OCEAN;
+                    case 0:
+                        h = new Hex(this, column, row, Hex.TERRAIN_TYPE.DESERT);
+                        break;
+                    case 1:
+                        h = new Hex(this, column, row, Hex.TERRAIN_TYPE.PLAINS);
+                        break;
+                    case 2:
+                        h = new Hex(this, column, row, Hex.TERRAIN_TYPE.OCEAN);
+                        break;
+                    default:
+                        h = new Hex(this, column, row, Hex.TERRAIN_TYPE.DEFAULT);
+                        break;
                 }
                 
                 hexes[column, row] = h;
@@ -94,29 +118,42 @@ public class HexMap : MonoBehaviour
         {
             for (int row = 0; row < numRows; row++)
             {
-                Tile tile;
-                switch (hexes[column, row].terrainType)
+                Hex currentHex = hexes[column, row];
+                Tile tile = defaultTile;
+                Color tileColor;
+
+                if (currentHex.terrainType == Hex.TERRAIN_TYPE.OCEAN)
                 {
-                    case Hex.TERRAIN_TYPE.DESERT:
-                        tile = desertTile;
-                        break;
-                    case Hex.TERRAIN_TYPE.MARSH:
-                        tile = marshTile;
-                        break;
-                    case Hex.TERRAIN_TYPE.OCEAN:
-                        tile = oceanTile;
-                        break;
-                    case Hex.TERRAIN_TYPE.PLAINS:
-                        tile = plainsTile;
-                        break;
-                    default:
-                        tile = defaultTile;
-                        break;
+                    //6BDEFF
+                    tileColor = new Color(0x6b/255.0f, 0xde/255.0f, 0xff/255.0f);
+                }
+                else if (currentHex.terrainType == Hex.TERRAIN_TYPE.DESERT)
+                {
+                    double waterLevel = currentHex.getWaterLevel();
+                    if (waterLevel > WATER_LEVEL_HIGH)
+                    {
+                        //99701C
+                        tileColor = new Color(0x99/255.0f, 0x70/255.0f, 0x1C/255.0f);
+                    }
+                    else if (waterLevel > WATER_LEVEL_MID)
+                    {
+                        //D3A450
+                        tileColor = new Color(0xD3/255.0f, 0xA4/255.0f, 0x50/255.0f);
+                    }
+                    else
+                    {
+                        //FFDA83
+                        tileColor = new Color(0xFF/255.0f, 0xDA/255.0f, 0x83/255.0f);
+                    }
+                }
+                else
+                {
+                    tileColor = Color.magenta;
                 }
 
                 backgroundTilemap.SetTile(new Vector3Int(row + startRow, column + startColumn, 0), tile);
                 backgroundTilemap.SetTileFlags(new Vector3Int(row + startRow, column + startColumn, 0), TileFlags.None);
-                backgroundTilemap.SetColor(new Vector3Int(row + startRow, column + startColumn, 0), new Color(0.0f,0.0f,(float)hexes[column, row].getWaterLevel()));
+                backgroundTilemap.SetColor(new Vector3Int(row + startRow, column + startColumn, 0), tileColor);
 
 
                 // tile not empty => render foreground
@@ -140,13 +177,28 @@ public class HexMap : MonoBehaviour
         }
     }
 
+    public Boolean canGrow(Vector3Int position, Vegetation vegetation)
+    {
+        if (position.x >= this.startColumn && position.y >= this.startRow &&
+            position.x < this.startColumn + this.numColumns &&
+            position.y < this.startRow + this.numRows)
+        {
+            return getHexAt(position.y, position.x).getWaterLevel() >= vegetation.getWaterRequirement();
+        }
+
+        return false;
+    }
+    
     public void plantVegetation(Vector3Int position, Vegetation vegetation)
     {
         if (position.x >= this.startColumn && position.y >= this.startRow && position.x < this.startColumn + this.numColumns &&
                position.y < this.startRow + this.numRows)
         {
-            this.hexes[position.y, position.x].setVegetation(vegetation);
-            this.updateMapVisuals();
+            if (canGrow(position, vegetation))
+            {
+                this.hexes[position.y, position.x].setVegetation(vegetation);
+                this.updateMapVisuals();
+            }
         }
     }
 
@@ -162,14 +214,19 @@ public class HexMap : MonoBehaviour
 
                 foreach (Hex neighbour in neighbours)
                 {
-                    if (neighbour.getWaterLevel() > hexes[column, row].getWaterLevel())
+                    if (neighbour.getWaterLevel() > hexes[column, row].getWaterLevel() && neighbour.getWaterLevel() > newWaterLevel)
                     {
-                        newWaterLevel += neighbour.getWaterLevel();
+                        newWaterLevel = neighbour.getWaterLevel();
                     }
                 }
 
                 // TODO: adjust water spread formula
-                newWater[column, row] = newWaterLevel / 6.0 * WATER_SPREAD;
+                newWater[column, row] = newWaterLevel * WATER_SPREAD;
+
+                if (newWater[column, row] > 1.0)
+                {
+                    newWater[column, row] = 1.0;
+                }
             }
         }
 
@@ -182,5 +239,48 @@ public class HexMap : MonoBehaviour
         }
         
         updateMapVisuals();
+    }
+
+    public void doFireTick()
+    {
+        // new fire?
+        if (lightning)
+        {
+            List<Vector3Int> vegetationHexes = (from Hex hex in hexes where hex.hasVegetation() select hex.getPosition()).ToList();
+
+            // select random tile and try to spread lightning
+            int index = Random.Range(0, vegetationHexes.Count);
+
+            // set on fire?
+            double flammability1 = getHexAt(vegetationHexes[index].y, vegetationHexes[index].x).getVegetation()
+                .getFlammability();
+            if (Random.Range(0.0f, 1.0f) < flammability1 * FIRE_SPREAD)
+            {
+                getHexAt(vegetationHexes[index].y, vegetationHexes[index].x).setBurning(true);
+                updateMapVisuals();
+            }
+        }
+        
+        
+        //spread
+        foreach (Hex hex in hexes)
+        {
+            // if no neighbour is burning, there is no spread
+            if (!hex.getNeighbours().Any(neighbour => neighbour.isBurning())) continue;
+            
+            // calculate fire spread
+            double flammability = hex.getVegetation().getFlammability();
+            if (Random.Range(0.0f, 1.0f) < flammability * FIRE_SPREAD)
+            {
+                hex.setBurning(true);
+                updateMapVisuals();
+                return;
+            }
+        }
+    }
+
+    public void doInfestationTick()
+    {
+        
     }
 }
