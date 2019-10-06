@@ -114,7 +114,11 @@ public class HexMap : MonoBehaviour
 
     public void plantVegetation(Vector3Int position, Vegetation vegetation)
     {
-        this.hexes[position.y, position.x].setVegetation(vegetation);
-        this.updateMap();
+        if (position.x >= this.startColumn && position.y >= this.startRow && position.x < this.startColumn + this.numColumns &&
+               position.y < this.startRow + this.numRows)
+        {
+            this.hexes[position.y, position.x].setVegetation(vegetation);
+            this.updateMap();
+        }
     }
 }

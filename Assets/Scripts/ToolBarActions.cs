@@ -5,14 +5,15 @@ using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
-public class Actions : MonoBehaviour
+public class ToolBarActions : MonoBehaviour
 {
     public HighlightController highlightController;
+    public GameObject bottomRightToolTip;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        bottomRightToolTip.SetActive(false);
     }
 
     // Update is called once per frame
@@ -44,6 +45,16 @@ public class Actions : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public void ToolBarPointerEnter(int index)
+    {
+        bottomRightToolTip.SetActive(true);
+    }
+
+    public void ToolBarPointerExit(int index)
+    {
+        bottomRightToolTip.SetActive(false);
     }
 
 }
