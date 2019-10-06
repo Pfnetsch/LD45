@@ -32,17 +32,10 @@ public class TimeController : MonoBehaviour
 
         if (tickCount >= tickrate)
         {
-            updateWaterLevels();
+            hexMap.doWaterTick();
+            hexMap.doFireTick();
+            hexMap.doInfestationTick();
             tickCount = 0;
         }
-    }
-
-    void updateWaterLevels()
-    {
-        // update sources
-        //hexMap.updateWaterSources();
-        
-        // update waterSpread
-        hexMap.doWaterTick();
     }
 }

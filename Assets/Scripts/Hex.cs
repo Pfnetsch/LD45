@@ -17,6 +17,7 @@ public class Hex
     private Vegetation vegetation;
     private int level = 0;
     private double waterLevel = 0.0;
+    private Boolean burning = false;
 
     public Hex(HexMap hexMap, int q, int r, TERRAIN_TYPE terrainType = TERRAIN_TYPE.DEFAULT)
     {
@@ -96,6 +97,21 @@ public class Hex
     public void setWaterLevel(double waterLevel)
     {
         this.waterLevel = waterLevel;
+    }
+
+    public void setBurning(bool burning)
+    {
+        this.burning = burning;
+    }
+    
+    public Boolean isBurning()
+    {
+        return burning;
+    }
+
+    public Vector3Int getPosition()
+    {
+        return new Vector3Int(r, q, 0);
     }
 
 
