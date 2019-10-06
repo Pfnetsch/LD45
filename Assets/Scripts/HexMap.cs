@@ -61,7 +61,7 @@ public class HexMap : MonoBehaviour
             for (int row = 0; row < numRows; row++)
             {
                 Hex h;
-                switch(startMap.getTileAtPosition(row, column))
+                switch(startMap.GetTileAtPosition(row, column))
                 {
                     case 0:
                         h = new Hex(this, column, row, Hex.TERRAIN_TYPE.DESERT);
@@ -75,11 +75,6 @@ public class HexMap : MonoBehaviour
                     default:
                         h = new Hex(this, column, row, Hex.TERRAIN_TYPE.DEFAULT);
                         break;
-                }
-                
-                if (column == 1 && row == 1)
-                {
-                    h.terrainType = Hex.TERRAIN_TYPE.OCEAN;
                 }
                 
                 hexes[column, row] = h;

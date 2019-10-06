@@ -12,7 +12,7 @@ public class Maps
         LoadMapFromCSV();
     }
 
-    public uint getTileAtPosition(int x, int y)
+    public uint GetTileAtPosition(int x, int y)
     {
         if ( (x > 50) || (y > 50) ||
              (x < 0 ) || (y < 0 )    )
@@ -20,14 +20,17 @@ public class Maps
             Debug.Log("Cannot access this coordinates of the map!");
             return 0;
         }
-
-        return startMap[x,y];
+        else
+        {
+            return startMap[x, y];
+        }
     }
 
     private uint[,] startMap = new uint[50, 50]; // create two dimensional array for hex map
 
     private void LoadMapFromCSV()
     {
+        // read csv file
         StreamReader strReader = new StreamReader("Map_Matrix.csv");
         bool endOfFile = false;
 
@@ -36,8 +39,9 @@ public class Maps
 
         while (!endOfFile)
         {
+            // read one line into a string
             string dataString = strReader.ReadLine();
-            if (dataString == null)
+            if (dataString == null) // eof
             {
                 endOfFile = true;
                 break;
@@ -47,7 +51,7 @@ public class Maps
 
             for (col = 0; col < dataValues.Length; col++)
             {
-                uint.TryParse(dataValues[col], out startMap[row, col]);
+                uint.TryParse(dataValues[col], out startMap[col, row]);
             }
 
             row++;
