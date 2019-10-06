@@ -12,7 +12,7 @@ using Random = UnityEngine.Random;
 public class HexMap : MonoBehaviour
 {
     // adjust water generation
-    public const double WATER_SPREAD = 0.6;
+    public const double WATER_SPREAD = 0.7;
     public const double WATER_LEVEL_HIGH = 0.4;
     public const double WATER_LEVEL_MID = 0.2;
 
@@ -46,6 +46,7 @@ public class HexMap : MonoBehaviour
     
     // global co2
     private double co2 = 10000.0;
+    private double co2change = 0.0;
 
 
     // Start is called before the first frame update
@@ -291,6 +292,7 @@ public class HexMap : MonoBehaviour
 
     public void doCO2Tick()
     {
+        co2change = 0.0;
         foreach (var hex in hexes)
         {
             if (!hex.hasVegetation()) continue;
@@ -301,14 +303,14 @@ public class HexMap : MonoBehaviour
             if (hex.isInfested())
             {
                 // TODO: infested tiles consume less co2
-                co2 -= hex.getVegetation().getCO2Usage() * INFESTATION_MULT;
+                co2change += hex.getVegetation().getCO2Usage() * INFESTATION_MULT;
                 continue;
             }
             
             // normal consumption
-            co2 -= hex.getVegetation().getCO2Usage();
+            co2change += hex.getVegetation().getCO2Usage();
         }
 
-        Debug.Log(co2);
+        co2 -= co2change;
     }
 }
