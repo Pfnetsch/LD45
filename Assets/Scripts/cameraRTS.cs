@@ -7,10 +7,10 @@ public class cameraRTS : MonoBehaviour
     private static Camera _attachedCamera;
     private static readonly float _zoomSpeed = 2.0f;
     private static readonly float _keyBoardPanSpeed = 10.0f;
-    private static readonly float _mousePanSpeed = 10.0f;
+    private static readonly float _mousePanSpeed = 20.0f;
 
     private static readonly float _zoomMinSize = 5f;
-    private static readonly float _zoomMaxSize = 50f;
+    private static readonly float _zoomMaxSize = 15f;
 
     private Vector3 lastMousePosition;
 
