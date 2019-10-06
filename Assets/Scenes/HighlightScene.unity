@@ -418,6 +418,20 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 678914293, guid: 1cc665990335bfe44b7667a5a5d2335a, type: 3}
+      propertyPath: highlightController
+      value: 
+      objectReference: {fileID: 1668602104}
+    - target: {fileID: 2261755623405991157, guid: 1cc665990335bfe44b7667a5a5d2335a,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261755623405991157, guid: 1cc665990335bfe44b7667a5a5d2335a,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cc665990335bfe44b7667a5a5d2335a, type: 3}
 --- !u!1 &1288898059
@@ -737,6 +751,7 @@ GameObject:
   - component: {fileID: 1668602105}
   - component: {fileID: 1668602104}
   - component: {fileID: 1668602106}
+  - component: {fileID: 1668602107}
   m_Layer: 0
   m_Name: GlobalScripts
   m_TagString: Untagged
@@ -795,6 +810,19 @@ MonoBehaviour:
   overlayTilemap: {fileID: 0}
   foregroundTilemap: {fileID: 1631719455}
   backgroundTilemap: {fileID: 1288898063}
+--- !u!114 &1668602107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1668602103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a3b41cd6b3634b1b911ad0a5a968550, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tickrate: 100
 --- !u!1 &1769283420
 GameObject:
   m_ObjectHideFlags: 0
