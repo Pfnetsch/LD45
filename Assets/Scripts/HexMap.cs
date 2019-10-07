@@ -21,7 +21,7 @@ public class HexMap : MonoBehaviour
     public const double INFESTATION_MULT = 0.5;
     public const double GROW_MULT = 0.1;
 
-    public const double MAX_GAME_TIME_MIN = 20;
+    public const int MAX_GAME_TIME_YEARS = 40;
 
     public Tile defaultTile;
 
@@ -52,14 +52,14 @@ public class HexMap : MonoBehaviour
     private double co2Goal = 10000.0;
     private double co2change = 0.0;
 
-    private DateTime startDate;
+    private DateTime date;
     private DateTime endDate;
 
     // Start is called before the first frame update
     void Start()
     {
-        startDate = DateTime.Now;
-        endDate = startDate.AddMinutes(MAX_GAME_TIME_MIN);
+        date = new DateTime(2019, 10, 7);
+        endDate = date.AddYears(MAX_GAME_TIME_YEARS);
 
         Vegetation.setSeedsOrSaplings(typeof(Grass), 4);
         Vegetation.setSeedsOrSaplings(typeof(Shrub), 2);
@@ -76,11 +76,13 @@ public class HexMap : MonoBehaviour
         CenterMainCameraOnGrid();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-
+        // map 20min to 40yr - 1051200
+        // map 1min to 40yr  - 21024000
+        date = date.AddSeconds(Time.fixedDeltaTime * 1051200);
     }
+
     public double getCO2Level()
     {
         return 1 - co2change / co2Goal;
@@ -88,12 +90,10 @@ public class HexMap : MonoBehaviour
 
     public DateTime getDate()
     {
-        DateTime now = DateTime.Now;
-        
         // map 20min to 40yr
-        double elapsed = (now - startDate).TotalSeconds * 1614400;
+        //double elapsed = (now - startDate).TotalSeconds * 1614400;
 
-        return startDate.AddSeconds(elapsed);
+        return date;
     }
 
     public void CenterMainCameraOnGrid()
@@ -107,7 +107,7 @@ public class HexMap : MonoBehaviour
 
     public Boolean isTimeElapsed()
     {
-        return (DateTime.Now - startDate).TotalMinutes >= MAX_GAME_TIME_MIN;
+        return date > endDate;
     }
 
     virtual public void generateMap()

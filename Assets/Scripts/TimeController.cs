@@ -6,7 +6,7 @@ using UnityEngine;
 public class TimeController : MonoBehaviour
 {
     public int tickrate = 100;
-    
+
     private HexMap hexMap;
     private int tickCount = 0;
 
