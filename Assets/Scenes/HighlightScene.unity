@@ -338,40 +338,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf3d1d7a6aee047489136d8c13da92b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &802910481 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 899447877611061161, guid: 1cc665990335bfe44b7667a5a5d2335a,
-    type: 3}
-  m_PrefabInstance: {fileID: 2099275326}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &802910482
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 802910481}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 2
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1668602107}
-          m_MethodName: ButtonFasterPointerDown
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1839735485 &1288898063 stripped
 Tilemap:
   m_CorrespondingSourceObject: {fileID: 3286479699833015511, guid: c380d4f9478c2a24ebf4630aab07f543,
@@ -685,50 +651,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 766387372}
-    - target: {fileID: 2216972853552128074, guid: 1cc665990335bfe44b7667a5a5d2335a,
-        type: 3}
-      propertyPath: m_PreserveAspect
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 49426947875050846, guid: 1cc665990335bfe44b7667a5a5d2335a,
-        type: 3}
-      propertyPath: m_PreserveAspect
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2209481814246330353, guid: 1cc665990335bfe44b7667a5a5d2335a,
-        type: 3}
-      propertyPath: m_PreserveAspect
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2475873255871082552, guid: 1cc665990335bfe44b7667a5a5d2335a,
-        type: 3}
-      propertyPath: m_PreserveAspect
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2015366176, guid: 1cc665990335bfe44b7667a5a5d2335a, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 3286163911610860551, guid: ba2aadc869118e048b0fcb31d8288e07,
-        type: 3}
-    - target: {fileID: 2015366176, guid: 1cc665990335bfe44b7667a5a5d2335a, type: 3}
-      propertyPath: m_PreserveAspect
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7189425733183199543, guid: 1cc665990335bfe44b7667a5a5d2335a,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7189425733183199543, guid: 1cc665990335bfe44b7667a5a5d2335a,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+    - target: {fileID: 802910482, guid: 1cc665990335bfe44b7667a5a5d2335a, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1668602107}
-    - target: {fileID: 7189425733183199543, guid: 1cc665990335bfe44b7667a5a5d2335a,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ButtonFasterClick
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cc665990335bfe44b7667a5a5d2335a, type: 3}
 --- !u!1001 &3286479698569677528
