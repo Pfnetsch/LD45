@@ -7,8 +7,6 @@ using UnityEngine.Tilemaps;
 
 public class HighlightController : MonoBehaviour
 {
-    private static bool firstVeggieTextShown = false;
-
     public Tilemap highlightTilemap;
 	public Tile highlightTile;
 	public Tile notAllowedTile;
@@ -16,7 +14,6 @@ public class HighlightController : MonoBehaviour
 	public Boolean highlightActive = false;
 
     private ToolTipList tooltipList;
-    private PopUpInfo popUpInfo;
 
     private Grid grid;
     private HexMap hexMap;
@@ -29,8 +26,6 @@ public class HighlightController : MonoBehaviour
         grid = FindObjectOfType<Grid>();
         hexMap = FindObjectOfType<HexMap>();
         tooltipList = FindObjectOfType<ToolTipList>();
-        popUpInfo = FindObjectOfType<PopUpInfo>();
-        popUpInfo.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -89,11 +84,6 @@ public class HighlightController : MonoBehaviour
                 hexMap.plantVegetation(posInt, veggieToPlant);
                 veggieToPlant.SeedsOrSaplings--;
                 if (veggieToPlant.SeedsOrSaplings == 0) veggieToPlant = null;
-                if (!firstVeggieTextShown)
-                {
-                    popUpInfo.ShowFirstPlantInfoText();
-                    firstVeggieTextShown = true;
-                }
             }
             else
                 hex.harvestVegetation();

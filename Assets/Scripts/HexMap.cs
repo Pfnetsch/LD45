@@ -23,13 +23,15 @@ public class HexMap : MonoBehaviour
 
     public const int MAX_GAME_TIME_YEARS = 40;
 
+    private static bool firstVeggieTextShown = false;
+
+
     public Tile defaultTile;
 
     private Tile _fireTile1;
     private Tile _fireTile2;
     private Tile _bugTile1;
     private Tile _bugTile2;
-
 
     public int numRows;
     public int numColumns;
@@ -41,6 +43,9 @@ public class HexMap : MonoBehaviour
     public Tilemap overlayTilemap;
     public Tilemap foregroundTilemap;
     public Tilemap backgroundTilemap;
+
+
+    private PopUpInfo popUpInfo;
 
     // hexdata
     private Hex[,] hexes;
@@ -71,6 +76,9 @@ public class HexMap : MonoBehaviour
         _bugTile1 = Resources.Load<Tile>("Tiles/Bug1");
         _bugTile2 = Resources.Load<Tile>("Tiles/Bug2");
 
+        popUpInfo = FindObjectOfType<PopUpInfo>();
+        popUpInfo.gameObject.SetActive(false);
+
         grid = FindObjectOfType<Grid>();
         generateMap();
         CenterMainCameraOnGrid();
@@ -92,8 +100,18 @@ public class HexMap : MonoBehaviour
     {
         // map 20min to 40yr
         //double elapsed = (now - startDate).TotalSeconds * 1614400;
+        
+        if (isTimeElapsed())
+        {
+            
+        }
 
         return date;
+    }
+
+    public Boolean isTimeElapsed()
+    {
+        return date > endDate;
     }
 
     public void CenterMainCameraOnGrid()
@@ -103,11 +121,6 @@ public class HexMap : MonoBehaviour
 
         Camera.main.transform.Translate(new Vector3(gridWidth, gridHeight, 0));
         Camera.main.GetComponent<cameraRTS>().SetGridSizeAndStoreInitialPosition(gridWidth, gridHeight);
-    }
-
-    public Boolean isTimeElapsed()
-    {
-        return date > endDate;
     }
 
     virtual public void generateMap()
@@ -272,6 +285,12 @@ public class HexMap : MonoBehaviour
         {
             this.hexes[position.y, position.x].setVegetation(vegetation);
             this.updateMapVisuals();
+
+            if (!firstVeggieTextShown)
+            {
+                popUpInfo.ShowFirstPlantInfoText();
+                firstVeggieTextShown = true;
+            }
         }
 
         //if (position.x >= this.startColumn && position.y >= this.startRow && position.x < this.startColumn + this.numColumns && position.y < this.startRow + this.numRows)
