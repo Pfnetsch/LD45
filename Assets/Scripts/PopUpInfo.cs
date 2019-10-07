@@ -11,6 +11,8 @@ public class PopUpInfo : MonoBehaviour
 
     public Text popUpText;
 
+    private bool gameIsOver = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,13 +28,15 @@ public class PopUpInfo : MonoBehaviour
     public void ShowFirstPlantInfoText()
     {
         gameObject.SetActive(true);
-        popUpText.text = textFirstVeggie.text;       
+        popUpText.text = textFirstVeggie.text;
+        gameIsOver = true;
     }
 
     public void ShowGameOverInfoText()
     {
         gameObject.SetActive(true);
         popUpText.text = textGameOver.text;
+        gameIsOver = true;
     }
 
     public void ShowGameFinishedInfoText()
@@ -43,6 +47,13 @@ public class PopUpInfo : MonoBehaviour
 
     public void OkButtonClicked()
     {
-        gameObject.SetActive(false);
+        if (!gameIsOver)
+            gameObject.SetActive(false);
+        else
+        {
+            // set time back to normal
+            Time.timeScale = 1f;
+            SceneManager.LoadScene("Menu");
+        }
     }
 }
