@@ -30,8 +30,6 @@ public class ToolBarActions : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        toolTipList.SetActive(false);
-
         countGrass = buttonGrass.GetComponentInChildren<Text>();
         countShrub = buttonShrub.GetComponentInChildren<Text>();
         countLeafTree = buttonLeafTree.GetComponentInChildren<Text>();
@@ -122,20 +120,11 @@ public class ToolBarActions : MonoBehaviour
 
         toolTipList.GetComponent<ToolTipList>().Veggie = _veggie;
         toolTipList.GetComponent<ToolTipList>().locked = true;
-
-        leftInfoBox.SetActive(true);
     }
 
     public void ToolBarPointerExit(int index)
     {
         toolTipList.GetComponent<ToolTipList>().locked = false;
-
-        if (highlightController.veggieToPlant == null)
-        {
-            toolTipList.SetActive(false);
-        }
-
-        leftInfoBox.SetActive(false);
     }
 
 }

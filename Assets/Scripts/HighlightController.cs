@@ -25,7 +25,7 @@ public class HighlightController : MonoBehaviour
     {
         grid = FindObjectOfType<Grid>();
         hexMap = FindObjectOfType<HexMap>();
-        tooltipList = Resources.FindObjectsOfTypeAll<ToolTipList>()[0];
+        tooltipList = FindObjectOfType<ToolTipList>();
     }
 
     // Update is called once per frame

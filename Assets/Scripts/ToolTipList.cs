@@ -46,6 +46,13 @@ public class ToolTipList : MonoBehaviour
         }
     }
 
+    private bool _initialized;
+    public bool Initialized
+    {
+        get => _initialized;
+        set => _initialized = value;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -88,6 +95,8 @@ public class ToolTipList : MonoBehaviour
         _propWaterLevel.transform.localPosition = new Vector3(-100, 30, 0);
         _propWaterLevel.GetComponent<ToolTipItem>().toolTipImage.sprite = Resources.Load<Sprite>("Sprites/Properties/Wasserstand");
         _propWaterLevel.GetComponent<ToolTipItem>().toolTipText.text = "Water Level";
+
+        Initialized = true;
     }
 
     // Update is called once per frame
@@ -98,6 +107,8 @@ public class ToolTipList : MonoBehaviour
 
     private void UpdateToolTipItems()
     {
+        if (!Initialized) return;
+
         if (_veggie != null)
         {
             // Hex
