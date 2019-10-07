@@ -1624,7 +1624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1993,6 +1993,10 @@ MonoBehaviour:
   highlightController: {fileID: 0}
   hexMap: {fileID: 0}
   toolTipList: {fileID: 7306771918513033209}
+  leftInfoBox: {fileID: 1423136565202155857}
+  infoTextTree: {fileID: 4900000, guid: 32db473a4af068e4f95245aa6849e28d, type: 3}
+  infoTextShrub: {fileID: 4900000, guid: a75a69b1aa0f6f4429e75a0fd2de4149, type: 3}
+  infoTextGrassland: {fileID: 4900000, guid: 21163c8302bb0db41a292c0b5d9a4c0c, type: 3}
   buttonGrass: {fileID: 1420882862318213366}
   buttonShrub: {fileID: 7152903701387719509}
   buttonLeafTree: {fileID: 2870004779037648751}

@@ -10,6 +10,11 @@ public class ToolBarActions : MonoBehaviour
     public HighlightController highlightController;
     public HexMap hexMap;
     public GameObject toolTipList;
+    public GameObject leftInfoBox;
+
+    public TextAsset infoTextTree;
+    public TextAsset infoTextShrub;
+    public TextAsset infoTextGrassland;
 
     public GameObject buttonGrass;
     public GameObject buttonShrub;
@@ -17,20 +22,20 @@ public class ToolBarActions : MonoBehaviour
     public GameObject buttonFirTree;
 
     private Vegetation _veggie;
-    private Text textGrass;
-    private Text textShrub;
-    private Text textLeafTree;
-    private Text textFirTree;
+    private Text countGrass;
+    private Text countShrub;
+    private Text countLeafTree;
+    private Text countFirTree;
 
     // Start is called before the first frame update
     void Start()
     {
         toolTipList.SetActive(false);
 
-        textGrass = buttonGrass.GetComponentInChildren<Text>();
-        textShrub = buttonShrub.GetComponentInChildren<Text>();
-        textLeafTree = buttonLeafTree.GetComponentInChildren<Text>();
-        textFirTree = buttonFirTree.GetComponentInChildren<Text>();
+        countGrass = buttonGrass.GetComponentInChildren<Text>();
+        countShrub = buttonShrub.GetComponentInChildren<Text>();
+        countLeafTree = buttonLeafTree.GetComponentInChildren<Text>();
+        countFirTree = buttonFirTree.GetComponentInChildren<Text>();
     }
 
     // Update is called once per frame
@@ -41,10 +46,10 @@ public class ToolBarActions : MonoBehaviour
         int leafTree = LeafTree.getSeedsOrSaplings(typeof(LeafTree));
         int firTree = Grass.getSeedsOrSaplings(typeof(FirTree));
 
-        textGrass.text = grass.ToString();
-        textShrub.text = shrub.ToString();
-        textLeafTree.text = leafTree.ToString();
-        textFirTree.text = firTree.ToString();
+        countGrass.text = grass.ToString();
+        countShrub.text = shrub.ToString();
+        countLeafTree.text = leafTree.ToString();
+        countFirTree.text = firTree.ToString();
 
         if (grass == 0) buttonGrass.GetComponent<Button>().interactable = false;
         else buttonGrass.GetComponent<Button>().interactable = true;
@@ -93,18 +98,22 @@ public class ToolBarActions : MonoBehaviour
         {
             case 0: // Grass
                 _veggie = new Grass();
+                leftInfoBox.GetComponentInChildren<Text>().text = infoTextGrassland.text;
                 break;
 
             case 1: // Shrub
                 _veggie = new Shrub();
+                leftInfoBox.GetComponentInChildren<Text>().text = infoTextShrub.text;
                 break;
 
             case 2: // Tree 1 // Leaf
                 _veggie = new LeafTree();
+                leftInfoBox.GetComponentInChildren<Text>().text = infoTextTree.text;
                 break;
 
             case 3: // Tree 2 // Fir
                 _veggie = new FirTree();
+                leftInfoBox.GetComponentInChildren<Text>().text = infoTextTree.text;
                 break;
 
             default:
@@ -113,6 +122,8 @@ public class ToolBarActions : MonoBehaviour
 
         toolTipList.GetComponent<ToolTipList>().Veggie = _veggie;
         toolTipList.GetComponent<ToolTipList>().locked = true;
+
+        leftInfoBox.SetActive(true);
     }
 
     public void ToolBarPointerExit(int index)
@@ -123,6 +134,8 @@ public class ToolBarActions : MonoBehaviour
         {
             toolTipList.SetActive(false);
         }
+
+        leftInfoBox.SetActive(false);
     }
 
 }
