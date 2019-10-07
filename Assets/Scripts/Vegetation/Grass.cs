@@ -18,8 +18,8 @@ public class Grass : Vegetation
         // none
         flammability = 0.0;
         
-        // none
-        infestability = 0.0;
+        // mid
+        infestability = 0.5;
         
         // low
         co2Usage = 0.2;

@@ -128,10 +128,10 @@ public class ToolTipList : MonoBehaviour
             _propCO2usage.GetComponent<ToolTipItem>().slider.value = (float)_veggie.getCO2Usage();
 
             _propFlammability.SetActive(true);
-            _propFlammability.GetComponent<ToolTipItem>().slider.value = (float)_veggie.getFlammability();
+            _propFlammability.GetComponent<ToolTipItem>().slider.value = 1 - (float)_veggie.getFlammability();
 
             _propInfestability.SetActive(true);
-            _propInfestability.GetComponent<ToolTipItem>().slider.value = (float)_veggie.getInfestability();
+            _propInfestability.GetComponent<ToolTipItem>().slider.value = 1 - (float)_veggie.getInfestability();
 
             gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(220, 320);
             gameObject.SetActive(true);

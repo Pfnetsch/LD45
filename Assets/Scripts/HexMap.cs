@@ -25,7 +25,8 @@ public class HexMap : MonoBehaviour
     public const int MAX_GAME_TIME_YEARS = 40;
 
     private static bool firstVeggieTextShown = false;
-
+    private static bool firstLightningTextShown = false;
+    private static bool firstInfestationTextShown = false;
 
     public Tile defaultTile;
 
