@@ -103,7 +103,11 @@ public class HexMap : MonoBehaviour
         
         if (isTimeElapsed())
         {
-            
+            Time.timeScale = 0;
+            if (co2change > co2Goal)
+                popUpInfo.ShowGameFinishedInfoText();
+            else
+                popUpInfo.ShowGameOverInfoText();
         }
 
         return date;

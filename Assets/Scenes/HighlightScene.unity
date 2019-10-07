@@ -757,6 +757,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 766387372}
+    - target: {fileID: 1599995741, guid: 1cc665990335bfe44b7667a5a5d2335a, type: 3}
+      propertyPath: textGameOver
+      value: 
+      objectReference: {fileID: 4900000, guid: 5ba6b0b89fcd93f43bc504198252bd0c, type: 3}
+    - target: {fileID: 1599995741, guid: 1cc665990335bfe44b7667a5a5d2335a, type: 3}
+      propertyPath: textGameFinished
+      value: 
+      objectReference: {fileID: 4900000, guid: ed8eb4c87c826dc4398dec0302e668e7, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cc665990335bfe44b7667a5a5d2335a, type: 3}
 --- !u!1001 &3286479698569677528
