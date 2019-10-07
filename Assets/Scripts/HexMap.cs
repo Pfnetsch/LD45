@@ -27,6 +27,8 @@ public class HexMap : MonoBehaviour
 
     private Tile _fireTile1;
     private Tile _fireTile2;
+    private Tile _bugTile1;
+    private Tile _bugTile2;
 
 
     public int numRows;
@@ -64,8 +66,10 @@ public class HexMap : MonoBehaviour
         Vegetation.setSeedsOrSaplings(typeof(LeafTree), 1);
         Vegetation.setSeedsOrSaplings(typeof(FirTree), 1);
 
-        _fireTile1 = Resources.Load<Tile>("Tiles/Trees/Feuer1_1");
-        _fireTile2 = Resources.Load<Tile>("Tiles/Trees/Feuer1_2");
+        _fireTile1 = Resources.Load<Tile>("Tiles/Feuer1_1");
+        _fireTile2 = Resources.Load<Tile>("Tiles/Feuer1_2");
+        _bugTile1 = Resources.Load<Tile>("Tiles/Bug1");
+        _bugTile2 = Resources.Load<Tile>("Tiles/Bug2");
 
         grid = FindObjectOfType<Grid>();
         generateMap();
@@ -212,15 +216,15 @@ public class HexMap : MonoBehaviour
                     foregroundTilemap.SetTile(pos, currentHex.getCurrentTile());
                 }
 
-                overlayTilemap.SetTile(pos, _fireTile1);
+                overlayTilemap.SetTile(pos, Random.value >= 0.5 ? _bugTile1 : _bugTile2);
 
                 if (currentHex.isBurning())
                 {
-                    overlayTilemap.SetTile(pos, _fireTile1);
+                    overlayTilemap.SetTile(pos, Random.value >= 0.5 ? _fireTile1 : _fireTile2);
                 }
                 else if (currentHex.isInfested())
                 {
-
+                    overlayTilemap.SetTile(pos, Random.value >= 0.5 ? _bugTile1 : _bugTile2);
                 }
             }
         }
