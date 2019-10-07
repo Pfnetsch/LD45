@@ -17,6 +17,7 @@ public class HexMap : MonoBehaviour
     public const double WATER_LEVEL_MID = 0.2;
 
     public const double FIRE_SPREAD = 0.1;
+    public const double FIRE_START = 0.01;
     public const double INFESTATION_SPREAD = 0.1;
     public const double INFESTATION_MULT = 0.5;
     public const double GROW_MULT = 0.1;
@@ -70,6 +71,7 @@ public class HexMap : MonoBehaviour
         Vegetation.setSeedsOrSaplings(typeof(Shrub), 2);
         Vegetation.setSeedsOrSaplings(typeof(LeafTree), 1);
         Vegetation.setSeedsOrSaplings(typeof(FirTree), 1);
+        Vegetation.setSeedsOrSaplings(typeof(Cactus), 1);
 
         _fireTile1 = Resources.Load<Tile>("Tiles/Feuer1_1");
         _fireTile2 = Resources.Load<Tile>("Tiles/Feuer1_2");
@@ -209,6 +211,10 @@ public class HexMap : MonoBehaviour
                         //FFDA83
                         tileColor = new Color(0xFF/255.0f, 0xDA/255.0f, 0x83/255.0f);
                     }
+                    
+                    // test
+                    tileColor = Color.Lerp(new Color(0xFF / 255.0f, 0xDA / 255.0f, 0x83 / 255.0f),
+                        new Color(0x99 / 255.0f, 0x70 / 255.0f, 0x1C / 255.0f), (float)waterLevel + 0.2f);
                 }
                 else
                 {
@@ -319,12 +325,14 @@ public class HexMap : MonoBehaviour
                 {
                     if (neighbour.getWaterLevel() > newWaterLevel)
                     {
-                        newWaterLevel = neighbour.getWaterLevel();
+                        //newWaterLevel = neighbour.getWaterLevel();
+                        newWaterLevel = Math.Min(neighbour.getWaterLevel(), neighbour.getWaterLevel() * WATER_SPREAD + (neighbour.hasVegetation() ? ( neighbour.getVegetation().getWaterMod() * 0.1) : 0));
                     }
                 }
 
                 // TODO: adjust water spread formula
-                newWater[column, row] = Math.Min(newWaterLevel, newWaterLevel * WATER_SPREAD + (currentHex.hasVegetation() ? ( currentHex.getVegetation().getWaterMod() * 0.5) : 0));
+                //newWater[column, row] = Math.Min(newWaterLevel, newWaterLevel * WATER_SPREAD + (currentHex.hasVegetation() ? ( currentHex.getVegetation().getWaterMod() * 0.5) : 0));
+                newWater[column, row] = newWaterLevel;
             }
         }
 
@@ -352,7 +360,7 @@ public class HexMap : MonoBehaviour
                 // set on fire?
                 double flammability1 = vegetationHexes[index].getVegetation().getFlammability();
 
-                if (Random.Range(0.0f, 1.0f) < flammability1 * FIRE_SPREAD)
+                if (Random.Range(0.0f, 1.0f) < flammability1 * FIRE_START)
                 {
                     vegetationHexes[index].setBurning(true);
                 }
