@@ -30,7 +30,6 @@ public class PopUpInfo : MonoBehaviour
     {
         gameObject.SetActive(true);
         popUpText.text = textFirstVeggie.text;
-        gameIsOver = true;
     }
 
     public void ShowGameOverInfoText()
@@ -44,6 +43,7 @@ public class PopUpInfo : MonoBehaviour
     {
         gameObject.SetActive(true);
         popUpText.text = textGameFinished.text;
+        gameIsOver = true;
     }
 
     public void OkButtonClicked()
