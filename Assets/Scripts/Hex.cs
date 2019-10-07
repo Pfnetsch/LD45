@@ -51,6 +51,8 @@ public class Hex
     {
         this.level = 0;
         this.vegetation = null;
+        this.burning = false;
+        this.infested = false;
     }
 
     public void upgrade()
