@@ -15,7 +15,7 @@
    version="1.1"
    id="svg9766"
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
-   sodipodi:docname="Laubbaum1.svg">
+   sodipodi:docname="Laubbaum2_1.svg">
   <defs
      id="defs9760" />
   <sodipodi:namedview
@@ -26,7 +26,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.7"
-     inkscape:cx="-109.40965"
+     inkscape:cx="-144.84793"
      inkscape:cy="353.23287"
      inkscape:document-units="mm"
      inkscape:current-layer="layer2"
@@ -37,7 +37,9 @@
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
      showguides="true"
-     inkscape:guide-bbox="true">
+     inkscape:guide-bbox="true"
+     inkscape:snap-bbox="true"
+     inkscape:snap-bbox-midpoints="true">
     <inkscape:grid
        type="xygrid"
        id="grid9806" />
@@ -50,7 +52,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -82,7 +84,7 @@
      id="layer3"
      inkscape:label="Stamm">
     <rect
-       style="display:inline;fill:#c87137;stroke-width:0.09041436"
+       style="display:inline;fill:#73510c;stroke-width:0.09041436"
        id="rect9808"
        width="10.205357"
        height="65.389877"
@@ -96,11 +98,11 @@
      transform="translate(-8.5372571,-14.625031)"
      style="display:inline">
     <ellipse
-       style="fill:#ff7f2a;stroke:#ff9955;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+       style="fill:#e19b44;stroke:#ffb97c;stroke-width:8.27840042;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
        id="path9804"
-       cx="106.01731"
-       cy="117.01967"
-       rx="91.933296"
-       ry="78.515137" />
+       cx="105.74036"
+       cy="126.8655"
+       rx="76.106064"
+       ry="64.997971" />
   </g>
 </svg>
