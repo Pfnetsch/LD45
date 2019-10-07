@@ -196,6 +196,8 @@ public class Hex
             return this.neighbours;
 
         List<Hex> neighbours = new List<Hex>();
+        
+        /*
         int radius = 2;
 
         if (hasVegetation() && getVegetation().getName() == "Cactus")
@@ -203,7 +205,7 @@ public class Hex
             // add +1 range
             radius++;
         }
-
+        
         Vector3Int pos = HexHelper.offsetToCube(new Vector2Int(q, r));
         //Vector3Int pos = HexHelper.axialToCube(new Vector2Int(q, r));
         
@@ -224,8 +226,8 @@ public class Hex
 
             return hexMap.getHexAt(posO.x, posO.y);
         }).ToList();
+        */
         
-        /*
         if (q % 2 == 0)
         {
             // even row
@@ -243,7 +245,7 @@ public class Hex
         neighbours.Add(hexMap.getHexAt(q + -1, r + 0));
         neighbours.Add(hexMap.getHexAt(q + 0, r + +1));
         neighbours.Add(hexMap.getHexAt(q + 0, r + -1));
-*/
+
         List<Hex> neighbours2 = new List<Hex>();
 
         foreach (Hex h in neighbours)
