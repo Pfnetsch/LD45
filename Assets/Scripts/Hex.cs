@@ -211,7 +211,7 @@ public class Hex
         
         neighbourList.Add(HexHelper.cubeNeighbour(pos, 0));
         neighbourList.Add(HexHelper.cubeNeighbour(pos, 1));
-        //neighbourList.Add(HexHelper.cubeNeighbour(pos, 2));
+        neighbourList.Add(HexHelper.cubeNeighbour(pos, 2));
         neighbourList.Add(HexHelper.cubeNeighbour(pos, 3));
         neighbourList.Add(HexHelper.cubeNeighbour(pos, 4));
         neighbourList.Add(HexHelper.cubeNeighbour(pos, 5));
