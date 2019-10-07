@@ -36,8 +36,6 @@ public class HighlightController : MonoBehaviour
 		    return;
 	    }
 
-        if (Input.GetKeyDown(KeyCode.Escape)) veggieToPlant = null;
-
         // get tile for mousepos
         Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3Int posInt = grid.LocalToCell(pos);
@@ -69,7 +67,13 @@ public class HighlightController : MonoBehaviour
             lastTilePos = posInt;
 	    }
 
-	    if (Input.GetMouseButtonDown(0) && buttonDown == false)
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            veggieToPlant = null;
+            highlightTilemap.SetTile(posInt, highlightTile);
+        }
+
+        if (Input.GetMouseButtonDown(0) && buttonDown == false)
 	    {
 		    buttonDown = true;
 

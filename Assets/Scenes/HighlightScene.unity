@@ -669,6 +669,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grid
       objectReference: {fileID: 0}
+    - target: {fileID: 3286479699178608003, guid: c380d4f9478c2a24ebf4630aab07f543,
+        type: 3}
+      propertyPath: m_TileOrientation
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3286479699178608003, guid: c380d4f9478c2a24ebf4630aab07f543,
+        type: 3}
+      propertyPath: m_TileOrientationMatrix.e00
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3286479699178608003, guid: c380d4f9478c2a24ebf4630aab07f543,
+        type: 3}
+      propertyPath: m_TileOrientationMatrix.e11
+      value: 1.1
+      objectReference: {fileID: 0}
     - target: {fileID: 3286479699946222830, guid: c380d4f9478c2a24ebf4630aab07f543,
         type: 3}
       propertyPath: m_LocalPosition.x
