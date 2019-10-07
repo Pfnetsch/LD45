@@ -100,7 +100,7 @@ public class ToolTipList : MonoBehaviour
     {
         if (_veggie != null)
         {
-             // Hex
+            // Hex
             _propWaterLevel.SetActive(false);
 
             // Veggie
