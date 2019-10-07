@@ -7,6 +7,9 @@ using UnityEngine.UI;
 public class PopUpInfo : MonoBehaviour
 {
     public TextAsset textFirstVeggie;
+    public TextAsset textFirstLightning;
+    public TextAsset textFirstInfestation;
+
     public TextAsset textGameOver;
     public TextAsset textGameFinished;
 
@@ -30,6 +33,18 @@ public class PopUpInfo : MonoBehaviour
     {
         gameObject.SetActive(true);
         popUpText.text = textFirstVeggie.text;
+    }
+
+    public void ShowFirstLightningInfoText()
+    {
+        gameObject.SetActive(true);
+        popUpText.text = textFirstLightning.text;
+    }
+
+    public void ShowFirstInfestationInfoText()
+    {
+        gameObject.SetActive(true);
+        popUpText.text = textFirstInfestation.text;
     }
 
     public void ShowGameOverInfoText()

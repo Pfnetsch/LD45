@@ -100,7 +100,6 @@ public class Hex
         }
 
         return Math.Min(1.0, waterLevel + (hasVegetation() ? getVegetation().getWaterMod() * 0.25 : 0.0));
-        return this.waterLevel;
     }
     
     public double getMaxWaterLevel()
@@ -117,7 +116,12 @@ public class Hex
     {
         this.burning = burning;
     }
-    
+
+    public void setInfested(bool infested)
+    {
+        this.infested = infested;
+    }
+
     public Boolean isBurning()
     {
         return burning;
