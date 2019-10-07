@@ -97,6 +97,11 @@ public class HexMap : MonoBehaviour
         return 1 - co2change / co2Goal;
     }
 
+    public DateTime getEndDate()
+    {
+        return endDate;
+    }
+
     public DateTime getDate()
     {
         // map 20min to 40yr

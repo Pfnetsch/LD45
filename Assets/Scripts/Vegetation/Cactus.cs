@@ -27,7 +27,7 @@ public class Cactus : Vegetation
         growrate = 0.5;
 
         // low
-        seedOrSaplingDropChance = 0.2;
+        seedOrSaplingDropChance = 0.7;
 
         // high
         durability = 0.8;

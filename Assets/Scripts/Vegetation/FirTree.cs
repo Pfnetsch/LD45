@@ -28,7 +28,7 @@ public class FirTree: Vegetation
         growrate = 0.2;
 
         // low
-        seedOrSaplingDropChance = 0.2;
+        seedOrSaplingDropChance = 0.5;
 
         // high
         durability = 0.8;

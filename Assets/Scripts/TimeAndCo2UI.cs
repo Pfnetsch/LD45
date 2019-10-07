@@ -19,6 +19,6 @@ public class TimeAndCo2UI : MonoBehaviour
     void Update()
     {
         co2GaugePointer.rotation = new Quaternion(0, 0, -(float)(hexMap.getCO2Level() * 2 - 1), 1);
-        dateText.GetComponent<Text>().text = hexMap.getDate().ToString("MMM yyyy");
+        dateText.GetComponent<Text>().text = hexMap.getDate().ToString("MMM yyyy") + "\nDeadline: " + hexMap.getEndDate().ToString("MMM yyyy");
     }
 }
