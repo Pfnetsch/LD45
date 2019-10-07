@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class ToolTipList : MonoBehaviour
 {
-    public GameObject toolTipEntry;
     public bool locked;
 
+    private GameObject toolTipEntry;
     private Vegetation _veggie;
     private Hex _hex;
 
@@ -49,6 +49,8 @@ public class ToolTipList : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        toolTipEntry = Resources.Load<GameObject>("Prefabs/ToolTipEntry");
+
         // Veggie
         _propWaterReq = Instantiate(toolTipEntry, gameObject.transform, false);
         _propWaterReq.transform.localPosition = new Vector3(-100, 280, 0);
@@ -86,8 +88,6 @@ public class ToolTipList : MonoBehaviour
         _propWaterLevel.transform.localPosition = new Vector3(-100, 30, 0);
         _propWaterLevel.GetComponent<ToolTipItem>().toolTipImage.sprite = Resources.Load<Sprite>("Sprites/Properties/Wasserstand");
         _propWaterLevel.GetComponent<ToolTipItem>().toolTipText.text = "Water Level";
-
-        gameObject.SetActive(false);
     }
 
     // Update is called once per frame
