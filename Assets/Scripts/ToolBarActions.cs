@@ -15,17 +15,20 @@ public class ToolBarActions : MonoBehaviour
     public TextAsset infoTextTree;
     public TextAsset infoTextShrub;
     public TextAsset infoTextGrassland;
+    public TextAsset infoTextCactus;
 
     public GameObject buttonGrass;
     public GameObject buttonShrub;
     public GameObject buttonLeafTree;
     public GameObject buttonFirTree;
+    public GameObject buttonCactus;
 
     private Vegetation _veggie;
     private Text countGrass;
     private Text countShrub;
     private Text countLeafTree;
     private Text countFirTree;
+    private Text countCactus;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +37,7 @@ public class ToolBarActions : MonoBehaviour
         countShrub = buttonShrub.GetComponentInChildren<Text>();
         countLeafTree = buttonLeafTree.GetComponentInChildren<Text>();
         countFirTree = buttonFirTree.GetComponentInChildren<Text>();
+        countCactus = buttonCactus.GetComponentInChildren<Text>();
     }
 
     // Update is called once per frame
@@ -43,11 +47,13 @@ public class ToolBarActions : MonoBehaviour
         int shrub = Shrub.getSeedsOrSaplings(typeof(Shrub));
         int leafTree = LeafTree.getSeedsOrSaplings(typeof(LeafTree));
         int firTree = Grass.getSeedsOrSaplings(typeof(FirTree));
+        int cactus = Cactus.getSeedsOrSaplings(typeof(Cactus));
 
         countGrass.text = grass.ToString();
         countShrub.text = shrub.ToString();
         countLeafTree.text = leafTree.ToString();
         countFirTree.text = firTree.ToString();
+        countCactus.text = cactus.ToString();
 
         if (grass == 0) buttonGrass.GetComponent<Button>().interactable = false;
         else buttonGrass.GetComponent<Button>().interactable = true;
@@ -60,33 +66,16 @@ public class ToolBarActions : MonoBehaviour
 
         if (firTree == 0) buttonFirTree.GetComponent<Button>().interactable = false;
         else buttonFirTree.GetComponent<Button>().interactable = true;
+
+        if (cactus == 0) buttonCactus.GetComponent<Button>().interactable = false;
+        else buttonCactus.GetComponent<Button>().interactable = true;
     }
 
     public void ToolBarClick(int index)
     {
         if (_veggie.SeedsOrSaplings > 0)
         {
-            switch (index)
-            {
-                case 0: // Grass
-                    highlightController.veggieToPlant = _veggie;
-                    break;
-
-                case 1: // Shrub
-                    highlightController.veggieToPlant = _veggie;
-                    break;
-
-                case 2: // Tree 1 // Leaf
-                    highlightController.veggieToPlant = _veggie;
-                    break;
-
-                case 3: // Tree 2 // Fir
-                    highlightController.veggieToPlant = _veggie;
-                    break;
-
-                default:
-                    break;
-            }
+            highlightController.veggieToPlant = _veggie;
         }
     }
 
@@ -112,6 +101,11 @@ public class ToolBarActions : MonoBehaviour
             case 3: // Tree 2 // Fir
                 _veggie = new FirTree();
                 leftInfoBox.GetComponentInChildren<Text>().text = infoTextTree.text;
+                break;
+            
+            case 4: // Cactus
+                _veggie = new Cactus();
+                leftInfoBox.GetComponentInChildren<Text>().text = infoTextCactus.text;
                 break;
 
             default:
