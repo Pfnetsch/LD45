@@ -30,6 +30,9 @@ public class Shrub: Vegetation
         // mid
         seedOrSaplingDropChance = 0.5;
 
+        // low
+        durability = 0.2;
+
         tiles = new Dictionary<int, Tile>();
 
         Tile temp = Resources.Load<Tile>("Tiles/Shrub/Shrub1_1");

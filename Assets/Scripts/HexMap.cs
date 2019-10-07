@@ -319,43 +319,40 @@ public class HexMap : MonoBehaviour
 
     public void doFireTick()
     {
+        List<Hex> vegetationHexes = (from Hex hex in hexes where hex.hasVegetation() select hex).ToList();
+
         // new fire?
         if (lightning)
         {
-            List<Vector3Int> vegetationHexes = (from Hex hex in hexes where hex.hasVegetation() select hex.getPosition()).ToList();
-
             if (vegetationHexes.Count > 0)
             {
                 // select random tile and try to spread lightning
                 int index = Random.Range(0, vegetationHexes.Count);
 
                 // set on fire?
-                double flammability1 = getHexAt(vegetationHexes[index].y, vegetationHexes[index].x).getVegetation().getFlammability();
+                double flammability1 = vegetationHexes[index].getVegetation().getFlammability();
 
                 if (Random.Range(0.0f, 1.0f) < flammability1 * FIRE_SPREAD)
                 {
-                    getHexAt(vegetationHexes[index].y, vegetationHexes[index].x).setBurning(true);
+                    vegetationHexes[index].setBurning(true);
                 }
             }
         }
         
         
         //spread
-        foreach (Hex hex in hexes)
+        foreach (Hex hex in vegetationHexes)
         {
-            if (hex.hasVegetation())
+            // if no neighbour is burning, there is no spread
+            if (!hex.getNeighbours().Any(neighbour => neighbour.isBurning())) continue;
+
+            // calculate fire spread
+            double flammability = hex.getVegetation().getFlammability();
+
+            if (Random.Range(0.0f, 1.0f) < flammability * FIRE_SPREAD)
             {
-                // if no neighbour is burning, there is no spread
-                if (!hex.getNeighbours().Any(neighbour => neighbour.isBurning())) continue;
-
-                // calculate fire spread
-                double flammability = hex.getVegetation().getFlammability();
-
-                if (Random.Range(0.0f, 1.0f) < flammability * FIRE_SPREAD)
-                {
-                    hex.setBurning(true);
-                    return;
-                }
+                hex.setBurning(true);
+                return;
             }
         }
     }
@@ -363,6 +360,19 @@ public class HexMap : MonoBehaviour
     public void doInfestationTick()
     {
         // TODO
+    }
+
+    public void doDeathTick()
+    {
+        List<Hex> vegetationHexes = (from Hex hex in hexes where hex.hasVegetation() select hex).ToList();
+
+        foreach (Hex hex in vegetationHexes)
+        {
+            if (hex.isBurning() || hex.isInfested())
+            {
+                hex.doDeathTick();
+            }
+        }
     }
 
     public void doCO2Tick()

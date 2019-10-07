@@ -31,6 +31,9 @@ public class LeafTree: Vegetation
         // low
         seedOrSaplingDropChance = 0.2;
 
+        // high
+        durability = 0.8;
+
         tiles = new Dictionary<int, Tile>();
         
         Tile temp = Resources.Load<Tile>("Tiles/Trees/LeafTree1_1");

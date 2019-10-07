@@ -30,6 +30,9 @@ public class Grass : Vegetation
         // high
         seedOrSaplingDropChance = 0.75;
 
+        // low but not needed
+        durability = 0.1;
+
         tiles = new Dictionary<int, Tile>();
         
         Tile temp = Resources.Load<Tile>("Tiles/Grass/Grass1_1");

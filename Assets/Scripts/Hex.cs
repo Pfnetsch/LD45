@@ -20,6 +20,7 @@ public class Hex
     private double waterLevel = 0.0;
     private Boolean burning = false;
     private Boolean infested = false;
+    private int durabilityInTicks;
 
     public Hex(HexMap hexMap, int q, int r, TERRAIN_TYPE terrainType = TERRAIN_TYPE.DEFAULT)
     {
@@ -43,6 +44,7 @@ public class Hex
     public void setVegetation(Vegetation vegetation)
     {
         this.vegetation = vegetation;
+        durabilityInTicks = (int)(vegetation.getDurability() * 10);
     }
 
     public void removeVegetation()
@@ -165,6 +167,13 @@ public class Hex
         }
     }
 
+    public void doDeathTick()
+    {
+        if (Random.value >= 0.22f)  // Lose dirability with a probability of 75%
+        {
+            durabilityInTicks--;
+        }
+    }
 
     Hex[] neighbours;
 

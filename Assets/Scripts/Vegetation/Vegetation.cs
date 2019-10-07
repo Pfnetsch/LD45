@@ -27,6 +27,8 @@ public class Vegetation
 
     protected double seedOrSaplingDropChance = 0.0;
 
+    protected double durability = 0.0;
+
     public int SeedsOrSaplings
     {
         get => seedsOrSaplings.ContainsKey(this.GetType().Name) ? seedsOrSaplings[this.GetType().Name] : default;
@@ -101,5 +103,10 @@ public class Vegetation
             // Success
             seedsOrSaplings[this.GetType().Name]++;
         }
+    }
+
+    public double getDurability()
+    {
+        return durability;
     }
 }

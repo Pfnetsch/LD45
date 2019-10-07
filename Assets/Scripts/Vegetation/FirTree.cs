@@ -30,6 +30,9 @@ public class FirTree: Vegetation
         // low
         seedOrSaplingDropChance = 0.2;
 
+        // high
+        durability = 0.8;
+
         // Tiles
         tiles = new Dictionary<int, Tile>();
 
