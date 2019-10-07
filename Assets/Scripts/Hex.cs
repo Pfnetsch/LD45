@@ -67,7 +67,6 @@ public class Hex
     public Boolean isEmpty()
     {
         return vegetation == null;
-        return vegetation.getName().Equals("empty");
     }
 
     public Boolean isWaterSource()

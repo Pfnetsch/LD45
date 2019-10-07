@@ -108,7 +108,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.18, y: 0.72}
+  m_AnchoredPosition: {x: 5.3700027, y: 0.7199993}
   m_SizeDelta: {x: 140, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6543136344369802929
@@ -1991,7 +1991,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   highlightController: {fileID: 0}
-  ToolTipList: {fileID: 7306771918513033209}
+  hexMap: {fileID: 0}
+  toolTipList: {fileID: 7306771918513033209}
+  buttonGrass: {fileID: 1420882862318213366}
+  buttonShrub: {fileID: 7152903701387719509}
+  buttonLeafTree: {fileID: 2870004779037648751}
+  buttonFirTree: {fileID: 1135680923722650127}
 --- !u!114 &1161739132
 MonoBehaviour:
   m_ObjectHideFlags: 0

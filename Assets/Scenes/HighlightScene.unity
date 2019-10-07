@@ -642,6 +642,10 @@ PrefabInstance:
       propertyPath: highlightController
       value: 
       objectReference: {fileID: 1668602104}
+    - target: {fileID: 678914293, guid: 1cc665990335bfe44b7667a5a5d2335a, type: 3}
+      propertyPath: hexMap
+      value: 
+      objectReference: {fileID: 1668602106}
     - target: {fileID: 1161739132, guid: 1cc665990335bfe44b7667a5a5d2335a, type: 3}
       propertyPath: hexMap
       value: 
@@ -651,16 +655,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 766387372}
-    - target: {fileID: 5319988145388496435, guid: 1cc665990335bfe44b7667a5a5d2335a,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 5.3700027
-      objectReference: {fileID: 0}
-    - target: {fileID: 5319988145388496435, guid: 1cc665990335bfe44b7667a5a5d2335a,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0.7199993
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cc665990335bfe44b7667a5a5d2335a, type: 3}
 --- !u!1001 &3286479698569677528

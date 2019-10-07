@@ -8,7 +8,7 @@ public class FirTree: Vegetation
     public FirTree()
     {
         name = "FirTree";
-    
+
         // high
         waterReq = 0.6;
         

@@ -6,6 +6,8 @@ using UnityEngine.Tilemaps;
 
 public class Vegetation
 {
+    private static Dictionary<string, int> seedsOrSaplings = new Dictionary<string, int>();
+
     protected Dictionary<int, Tile> tiles = new Dictionary<int, Tile>();
     protected String name = "empty";
     
@@ -22,7 +24,23 @@ public class Vegetation
     protected double co2Usage = 0.0;
 
     protected double growrate = 0.0;
-    
+
+    public int SeedsOrSaplings
+    {
+        get => seedsOrSaplings.ContainsKey(this.GetType().Name) ? seedsOrSaplings[this.GetType().Name] : default;
+        set => seedsOrSaplings[this.GetType().Name] = value;
+    }
+
+    public static int getSeedsOrSaplings(Type veggie)
+    {
+        return seedsOrSaplings.ContainsKey(veggie.Name) ? seedsOrSaplings[veggie.Name] : default;
+    }
+
+    public static void setSeedsOrSaplings(Type veggie, int value)
+    {
+        seedsOrSaplings[veggie.Name] = value;
+    }
+
     public int getMaxLevel()
     {
         return this.tiles.Count - 1;

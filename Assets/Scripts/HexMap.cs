@@ -22,14 +22,8 @@ public class HexMap : MonoBehaviour
     public const double GROW_MULT = 0.1;
 
     public const double MAX_GAME_TIME_MIN = 20;
-    
 
     public Tile defaultTile;
-    //public Tile desertTile;
-    //public Tile plainsTile;
-    //public Tile marshTile;
-    //public Tile oceanTile;
-
 
     public int numRows;
     public int numColumns;
@@ -55,12 +49,16 @@ public class HexMap : MonoBehaviour
     private DateTime startDate;
     private DateTime endDate;
 
-
     // Start is called before the first frame update
     void Start()
     {
         startDate = DateTime.Now;
         endDate = startDate.AddMinutes(MAX_GAME_TIME_MIN);
+
+        Vegetation.setSeedsOrSaplings(typeof(Grass), 4);
+        Vegetation.setSeedsOrSaplings(typeof(Shrub), 2);
+        Vegetation.setSeedsOrSaplings(typeof(LeafTree), 1);
+        Vegetation.setSeedsOrSaplings(typeof(FirTree), 1);
 
         grid = FindObjectOfType<Grid>();
         generateMap();
@@ -222,7 +220,10 @@ public class HexMap : MonoBehaviour
     public Boolean canGrow(Vector3Int position, Vegetation vegetation)
     {
         Hex hex = getHexAt(position.y, position.x);
-        
+
+        if (hex == null)
+            return false;
+
         if (hex.hasVegetation())
             return false;
 

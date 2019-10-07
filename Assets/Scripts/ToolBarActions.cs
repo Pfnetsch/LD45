@@ -8,44 +8,82 @@ using UnityEngine.UI;
 public class ToolBarActions : MonoBehaviour
 {
     public HighlightController highlightController;
-    public GameObject ToolTipList;
+    public HexMap hexMap;
+    public GameObject toolTipList;
+
+    public GameObject buttonGrass;
+    public GameObject buttonShrub;
+    public GameObject buttonLeafTree;
+    public GameObject buttonFirTree;
 
     private Vegetation _veggie;
+    private Text textGrass;
+    private Text textShrub;
+    private Text textLeafTree;
+    private Text textFirTree;
 
     // Start is called before the first frame update
     void Start()
     {
-        ToolTipList.SetActive(false);
+        toolTipList.SetActive(false);
+
+        textGrass = buttonGrass.GetComponentInChildren<Text>();
+        textShrub = buttonShrub.GetComponentInChildren<Text>();
+        textLeafTree = buttonLeafTree.GetComponentInChildren<Text>();
+        textFirTree = buttonFirTree.GetComponentInChildren<Text>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        int grass = Grass.getSeedsOrSaplings(typeof(Grass));
+        int shrub = Shrub.getSeedsOrSaplings(typeof(Shrub));
+        int leafTree = LeafTree.getSeedsOrSaplings(typeof(LeafTree));
+        int firTree = Grass.getSeedsOrSaplings(typeof(FirTree));
+
+        textGrass.text = grass.ToString();
+        textShrub.text = shrub.ToString();
+        textLeafTree.text = leafTree.ToString();
+        textFirTree.text = firTree.ToString();
+
+        if (grass == 0) buttonGrass.GetComponent<Button>().interactable = false;
+        else buttonGrass.GetComponent<Button>().interactable = true;
+
+        if (shrub == 0) buttonShrub.GetComponent<Button>().interactable = false;
+        else buttonShrub.GetComponent<Button>().interactable = true;
+
+        if (leafTree == 0) buttonLeafTree.GetComponent<Button>().interactable = false;
+        else buttonLeafTree.GetComponent<Button>().interactable = true;
+
+        if (firTree == 0) buttonFirTree.GetComponent<Button>().interactable = false;
+        else buttonFirTree.GetComponent<Button>().interactable = true;
     }
 
     public void ToolBarClick(int index)
     {
-        switch (index)
+        if (_veggie.SeedsOrSaplings > 0)
         {
-            case 0: // Grass
-                highlightController.veggieToPlant = _veggie;
-                break;
+            switch (index)
+            {
+                case 0: // Grass
+                    highlightController.veggieToPlant = _veggie;
+                    break;
 
-            case 1: // Shrub
-                highlightController.veggieToPlant = _veggie;
-                break;
+                case 1: // Shrub
+                    highlightController.veggieToPlant = _veggie;
+                    break;
 
-            case 2: // Tree 1 // Leaf
-                highlightController.veggieToPlant = _veggie;
-                break;
+                case 2: // Tree 1 // Leaf
+                    highlightController.veggieToPlant = _veggie;
+                    break;
 
-            case 3: // Tree 2 // Fir
-                highlightController.veggieToPlant = _veggie;
-                break;
+                case 3: // Tree 2 // Fir
+                    highlightController.veggieToPlant = _veggie;
+                    break;
 
-            default:
-                break;
+                default:
+                    break;
+            }
         }
     }
 
@@ -73,17 +111,17 @@ public class ToolBarActions : MonoBehaviour
                 break;
         }
 
-        ToolTipList.GetComponent<ToolTipList>().Veggie = _veggie;
-        ToolTipList.GetComponent<ToolTipList>().locked = true;
+        toolTipList.GetComponent<ToolTipList>().Veggie = _veggie;
+        toolTipList.GetComponent<ToolTipList>().locked = true;
     }
 
     public void ToolBarPointerExit(int index)
     {
-        ToolTipList.GetComponent<ToolTipList>().locked = false;
+        toolTipList.GetComponent<ToolTipList>().locked = false;
 
         if (highlightController.veggieToPlant == null)
         {
-            ToolTipList.SetActive(false);
+            toolTipList.SetActive(false);
         }
     }
 

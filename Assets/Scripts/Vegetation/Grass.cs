@@ -3,12 +3,12 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class Grass: Vegetation
+public class Grass : Vegetation
 {
     public Grass()
     {
         name = "Grass";
-        
+
         // mid/high
         waterReq = 0.5;
         

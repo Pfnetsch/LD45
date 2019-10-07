@@ -91,6 +91,8 @@ public class cameraRTS : MonoBehaviour
         if (offset == 0) return;
 
         Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize - (offset * speed), _zoomMinSize, _zoomMaxSize);
+
+        // TODO - Check Map Bounds here
     }
 
     public void SetGridSizeAndStoreInitialPosition(float width, float height)

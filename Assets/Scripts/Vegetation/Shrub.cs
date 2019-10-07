@@ -8,7 +8,7 @@ public class Shrub: Vegetation
     public Shrub()
     {
         name = "Shrub";
-        
+
         // low
         waterReq = 0.2;
         

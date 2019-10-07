@@ -9,7 +9,7 @@ public class LeafTree: Vegetation
     public LeafTree()
     {
         name = "LeafTree";
-        
+
         // very high
         waterReq = 0.7;
         
