@@ -46,7 +46,7 @@ public class HexMap : MonoBehaviour
     private Hex[,] hexes;
     
     // states
-    private Boolean lightning = false;
+    private Boolean lightning = true;
     
     // global co2
     private double co2Goal = 10000.0;
@@ -324,15 +324,18 @@ public class HexMap : MonoBehaviour
         {
             List<Vector3Int> vegetationHexes = (from Hex hex in hexes where hex.hasVegetation() select hex.getPosition()).ToList();
 
-            // select random tile and try to spread lightning
-            int index = Random.Range(0, vegetationHexes.Count);
-
-            // set on fire?
-            double flammability1 = getHexAt(vegetationHexes[index].y, vegetationHexes[index].x).getVegetation()
-                .getFlammability();
-            if (Random.Range(0.0f, 1.0f) < flammability1 * FIRE_SPREAD)
+            if (vegetationHexes.Count > 0)
             {
-                getHexAt(vegetationHexes[index].y, vegetationHexes[index].x).setBurning(true);
+                // select random tile and try to spread lightning
+                int index = Random.Range(0, vegetationHexes.Count);
+
+                // set on fire?
+                double flammability1 = getHexAt(vegetationHexes[index].y, vegetationHexes[index].x).getVegetation().getFlammability();
+
+                if (Random.Range(0.0f, 1.0f) < flammability1 * FIRE_SPREAD)
+                {
+                    getHexAt(vegetationHexes[index].y, vegetationHexes[index].x).setBurning(true);
+                }
             }
         }
         
@@ -340,15 +343,19 @@ public class HexMap : MonoBehaviour
         //spread
         foreach (Hex hex in hexes)
         {
-            // if no neighbour is burning, there is no spread
-            if (!hex.getNeighbours().Any(neighbour => neighbour.isBurning())) continue;
-            
-            // calculate fire spread
-            double flammability = hex.getVegetation().getFlammability();
-            if (Random.Range(0.0f, 1.0f) < flammability * FIRE_SPREAD)
+            if (hex.hasVegetation())
             {
-                hex.setBurning(true);
-                return;
+                // if no neighbour is burning, there is no spread
+                if (!hex.getNeighbours().Any(neighbour => neighbour.isBurning())) continue;
+
+                // calculate fire spread
+                double flammability = hex.getVegetation().getFlammability();
+
+                if (Random.Range(0.0f, 1.0f) < flammability * FIRE_SPREAD)
+                {
+                    hex.setBurning(true);
+                    return;
+                }
             }
         }
     }
