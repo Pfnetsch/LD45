@@ -32,16 +32,16 @@ public class Shrub: Vegetation
 
         tiles = new Dictionary<int, Tile>();
 
-        Tile temp = AssetDatabase.LoadAssetAtPath("Assets/Tiles/Shrub/Shrub1_1.asset", typeof(Tile)) as Tile;
+        Tile temp = Resources.Load<Tile>("Tiles/Trees/Shrub1_1");
         tiles.Add(0, temp);
         
-        temp = AssetDatabase.LoadAssetAtPath("Assets/Tiles/Shrub/Shrub1_2.asset", typeof(Tile)) as Tile;
+        temp = Resources.Load<Tile>("Tiles/Trees/Shrub1_2");
         tiles.Add(1, temp);
         
-        temp = AssetDatabase.LoadAssetAtPath("Assets/Tiles/Shrub/Shrub1_3.asset", typeof(Tile)) as Tile;
+        temp = Resources.Load<Tile>("Tiles/Trees/Shrub1_3");
         tiles.Add(2, temp);
         
-        temp = AssetDatabase.LoadAssetAtPath("Assets/Tiles/Shrub/Shrub1_4.asset", typeof(Tile)) as Tile;
+        temp = Resources.Load<Tile>("Tiles/Trees/Shrub1_4");
         tiles.Add(3, temp);
     }
 }

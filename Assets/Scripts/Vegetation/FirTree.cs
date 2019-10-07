@@ -33,16 +33,16 @@ public class FirTree: Vegetation
         // Tiles
         tiles = new Dictionary<int, Tile>();
 
-        Tile temp = AssetDatabase.LoadAssetAtPath("Assets/Tiles/Trees/FirTree1_1.asset", typeof(Tile)) as Tile;
+        Tile temp = Resources.Load<Tile>("Tiles/Trees/FirTree1_1");
         tiles.Add(0, temp);
         
-        temp = AssetDatabase.LoadAssetAtPath("Assets/Tiles/Trees/FirTree1_2.asset", typeof(Tile)) as Tile;
+        temp = Resources.Load<Tile>("Tiles/Trees/FirTree1_2");
         tiles.Add(1, temp);
         
-        temp = AssetDatabase.LoadAssetAtPath("Assets/Tiles/Trees/FirTree1_3.asset", typeof(Tile)) as Tile;
+        temp = Resources.Load<Tile>("Tiles/Trees/FirTree1_3");
         tiles.Add(2, temp);
         
-        temp = AssetDatabase.LoadAssetAtPath("Assets/Tiles/Trees/FirTree1_4.asset", typeof(Tile)) as Tile;
+        temp = Resources.Load<Tile>("Tiles/Trees/FirTree1_4");
         tiles.Add(3, temp);
     }
 }

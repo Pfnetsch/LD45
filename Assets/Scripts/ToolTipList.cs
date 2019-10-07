@@ -52,39 +52,39 @@ public class ToolTipList : MonoBehaviour
         // Veggie
         _propWaterReq = Instantiate(toolTipEntry, gameObject.transform, false);
         _propWaterReq.transform.localPosition = new Vector3(-100, 280, 0);
-        _propWaterReq.GetComponent<ToolTipItem>().toolTipImage.sprite = AssetDatabase.LoadAssetAtPath("Assets/Sprites/Properties/Wasserverbrauch.svg", typeof(Sprite)) as Sprite;
+        _propWaterReq.GetComponent<ToolTipItem>().toolTipImage.sprite = Resources.Load<Sprite>("Sprites/Properties/Wasserverbrauch");
         _propWaterReq.GetComponent<ToolTipItem>().toolTipText.text = "Water needed";
         _propWaterReq.GetComponent<ToolTipItem>().revertColors = true;
 
         _propWaterMod = Instantiate(toolTipEntry, gameObject.transform, false);
         _propWaterMod.transform.localPosition = new Vector3(-100, 230, 0);
-        _propWaterMod.GetComponent<ToolTipItem>().toolTipImage.sprite = AssetDatabase.LoadAssetAtPath("Assets/Sprites/Properties/Wasserstand.svg", typeof(Sprite)) as Sprite;
+        _propWaterMod.GetComponent<ToolTipItem>().toolTipImage.sprite = Resources.Load<Sprite>("Sprites/Properties/Wasserstand");
         _propWaterMod.GetComponent<ToolTipItem>().toolTipText.text = "Water Storage";
 
         _propGrowrate = Instantiate(toolTipEntry, gameObject.transform, false);
         _propGrowrate.transform.localPosition = new Vector3(-100, 180, 0);
-        _propGrowrate.GetComponent<ToolTipItem>().toolTipImage.sprite = AssetDatabase.LoadAssetAtPath("Assets/Sprites/Properties/Zeitanzeige.svg", typeof(Sprite)) as Sprite;
+        _propGrowrate.GetComponent<ToolTipItem>().toolTipImage.sprite = Resources.Load<Sprite>("Sprites/Properties/Zeitanzeige");
         _propGrowrate.GetComponent<ToolTipItem>().toolTipText.text = "Growrate";
 
         _propCO2usage = Instantiate(toolTipEntry, gameObject.transform, false);
         _propCO2usage.transform.localPosition = new Vector3(-100, 130, 0);
-        _propCO2usage.GetComponent<ToolTipItem>().toolTipImage.sprite = AssetDatabase.LoadAssetAtPath("Assets/Sprites/Properties/CO2_Anzeige.svg", typeof(Sprite)) as Sprite;
+        _propCO2usage.GetComponent<ToolTipItem>().toolTipImage.sprite = Resources.Load<Sprite>("Sprites/Properties/CO2_Anzeige");
         _propCO2usage.GetComponent<ToolTipItem>().toolTipText.text = "C02 bound";
 
         _propFlammability = Instantiate(toolTipEntry, gameObject.transform, false);
         _propFlammability.transform.localPosition = new Vector3(-100, 80, 0);
-        _propFlammability.GetComponent<ToolTipItem>().toolTipImage.sprite = AssetDatabase.LoadAssetAtPath("Assets/Sprites/Properties/Feuerresistent.svg", typeof(Sprite)) as Sprite;
+        _propFlammability.GetComponent<ToolTipItem>().toolTipImage.sprite = Resources.Load<Sprite>("Sprites/Properties/Feuerresistent");
         _propFlammability.GetComponent<ToolTipItem>().toolTipText.text = "Fire Resistance";
 
         _propInfestability = Instantiate(toolTipEntry, gameObject.transform, false);
         _propInfestability.transform.localPosition = new Vector3(-100, 30, 0);
-        _propInfestability.GetComponent<ToolTipItem>().toolTipImage.sprite = AssetDatabase.LoadAssetAtPath("Assets/Sprites/Properties/Schädlingsresistent.svg", typeof(Sprite)) as Sprite;
+        _propInfestability.GetComponent<ToolTipItem>().toolTipImage.sprite = Resources.Load<Sprite>("Sprites/Properties/Schädlingsresistent");
         _propInfestability.GetComponent<ToolTipItem>().toolTipText.text = "Disease Resistance";
 
         // Hex
         _propWaterLevel = Instantiate(toolTipEntry, gameObject.transform, false);
         _propWaterLevel.transform.localPosition = new Vector3(-100, 30, 0);
-        _propWaterLevel.GetComponent<ToolTipItem>().toolTipImage.sprite = AssetDatabase.LoadAssetAtPath("Assets/Sprites/Properties/Wasserstand.svg", typeof(Sprite)) as Sprite;
+        _propWaterLevel.GetComponent<ToolTipItem>().toolTipImage.sprite = Resources.Load<Sprite>("Sprites/Properties/Wasserstand");
         _propWaterLevel.GetComponent<ToolTipItem>().toolTipText.text = "Water Level";
 
         gameObject.SetActive(false);

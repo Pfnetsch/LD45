@@ -31,17 +31,17 @@ public class Grass : Vegetation
         seedOrSaplingDropChance = 0.75;
 
         tiles = new Dictionary<int, Tile>();
-
-        Tile temp = AssetDatabase.LoadAssetAtPath("Assets/Tiles/Grass/Grass1_1.asset", typeof(Tile)) as Tile;
+        
+        Tile temp = Resources.Load<Tile>("Tiles/Trees/Grass1_1");
         tiles.Add(0, temp);
         
-        temp = AssetDatabase.LoadAssetAtPath("Assets/Tiles/Grass/Grass1_2.asset", typeof(Tile)) as Tile;
+        temp = Resources.Load<Tile>("Tiles/Trees/Grass1_2");
         tiles.Add(1, temp);
         
-        temp = AssetDatabase.LoadAssetAtPath("Assets/Tiles/Grass/Grass1_3.asset", typeof(Tile)) as Tile;
+        temp = Resources.Load<Tile>("Tiles/Trees/Grass1_3");
         tiles.Add(2, temp);
         
-        temp = AssetDatabase.LoadAssetAtPath("Assets/Tiles/Grass/Grass1_4.asset", typeof(Tile)) as Tile;
+        temp = Resources.Load<Tile>("Tiles/Trees/Grass1_4");
         tiles.Add(3, temp);
     }
 }
