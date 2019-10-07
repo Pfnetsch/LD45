@@ -27,8 +27,8 @@ public class HexMap : MonoBehaviour
 
     public int numRows;
     public int numColumns;
-    private int startRow;
-    private int startColumn;
+    private int startRow = 0;
+    private int startColumn = 0;
 
     // graphic tiles
     private Grid grid;
@@ -229,25 +229,37 @@ public class HexMap : MonoBehaviour
 
         if (hex.isWaterSource())
             return false;
-        
-        if (position.x >= this.startColumn && position.y >= this.startRow && position.x < this.startColumn + this.numColumns && position.y < this.startRow + this.numRows)
-        {
-            return hex.getWaterLevel() >= vegetation.getWaterRequirement();
-        }
 
-        return false;
+        // Not needed because hex should be null already
+        //if (position.x >= this.startColumn && position.y >= this.startRow && position.x < this.startColumn + this.numColumns && position.y < this.startRow + this.numRows)
+        //{
+            //return hex.getWaterLevel() >= vegetation.getWaterRequirement();
+        //}
+
+        return hex.getWaterLevel() >= vegetation.getWaterRequirement();
     }
     
     public void plantVegetation(Vector3Int position, Vegetation vegetation)
     {
-        if (position.x >= this.startColumn && position.y >= this.startRow && position.x < this.startColumn + this.numColumns && position.y < this.startRow + this.numRows)
+        Hex hex = getHexAt(position.y, position.x);
+
+        if (hex == null)
+            return;
+
+        if (canGrow(position, vegetation))
         {
-            if (canGrow(position, vegetation))
-            {
-                this.hexes[position.y, position.x].setVegetation(vegetation);
-                this.updateMapVisuals();
-            }
+            this.hexes[position.y, position.x].setVegetation(vegetation);
+            this.updateMapVisuals();
         }
+
+        //if (position.x >= this.startColumn && position.y >= this.startRow && position.x < this.startColumn + this.numColumns && position.y < this.startRow + this.numRows)
+        //{
+            //if (canGrow(position, vegetation))
+            //{
+            //    this.hexes[position.y, position.x].setVegetation(vegetation);
+            //    this.updateMapVisuals();
+            //}
+        //}
     }
 
     public void doWaterTick()
@@ -351,7 +363,7 @@ public class HexMap : MonoBehaviour
         {
             if (!hex.hasVegetation()) continue;
 
-            if (!hex.isMaxLevel()) continue;
+            if (hex.isMaxLevel()) continue;
             
             hex.doGrowTick();
         }

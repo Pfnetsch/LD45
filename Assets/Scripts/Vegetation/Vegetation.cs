@@ -25,6 +25,8 @@ public class Vegetation
 
     protected double growrate = 0.0;
 
+    protected double seedOrSaplingDropChance = 0.0;
+
     public int SeedsOrSaplings
     {
         get => seedsOrSaplings.ContainsKey(this.GetType().Name) ? seedsOrSaplings[this.GetType().Name] : default;
@@ -90,5 +92,14 @@ public class Vegetation
     public double getGrowrate()
     {
         return growrate;
+    }
+
+    public void harvestSeedOrSapling()
+    {
+        if (UnityEngine.Random.value <= seedOrSaplingDropChance)
+        {
+            // Success
+            seedsOrSaplings[this.GetType().Name]++;
+        }
     }
 }

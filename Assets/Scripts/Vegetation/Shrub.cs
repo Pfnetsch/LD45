@@ -26,7 +26,10 @@ public class Shrub: Vegetation
         
         // mid
         growrate = 0.5;
-        
+
+        // mid
+        seedOrSaplingDropChance = 0.5;
+
         tiles = new Dictionary<int, Tile>();
 
         Tile temp = AssetDatabase.LoadAssetAtPath("Assets/Tiles/Shrub/Shrub1_1.asset", typeof(Tile)) as Tile;

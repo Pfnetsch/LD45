@@ -59,6 +59,14 @@ public class Hex
         }
     }
 
+    public void downgrade()
+    {
+        if (this.level > 0)
+        {
+            this.level -= 1;
+        }
+    }
+
     public Tile getCurrentTile()
     {
         return this.vegetation.getTileForLevel(level);
@@ -122,7 +130,23 @@ public class Hex
             return false;
         }
             
-        return level < vegetation.getMaxLevel();
+        return level == vegetation.getMaxLevel();
+    }
+
+    public void harvestVegetation()
+    {
+        if (!hasVegetation()) return;
+
+        if (!isMaxLevel()) return;
+
+        // Harvest
+        vegetation.harvestSeedOrSapling();
+
+        // Decrease Level and regrow
+        downgrade();
+        downgrade();
+
+        hexMap.updateMapVisuals();
     }
 
     public Vector3Int getPosition()

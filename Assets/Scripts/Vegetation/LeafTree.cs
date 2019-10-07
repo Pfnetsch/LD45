@@ -27,7 +27,10 @@ public class LeafTree: Vegetation
         
         // low
         growrate = 0.2;
-        
+
+        // low
+        seedOrSaplingDropChance = 0.2;
+
         tiles = new Dictionary<int, Tile>();
 
         Tile temp = AssetDatabase.LoadAssetAtPath("Assets/Tiles/Trees/LeafTree1_1.asset", typeof(Tile)) as Tile;

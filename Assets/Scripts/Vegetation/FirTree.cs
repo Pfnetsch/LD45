@@ -26,7 +26,10 @@ public class FirTree: Vegetation
         
         // low
         growrate = 0.2;
-        
+
+        // low
+        seedOrSaplingDropChance = 0.2;
+
         // Tiles
         tiles = new Dictionary<int, Tile>();
 

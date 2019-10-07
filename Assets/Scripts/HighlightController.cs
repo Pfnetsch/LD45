@@ -41,8 +41,9 @@ public class HighlightController : MonoBehaviour
         // get tile for mousepos
         Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3Int posInt = grid.LocalToCell(pos);
+        Hex hex = hexMap.getHexAt(posInt.y, posInt.x);
 
-	    if (lastTilePos != posInt)
+        if (lastTilePos != posInt)
 	    {
 		    // tile changed, unhighlight last tile
 		    highlightTilemap.SetTile(lastTilePos, null);
@@ -63,7 +64,7 @@ public class HighlightController : MonoBehaviour
                 highlightTilemap.SetTile(posInt, highlightTile);
             }
 
-            tooltipList.Hex = hexMap.getHexAt(posInt.y, posInt.x);
+            tooltipList.Hex = hex;
 
             lastTilePos = posInt;
 	    }
@@ -73,14 +74,17 @@ public class HighlightController : MonoBehaviour
 		    buttonDown = true;
 
 		    Debug.Log(posInt);
-		    
+
             if (veggieToPlant != null && hexMap.canGrow(posInt, veggieToPlant))
             {
                 hexMap.plantVegetation(posInt, veggieToPlant);
                 veggieToPlant.SeedsOrSaplings--;
                 if (veggieToPlant.SeedsOrSaplings == 0) veggieToPlant = null;
             }
-	    }
+            else
+                hex.harvestVegetation();
+
+        }
 
 	    if (Input.GetMouseButtonUp(0) && buttonDown)
 	    {

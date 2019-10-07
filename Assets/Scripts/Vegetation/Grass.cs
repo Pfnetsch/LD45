@@ -26,7 +26,10 @@ public class Grass : Vegetation
         
         // high
         growrate = 0.8;
-        
+
+        // high
+        seedOrSaplingDropChance = 0.75;
+
         tiles = new Dictionary<int, Tile>();
 
         Tile temp = AssetDatabase.LoadAssetAtPath("Assets/Tiles/Grass/Grass1_1.asset", typeof(Tile)) as Tile;
