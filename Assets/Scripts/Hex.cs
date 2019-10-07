@@ -169,10 +169,13 @@ public class Hex
 
     public void doDeathTick()
     {
-        if (Random.value >= 0.22f)  // Lose dirability with a probability of 75%
+        if (Random.value >= 0.25f)  // Lose dirability with a probability of 75%
         {
             durabilityInTicks--;
         }
+
+        if (durabilityInTicks <= 0)
+            removeVegetation();
     }
 
     Hex[] neighbours;

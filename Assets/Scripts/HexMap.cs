@@ -212,9 +212,9 @@ public class HexMap : MonoBehaviour
 
                 // tile not empty => render foreground
                 if (!hexes[column, row].isEmpty())
-                {
                     foregroundTilemap.SetTile(pos, currentHex.getCurrentTile());
-                }
+                else
+                    foregroundTilemap.SetTile(pos, null);
 
                 //overlayTilemap.SetTile(pos, Random.value >= 0.5 ? _bugTile1 : _bugTile2);
 
