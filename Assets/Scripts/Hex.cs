@@ -98,7 +98,8 @@ public class Hex
         {
             return 1.0;
         }
-        
+
+        return Math.Min(1.0, waterLevel + (hasVegetation() ? getVegetation().getWaterMod() * 0.25 : 0.0));
         return this.waterLevel;
     }
     

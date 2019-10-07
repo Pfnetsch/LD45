@@ -38,17 +38,23 @@ public class TimeController : MonoBehaviour
     {
         tickCount++;
 
-        if (tickCount >= ticksPerCylce)
+        if (tickCount % (ticksPerCylce/16) == 0)
         {
             hexMap.doWaterTick();
-            hexMap.doFireTick();
-            hexMap.doInfestationTick();
-            hexMap.doCO2Tick();
-            hexMap.doGrowTick();
-            hexMap.doDeathTick();
-            hexMap.updateMapVisuals();
+            
+            if (tickCount % ticksPerCylce == 0)
+            {
+                hexMap.doFireTick();
+                hexMap.doInfestationTick();
+                hexMap.doCO2Tick();
+                hexMap.doGrowTick();
+                hexMap.doDeathTick();
+                hexMap.updateMapVisuals();
 
-            tickCount = 0;
+                tickCount = 0;
+            }
+            
+            hexMap.updateMapVisuals();
         }
 
         // map 20min to 40yr - 1051200 * 100 / default ticks

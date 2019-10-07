@@ -685,6 +685,35 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 766387372}
+    - target: {fileID: 2216972853552128074, guid: 1cc665990335bfe44b7667a5a5d2335a,
+        type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 49426947875050846, guid: 1cc665990335bfe44b7667a5a5d2335a,
+        type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2209481814246330353, guid: 1cc665990335bfe44b7667a5a5d2335a,
+        type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2475873255871082552, guid: 1cc665990335bfe44b7667a5a5d2335a,
+        type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2015366176, guid: 1cc665990335bfe44b7667a5a5d2335a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 3286163911610860551, guid: ba2aadc869118e048b0fcb31d8288e07,
+        type: 3}
+    - target: {fileID: 2015366176, guid: 1cc665990335bfe44b7667a5a5d2335a, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7189425733183199543, guid: 1cc665990335bfe44b7667a5a5d2335a,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
