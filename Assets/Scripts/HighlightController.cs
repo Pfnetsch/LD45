@@ -86,7 +86,7 @@ public class HighlightController : MonoBehaviour
                 if (veggieToPlant.SeedsOrSaplings == 0) veggieToPlant = null;
             }
             else
-                hex.harvestVegetation();
+                if (hex != null) hex.harvestVegetation();
 
         }
 

@@ -78,7 +78,7 @@ public class ToolTipList : MonoBehaviour
         _propCO2usage = Instantiate(toolTipEntry, gameObject.transform, false);
         _propCO2usage.transform.localPosition = new Vector3(-110, 140, 0);
         _propCO2usage.GetComponent<ToolTipItem>().toolTipImage.sprite = Resources.Load<Sprite>("Sprites/Properties/CO2_Anzeige");
-        _propCO2usage.GetComponent<ToolTipItem>().toolTipText.text = "C02 bound";
+        _propCO2usage.GetComponent<ToolTipItem>().toolTipText.text = "C02 conversion Rate";
 
         _propFlammability = Instantiate(toolTipEntry, gameObject.transform, false);
         _propFlammability.transform.localPosition = new Vector3(-110, 90, 0);

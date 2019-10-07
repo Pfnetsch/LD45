@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class TimeController : MonoBehaviour
 {
-    public int tickrate = 100;
+    public int ticksPerCylce = 100;
 
     private HexMap hexMap;
     private int tickCount = 0;
+
+    private bool fasterActive = false;
 
     // Start is called before the first frame update
     void Start()
@@ -24,13 +26,19 @@ public class TimeController : MonoBehaviour
         // calculate co2, water, etc and update ui
         
         // calculate chance for infestation, fire, tsunami,  (new and spreading)
+
+        if (Input.GetMouseButtonUp(0) && fasterActive)
+        {
+            ticksPerCylce *= 4;
+            fasterActive = false;
+        }
     }
 
     private void FixedUpdate()
     {
         tickCount++;
 
-        if (tickCount >= tickrate)
+        if (tickCount >= ticksPerCylce)
         {
             hexMap.doWaterTick();
             hexMap.doFireTick();
@@ -42,5 +50,15 @@ public class TimeController : MonoBehaviour
 
             tickCount = 0;
         }
+
+        // map 20min to 40yr - 1051200 * 100 / default ticks
+        // map 1min to 40yr  - 21024000 * 100 / default ticks
+        hexMap.date = hexMap.date.AddSeconds(Time.fixedDeltaTime * 105120000 / ticksPerCylce);
+    }
+
+    public void ButtonFasterPointerDown()
+    {
+        ticksPerCylce /= 4;
+        fasterActive = true;
     }
 }

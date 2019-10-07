@@ -57,7 +57,7 @@ public class HexMap : MonoBehaviour
     private double co2Goal = 10000.0;
     private double co2change = 0.0;
 
-    private DateTime date;
+    public DateTime date;
     private DateTime endDate;
 
     // Start is called before the first frame update
@@ -82,13 +82,6 @@ public class HexMap : MonoBehaviour
         grid = FindObjectOfType<Grid>();
         generateMap();
         CenterMainCameraOnGrid();
-    }
-
-    private void FixedUpdate()
-    {
-        // map 20min to 40yr - 1051200
-        // map 1min to 40yr  - 21024000
-        date = date.AddSeconds(Time.fixedDeltaTime * 1051200);
     }
 
     public double getCO2Level()
@@ -242,6 +235,10 @@ public class HexMap : MonoBehaviour
                 else if (currentHex.isInfested())
                 {
                     overlayTilemap.SetTile(pos, Random.value >= 0.5 ? _bugTile1 : _bugTile2);
+                }
+                else
+                {
+                    overlayTilemap.SetTile(pos, null);
                 }
             }
         }
