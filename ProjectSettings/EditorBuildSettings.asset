@@ -8,10 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: 46baf82311879a74bb5bfe86cb8cd052
-  - enabled: 0
-    path: Assets/Scenes/Game.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/LucasGameScene.unity
-    guid: 41f2efea15e8d48829200d17e1a3841a
+    path: Assets/Scenes/HighlightScene.unity
+    guid: aa17157450cf84845b03e7f420907a06
   m_configObjects: {}
