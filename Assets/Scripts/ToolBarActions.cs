@@ -12,7 +12,8 @@ public class ToolBarActions : MonoBehaviour
     public GameObject toolTipList;
     public GameObject leftInfoBox;
 
-    public TextAsset infoTextTree;
+    public TextAsset infoTextLeafTree;
+    public TextAsset infoTextFirTree;
     public TextAsset infoTextShrub;
     public TextAsset infoTextGrassland;
     public TextAsset infoTextCactus;
@@ -95,12 +96,12 @@ public class ToolBarActions : MonoBehaviour
 
             case 2: // Tree 1 // Leaf
                 _veggie = new LeafTree();
-                leftInfoBox.GetComponentInChildren<Text>().text = infoTextTree.text;
+                leftInfoBox.GetComponentInChildren<Text>().text = infoTextLeafTree.text;
                 break;
 
             case 3: // Tree 2 // Fir
                 _veggie = new FirTree();
-                leftInfoBox.GetComponentInChildren<Text>().text = infoTextTree.text;
+                leftInfoBox.GetComponentInChildren<Text>().text = infoTextFirTree.text;
                 break;
             
             case 4: // Cactus

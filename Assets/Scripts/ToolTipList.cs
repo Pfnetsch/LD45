@@ -73,12 +73,12 @@ public class ToolTipList : MonoBehaviour
         _propGrowrate = Instantiate(toolTipEntry, gameObject.transform, false);
         _propGrowrate.transform.localPosition = new Vector3(-110, 190, 0);
         _propGrowrate.GetComponent<ToolTipItem>().toolTipImage.sprite = Resources.Load<Sprite>("Sprites/Properties/Zeitanzeige");
-        _propGrowrate.GetComponent<ToolTipItem>().toolTipText.text = "Growrate";
+        _propGrowrate.GetComponent<ToolTipItem>().toolTipText.text = "Growth Rate";
 
         _propCO2usage = Instantiate(toolTipEntry, gameObject.transform, false);
         _propCO2usage.transform.localPosition = new Vector3(-110, 140, 0);
         _propCO2usage.GetComponent<ToolTipItem>().toolTipImage.sprite = Resources.Load<Sprite>("Sprites/Properties/CO2_Anzeige");
-        _propCO2usage.GetComponent<ToolTipItem>().toolTipText.text = "C02 conversion Rate";
+        _propCO2usage.GetComponent<ToolTipItem>().toolTipText.text = "C02 Conversion Rate";
 
         _propFlammability = Instantiate(toolTipEntry, gameObject.transform, false);
         _propFlammability.transform.localPosition = new Vector3(-110, 90, 0);
@@ -128,10 +128,10 @@ public class ToolTipList : MonoBehaviour
             _propCO2usage.GetComponent<ToolTipItem>().slider.value = (float)_veggie.getCO2Usage();
 
             _propFlammability.SetActive(true);
-            _propFlammability.GetComponent<ToolTipItem>().slider.value = (float)_veggie.getFlammability();
+            _propFlammability.GetComponent<ToolTipItem>().slider.value = 1 - (float)_veggie.getFlammability();
 
             _propInfestability.SetActive(true);
-            _propInfestability.GetComponent<ToolTipItem>().slider.value = (float)_veggie.getInfestability();
+            _propInfestability.GetComponent<ToolTipItem>().slider.value = 1 - (float)_veggie.getInfestability();
 
             gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(220, 320);
             gameObject.SetActive(true);

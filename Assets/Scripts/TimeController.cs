@@ -16,6 +16,7 @@ public class TimeController : MonoBehaviour
     void Start()
     {
         hexMap = FindObjectOfType<HexMap>();
+        Time.timeScale = 1f;
     }
 
     // Update is called once per frame

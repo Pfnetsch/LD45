@@ -31,7 +31,7 @@ public class Maps
     private void LoadMapFromCSV()
     {
         // read csv file
-        StreamReader strReader = new StreamReader("Map_Matrix.csv");
+        StreamReader strReader = new StreamReader("Assets/Resources/Map_Matrix.csv");
         bool endOfFile = false;
 
         int row = 0;

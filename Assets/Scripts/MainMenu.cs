@@ -15,7 +15,13 @@ public class MainMenu : MonoBehaviour
 
     public void playGame()
     {
+        FindObjectOfType<AudioScript>().SwitchIntoStoryMode();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void playGameSkipIntro()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
     }
 
     public void quitGame()

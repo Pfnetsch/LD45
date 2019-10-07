@@ -19,14 +19,18 @@ public class HexMap : MonoBehaviour
 
     public const double FIRE_SPREAD = 0.1;
     public const double FIRE_START = 0.01;
+
     public const double INFESTATION_SPREAD = 0.1;
     public const double INFESTATION_MULT = 0.5;
+    public const double INFESTATION_START = 0.01;
+
     public const double GROW_MULT = 0.1;
 
     public const int MAX_GAME_TIME_YEARS = 40;
 
     private static bool firstVeggieTextShown = false;
-
+    private static bool firstLightningTextShown = false;
+    private static bool firstInfestationTextShown = false;
 
     public Tile defaultTile;
 
@@ -54,6 +58,7 @@ public class HexMap : MonoBehaviour
     
     // states
     private Boolean lightning = true;
+    private Boolean infestation = true;
     
     // global co2
     private double co2Goal = 10000.0;
@@ -364,10 +369,15 @@ public class HexMap : MonoBehaviour
                 if (Random.Range(0.0f, 1.0f) < flammability1 * FIRE_START)
                 {
                     vegetationHexes[index].setBurning(true);
+
+                    if (!firstLightningTextShown)
+                    {
+                        popUpInfo.ShowFirstLightningInfoText();
+                        firstLightningTextShown = true;
+                    }
                 }
             }
         }
-        
         
         //spread
         foreach (Hex hex in vegetationHexes)
@@ -388,7 +398,47 @@ public class HexMap : MonoBehaviour
 
     public void doInfestationTick()
     {
-        // TODO
+        List<Hex> vegetationHexes = (from Hex hex in hexes where hex.hasVegetation() select hex).ToList();
+
+        // new fire?
+        if (infestation)
+        {
+            if (vegetationHexes.Count > 0)
+            {
+                // select random tile and try to spread lightning
+                int index = Random.Range(0, vegetationHexes.Count);
+
+                // set on fire?
+                double infestability = vegetationHexes[index].getVegetation().getInfestability();
+
+                if (Random.Range(0.0f, 1.0f) < infestability * INFESTATION_START)
+                {
+                    vegetationHexes[index].setInfested(true);
+
+                    if (!firstInfestationTextShown)
+                    {
+                        popUpInfo.ShowFirstInfestationInfoText();
+                        firstInfestationTextShown = true;
+                    }
+                }
+            }
+        }
+
+        //spread
+        foreach (Hex hex in vegetationHexes)
+        {
+            // if no neighbour is burning, there is no spread
+            if (!hex.getNeighbours().Any(neighbour => neighbour.isInfested())) continue;
+
+            // calculate fire spread
+            double infestability = hex.getVegetation().getInfestability();
+
+            if (Random.Range(0.0f, 1.0f) < infestability * INFESTATION_SPREAD)
+            {
+                hex.setInfested(true);
+                return;
+            }
+        }
     }
 
     public void doDeathTick()

@@ -15,7 +15,7 @@
    version="1.1"
    id="svg9766"
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
-   sodipodi:docname="Tanne2.svg">
+   sodipodi:docname="Tanne2_2.svg">
   <defs
      id="defs9760" />
   <sodipodi:namedview
@@ -26,7 +26,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.7"
-     inkscape:cx="133.44749"
+     inkscape:cx="-0.69056286"
      inkscape:cy="467.51858"
      inkscape:document-units="mm"
      inkscape:current-layer="layer4"
@@ -50,7 +50,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -82,7 +82,7 @@
      id="layer3"
      inkscape:label="Stamm">
     <rect
-       style="display:inline;fill:#c87137;stroke-width:0.09041436"
+       style="display:inline;fill:#73510c;stroke-width:0.09041436"
        id="rect9808"
        width="10.205357"
        height="65.389877"
@@ -95,13 +95,13 @@
      inkscape:label="Krone 1"
      style="display:inline">
     <path
-       style="fill:#abc837;fill-opacity:1;stroke:#bcd35f;stroke-width:12.87675095;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M 20.832567,168.23637 H 173.57362 L 97.2031,36.512517 Z"
+       style="fill:#158f31;fill-opacity:1;stroke:#53bf5c;stroke-width:11.19559479;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 30.803306,164.49457 H 163.60287 L 97.2031,49.968009 Z"
        id="path1984"
        inkscape:connector-curvature="0" />
     <path
-       style="display:inline;fill:#abc837;fill-opacity:1;stroke:#bcd35f;stroke-width:9.49820614;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M 62.360815,66.495455 H 132.04538 L 97.2031,5.8208331 Z"
+       style="display:inline;fill:#158f31;fill-opacity:1;stroke:#53bf5c;stroke-width:8.25814533;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 66.909734,76.036452 H 127.49645 L 97.2031,23.283342 Z"
        id="path1984-7"
        inkscape:connector-curvature="0" />
   </g>

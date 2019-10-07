@@ -15,7 +15,7 @@
    version="1.1"
    id="svg9766"
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
-   sodipodi:docname="Tanne1.1.svg">
+   sodipodi:docname="Tanne2_1.svg">
   <defs
      id="defs9760" />
   <sodipodi:namedview
@@ -26,8 +26,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.7"
-     inkscape:cx="-109.40965"
-     inkscape:cy="353.23287"
+     inkscape:cx="-17.512973"
+     inkscape:cy="394.24718"
      inkscape:document-units="mm"
      inkscape:current-layer="layer4"
      showgrid="false"
@@ -82,7 +82,7 @@
      id="layer3"
      inkscape:label="Stamm">
     <rect
-       style="display:inline;fill:#c87137;stroke-width:0.09041436"
+       style="display:inline;fill:#6f5010;stroke-width:0.09041436;fill-opacity:1"
        id="rect9808"
        width="10.205357"
        height="65.389877"
@@ -95,8 +95,8 @@
      inkscape:label="Krone 1"
      style="display:inline">
     <path
-       style="fill:#abc837;fill-opacity:1;stroke:#bcd35f;stroke-width:9.96111107;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M 5.2335859,164.01868 H 188.90716 L 97.070379,5.6191596 Z"
+       style="fill:#158f31;fill-opacity:1;stroke:#53bf5c;stroke-width:7.01990891;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 32.482819,168.2506 H 161.92338 L 97.2031,56.620863 Z"
        id="path1984"
        inkscape:connector-curvature="0" />
   </g>
