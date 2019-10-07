@@ -120,11 +120,14 @@ public class ToolBarActions : MonoBehaviour
 
         toolTipList.GetComponent<ToolTipList>().Veggie = _veggie;
         toolTipList.GetComponent<ToolTipList>().locked = true;
+
+        leftInfoBox.SetActive(true);
     }
 
     public void ToolBarPointerExit(int index)
     {
         toolTipList.GetComponent<ToolTipList>().locked = false;
-    }
 
+        leftInfoBox.SetActive(false);
+    }
 }

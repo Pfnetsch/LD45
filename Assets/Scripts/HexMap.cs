@@ -25,6 +25,10 @@ public class HexMap : MonoBehaviour
 
     public Tile defaultTile;
 
+    private Tile _fireTile1;
+    private Tile _fireTile2;
+
+
     public int numRows;
     public int numColumns;
     private int startRow = 0;
@@ -59,6 +63,9 @@ public class HexMap : MonoBehaviour
         Vegetation.setSeedsOrSaplings(typeof(Shrub), 2);
         Vegetation.setSeedsOrSaplings(typeof(LeafTree), 1);
         Vegetation.setSeedsOrSaplings(typeof(FirTree), 1);
+
+        _fireTile1 = Resources.Load<Tile>("Tiles/Trees/Feuer1_1");
+        _fireTile2 = Resources.Load<Tile>("Tiles/Trees/Feuer1_2");
 
         grid = FindObjectOfType<Grid>();
         generateMap();
@@ -163,6 +170,7 @@ public class HexMap : MonoBehaviour
                 Hex currentHex = hexes[column, row];
                 Tile tile = defaultTile;
                 Color tileColor;
+                Vector3Int pos = new Vector3Int(row + startRow, column + startColumn, 0);
 
                 if (currentHex.terrainType == Hex.TERRAIN_TYPE.OCEAN)
                 {
@@ -193,16 +201,26 @@ public class HexMap : MonoBehaviour
                     tileColor = Color.magenta;
                 }
 
-                backgroundTilemap.SetTile(new Vector3Int(row + startRow, column + startColumn, 0), tile);
-                backgroundTilemap.SetTileFlags(new Vector3Int(row + startRow, column + startColumn, 0), TileFlags.None);
-                backgroundTilemap.SetColor(new Vector3Int(row + startRow, column + startColumn, 0), tileColor);
+                backgroundTilemap.SetTile(pos, tile);
+                backgroundTilemap.SetTileFlags(pos, TileFlags.None);
+                backgroundTilemap.SetColor(pos, tileColor);
 
 
                 // tile not empty => render foreground
                 if (!hexes[column, row].isEmpty())
                 {
-                    foregroundTilemap.SetTile(new Vector3Int(row + startRow, column + startColumn, 0),
-                        hexes[column, row].getCurrentTile());
+                    foregroundTilemap.SetTile(pos, currentHex.getCurrentTile());
+                }
+
+                overlayTilemap.SetTile(pos, _fireTile1);
+
+                if (currentHex.isBurning())
+                {
+                    overlayTilemap.SetTile(pos, _fireTile1);
+                }
+                else if (currentHex.isInfested())
+                {
+
                 }
             }
         }

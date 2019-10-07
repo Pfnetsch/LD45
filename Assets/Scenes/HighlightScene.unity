@@ -414,7 +414,7 @@ MonoBehaviour:
   defaultTile: {fileID: 11400000, guid: 89732de61de35604e928194226c9cb8e, type: 2}
   numRows: 50
   numColumns: 50
-  overlayTilemap: {fileID: 0}
+  overlayTilemap: {fileID: 3286479698569677529}
   foregroundTilemap: {fileID: 1631719455}
   backgroundTilemap: {fileID: 1288898063}
 --- !u!114 &1668602107
@@ -467,7 +467,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.6313726, g: 0.6862745, b: 0.627451, a: 0}
+  m_BackGroundColor: {r: 0.972549, g: 1, b: 0.972549, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -674,21 +674,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grid
       objectReference: {fileID: 0}
-    - target: {fileID: 3286479699178608003, guid: c380d4f9478c2a24ebf4630aab07f543,
-        type: 3}
-      propertyPath: m_TileOrientation
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3286479699178608003, guid: c380d4f9478c2a24ebf4630aab07f543,
-        type: 3}
-      propertyPath: m_TileOrientationMatrix.e00
-      value: 1.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3286479699178608003, guid: c380d4f9478c2a24ebf4630aab07f543,
-        type: 3}
-      propertyPath: m_TileOrientationMatrix.e11
-      value: 1.1
-      objectReference: {fileID: 0}
     - target: {fileID: 3286479699946222830, guid: c380d4f9478c2a24ebf4630aab07f543,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -746,6 +731,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c380d4f9478c2a24ebf4630aab07f543, type: 3}
+--- !u!1839735485 &3286479698569677529 stripped
+Tilemap:
+  m_CorrespondingSourceObject: {fileID: 3286479700329911687, guid: c380d4f9478c2a24ebf4630aab07f543,
+    type: 3}
+  m_PrefabInstance: {fileID: 3286479698569677528}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6998060979623622947
 PrefabInstance:
   m_ObjectHideFlags: 0
