@@ -45,6 +45,11 @@ public class HighlightController : MonoBehaviour
 	    {
 		    // tile changed, unhighlight last tile
 		    highlightTilemap.SetTile(lastTilePos, null);
+		    Hex lastHex = hexMap.getHexAt(lastTilePos.y, lastTilePos.x);
+		    foreach (Hex neig in lastHex.getNeighbours())
+		    {
+			    highlightTilemap.SetTile(neig.getPosition(), null);
+		    }
 
 		    if (veggieToPlant != null)
 		    {
@@ -60,6 +65,11 @@ public class HighlightController : MonoBehaviour
 		    else
             {
                 highlightTilemap.SetTile(posInt, highlightTile);
+                // set neighbours
+                foreach (Hex neig in hex.getNeighbours())
+                {
+	                highlightTilemap.SetTile(neig.getPosition(), highlightTile);
+                }
             }
 
             tooltipList.Hex = hex;

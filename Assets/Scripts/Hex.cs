@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using DefaultNamespace;
 using UnityEngine;
@@ -45,6 +46,8 @@ public class Hex
     {
         this.vegetation = vegetation;
         durabilityInTicks = (int)(vegetation.getDurability() * 10);
+
+        this.neighbours = null;
     }
 
     public void removeVegetation()
@@ -185,34 +188,63 @@ public class Hex
 
     public Hex[] getNeighbours()
     {
-        if(this.neighbours != null)
+        if (this.neighbours != null)
             return this.neighbours;
-        
+
         List<Hex> neighbours = new List<Hex>();
+        int radius = 2;
+
+        if (hasVegetation() && getVegetation().getName() == "Cactus")
+        {
+            // add +1 range
+            radius++;
+        }
+
+        Vector3Int pos = HexHelper.offsetToCube(new Vector2Int(q, r));
+        //Vector3Int pos = HexHelper.axialToCube(new Vector2Int(q, r));
         
+        List<Vector3Int> neighbourList = new List<Vector3Int>();
+        
+        neighbourList.Add(HexHelper.cubeNeighbour(pos, 0));
+        neighbourList.Add(HexHelper.cubeNeighbour(pos, 1));
+        //neighbourList.Add(HexHelper.cubeNeighbour(pos, 2));
+        neighbourList.Add(HexHelper.cubeNeighbour(pos, 3));
+        neighbourList.Add(HexHelper.cubeNeighbour(pos, 4));
+        neighbourList.Add(HexHelper.cubeNeighbour(pos, 5));
+
+        
+        neighbours = neighbourList.Select(n =>
+        {
+            Vector2Int posO = HexHelper.cubeToOffset(n);
+            //Vector2Int posO = HexHelper.cubeToAxial(n);
+
+            return hexMap.getHexAt(posO.x, posO.y);
+        }).ToList();
+        
+        /*
         if (q % 2 == 0)
         {
             // even row
-            neighbours.Add( hexMap.getHexAt( q + -1,  r +  -1 ) );
-            neighbours.Add( hexMap.getHexAt( q + +1,  r +  -1 ) );
+            neighbours.Add(hexMap.getHexAt(q + -1, r + -1));
+            neighbours.Add(hexMap.getHexAt(q + +1, r + -1));
         }
         else
         {
             // odd row
-            neighbours.Add( hexMap.getHexAt( q + +1,  r +  +1 ) );
-            neighbours.Add( hexMap.getHexAt( q + -1,  r +  +1 ) );
+            neighbours.Add(hexMap.getHexAt(q + +1, r + +1));
+            neighbours.Add(hexMap.getHexAt(q + -1, r + +1));
         }
-        
-        neighbours.Add( hexMap.getHexAt( q + +1,  r +  0 ) );
-        neighbours.Add( hexMap.getHexAt( q + -1,  r +  0 ) );
-        neighbours.Add( hexMap.getHexAt( q +  0,  r + +1 ) );
-        neighbours.Add( hexMap.getHexAt( q +  0,  r + -1 ) );
 
+        neighbours.Add(hexMap.getHexAt(q + +1, r + 0));
+        neighbours.Add(hexMap.getHexAt(q + -1, r + 0));
+        neighbours.Add(hexMap.getHexAt(q + 0, r + +1));
+        neighbours.Add(hexMap.getHexAt(q + 0, r + -1));
+*/
         List<Hex> neighbours2 = new List<Hex>();
 
-        foreach(Hex h in neighbours)
+        foreach (Hex h in neighbours)
         {
-            if(h != null)
+            if (h != null)
             {
                 neighbours2.Add(h);
             }

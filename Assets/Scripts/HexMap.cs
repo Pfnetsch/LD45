@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
+using DefaultNamespace;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -196,7 +197,7 @@ public class HexMap : MonoBehaviour
                 else if (currentHex.terrainType == Hex.TERRAIN_TYPE.DESERT)
                 {
                     double waterLevel = currentHex.getWaterLevel();
-                    if (waterLevel > WATER_LEVEL_HIGH)
+                    /*if (waterLevel > WATER_LEVEL_HIGH)
                     {
                         //99701C
                         tileColor = new Color(0x99/255.0f, 0x70/255.0f, 0x1C/255.0f);
@@ -210,9 +211,9 @@ public class HexMap : MonoBehaviour
                     {
                         //FFDA83
                         tileColor = new Color(0xFF/255.0f, 0xDA/255.0f, 0x83/255.0f);
-                    }
+                    }*/
                     
-                    // test
+                    // dynamic color
                     tileColor = Color.Lerp(new Color(0xFF / 255.0f, 0xDA / 255.0f, 0x83 / 255.0f),
                         new Color(0x99 / 255.0f, 0x70 / 255.0f, 0x1C / 255.0f), (float)waterLevel + 0.2f);
                 }
@@ -325,14 +326,14 @@ public class HexMap : MonoBehaviour
                 {
                     if (neighbour.getWaterLevel() > newWaterLevel)
                     {
-                        //newWaterLevel = neighbour.getWaterLevel();
-                        newWaterLevel = Math.Min(neighbour.getWaterLevel(), neighbour.getWaterLevel() * WATER_SPREAD + (neighbour.hasVegetation() ? ( neighbour.getVegetation().getWaterMod() * 0.1) : 0));
+                        newWaterLevel = neighbour.getWaterLevel();
+                        //newWaterLevel = Math.Min(neighbour.getWaterLevel(), neighbour.getWaterLevel() * WATER_SPREAD + (neighbour.hasVegetation() ? ( neighbour.getVegetation().getWaterMod() * 0.1) : 0));
                     }
                 }
 
                 // TODO: adjust water spread formula
-                //newWater[column, row] = Math.Min(newWaterLevel, newWaterLevel * WATER_SPREAD + (currentHex.hasVegetation() ? ( currentHex.getVegetation().getWaterMod() * 0.5) : 0));
-                newWater[column, row] = newWaterLevel;
+                newWater[column, row] = Math.Min(newWaterLevel, newWaterLevel * WATER_SPREAD + (currentHex.hasVegetation() ? ( currentHex.getVegetation().getWaterMod() * 0.5) : 0));
+                //newWater[column, row] = newWaterLevel;
             }
         }
 
