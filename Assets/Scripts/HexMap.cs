@@ -237,6 +237,7 @@ public class HexMap : MonoBehaviour
     {
         foregroundTilemap.ClearAllTiles();
         overlayTilemap.ClearAllTiles();
+        int foreGroundTilesSet = 0;
 
         for (int column = 0; column < numColumns; column++)
         {
@@ -246,7 +247,11 @@ public class HexMap : MonoBehaviour
                 Vector3Int pos = new Vector3Int(row + startRow, column + startColumn, 0);
 
                 // tile not empty => render foreground
-                if (!hexes[column, row].isEmpty()) foregroundTilemap.SetTile(pos, currentHex.getCurrentTile());
+                if (hexes[column, row].hasVegetation())
+                {
+                    foregroundTilemap.SetTile(pos, currentHex.getCurrentTile());
+                    foreGroundTilesSet++;
+                }
 
                 if (currentHex.isBurning())
                 {

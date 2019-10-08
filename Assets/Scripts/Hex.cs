@@ -79,11 +79,6 @@ public class Hex
         return this.vegetation.getTileForLevel(level);
     }
 
-    public Boolean isEmpty()
-    {
-        return vegetation == null;
-    }
-
     public Boolean isWaterSource()
     {
         if (this.terrainType == TERRAIN_TYPE.OCEAN)
