@@ -55,7 +55,7 @@ public class TimeController : MonoBehaviour
                 tickCount = 0;
             }
             
-            hexMap.updateMapVisuals();
+            hexMap.updateBackgroundVisuals();
         }
 
         // map 20min to 40yr - 1051200 * 100 / default ticks

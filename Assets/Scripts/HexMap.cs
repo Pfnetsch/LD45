@@ -166,7 +166,7 @@ public class HexMap : MonoBehaviour
             }
         }
 
-        updateMapVisuals();
+        setBackgroundVisuals();
     }
 
     public Hex getHexAt(int x, int y)
@@ -188,63 +188,65 @@ public class HexMap : MonoBehaviour
         }
     }
 
-    public void updateMapVisuals()
+    public void setBackgroundVisuals()
+    {
+        for (int column = 0; column < numColumns; column++)
+        {
+            for (int row = 0; row < numRows; row++)
+            {
+                Vector3Int pos = new Vector3Int(row + startRow, column + startColumn, 0);
+                backgroundTilemap.SetTile(pos, defaultTile);
+                backgroundTilemap.SetTileFlags(pos, TileFlags.None);
+                backgroundTilemap.SetColor(pos, new Color(0xFF / 255.0f, 0xDA / 255.0f, 0x83 / 255.0f));
+            }
+        }
+    }
+    
+    public void updateBackgroundVisuals()
     {
         for (int column = 0; column < numColumns; column++)
         {
             for (int row = 0; row < numRows; row++)
             {
                 Hex currentHex = hexes[column, row];
-                Tile tile = defaultTile;
                 Color tileColor;
                 Vector3Int pos = new Vector3Int(row + startRow, column + startColumn, 0);
 
                 if (currentHex.terrainType == Hex.TERRAIN_TYPE.OCEAN)
                 {
                     //6BDEFF
-                    tileColor = new Color(0x6b/255.0f, 0xde/255.0f, 0xff/255.0f);
+                    tileColor = new Color(0x6b / 255.0f, 0xde / 255.0f, 0xff / 255.0f);
                 }
                 else if (currentHex.terrainType == Hex.TERRAIN_TYPE.DESERT)
                 {
                     double waterLevel = currentHex.getWaterLevel();
-                    /*if (waterLevel > WATER_LEVEL_HIGH)
-                    {
-                        //99701C
-                        tileColor = new Color(0x99/255.0f, 0x70/255.0f, 0x1C/255.0f);
-                    }
-                    else if (waterLevel > WATER_LEVEL_MID)
-                    {
-                        //D3A450
-                        tileColor = new Color(0xD3/255.0f, 0xA4/255.0f, 0x50/255.0f);
-                    }
-                    else
-                    {
-                        //FFDA83
-                        tileColor = new Color(0xFF/255.0f, 0xDA/255.0f, 0x83/255.0f);
-                    }*/
-                    
                     // dynamic color
-                    tileColor = Color.Lerp(new Color(0xFF / 255.0f, 0xDA / 255.0f, 0x83 / 255.0f),
-                        new Color(0x99 / 255.0f, 0x70 / 255.0f, 0x1C / 255.0f), (float)waterLevel + 0.2f);
+                    tileColor = Color.Lerp(new Color(0xFF / 255.0f, 0xDA / 255.0f, 0x83 / 255.0f), new Color(0x99 / 255.0f, 0x70 / 255.0f, 0x1C / 255.0f), (float)waterLevel + 0.2f);
                 }
                 else
                 {
                     tileColor = Color.magenta;
                 }
 
-                backgroundTilemap.SetTile(pos, tile);
-                backgroundTilemap.SetTileFlags(pos, TileFlags.None);
                 backgroundTilemap.SetColor(pos, tileColor);
+            }
+        }
+    }
+
+    public void updateMapVisuals()
+    {
+        foregroundTilemap.ClearAllTiles();
+        overlayTilemap.ClearAllTiles();
+
+        for (int column = 0; column < numColumns; column++)
+        {
+            for (int row = 0; row < numRows; row++)
+            {
+                Hex currentHex = hexes[column, row];
+                Vector3Int pos = new Vector3Int(row + startRow, column + startColumn, 0);
 
                 // tile not empty => render foreground
-                if (!hexes[column, row].isEmpty())
-                    foregroundTilemap.SetTile(pos, currentHex.getCurrentTile());
-                else
-                    foregroundTilemap.SetTile(pos, null);
-
-                //overlayTilemap.SetTile(pos, Random.value >= 0.5 ? _bugTile1 : _bugTile2);
-
-                overlayTilemap.SetTile(pos, _fireTile1);
+                if (!hexes[column, row].isEmpty()) foregroundTilemap.SetTile(pos, currentHex.getCurrentTile());
 
                 if (currentHex.isBurning())
                 {
@@ -254,16 +256,8 @@ public class HexMap : MonoBehaviour
                 {
                     overlayTilemap.SetTile(pos, Random.value >= 0.5 ? _bugTile1 : _bugTile2);
                 }
-                else
-                {
-                    overlayTilemap.SetTile(pos, null);
-                }
             }
         }
-
-        backgroundTilemap.RefreshAllTiles();
-        foregroundTilemap.RefreshAllTiles();
-        overlayTilemap.RefreshAllTiles();
     }
 
     public void upgradeTile(Vector3Int position)
