@@ -236,7 +236,6 @@ public class HexMap : MonoBehaviour
                 backgroundTilemap.SetTileFlags(pos, TileFlags.None);
                 backgroundTilemap.SetColor(pos, tileColor);
 
-
                 // tile not empty => render foreground
                 if (!hexes[column, row].isEmpty())
                     foregroundTilemap.SetTile(pos, currentHex.getCurrentTile());
@@ -261,6 +260,10 @@ public class HexMap : MonoBehaviour
                 }
             }
         }
+
+        backgroundTilemap.RefreshAllTiles();
+        foregroundTilemap.RefreshAllTiles();
+        overlayTilemap.RefreshAllTiles();
     }
 
     public void upgradeTile(Vector3Int position)
