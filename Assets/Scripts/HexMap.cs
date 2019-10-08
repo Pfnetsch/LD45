@@ -17,14 +17,14 @@ public class HexMap : MonoBehaviour
     public const double WATER_LEVEL_HIGH = 0.4;
     public const double WATER_LEVEL_MID = 0.2;
 
-    public const double FIRE_SPREAD = 0.1;
-    public const double FIRE_START = 0.01;
+    public const double FIRE_SPREAD = 0.15;
+    public const double FIRE_START = 0.02;
 
     public const double INFESTATION_SPREAD = 0.1;
     public const double INFESTATION_MULT = 0.5;
-    public const double INFESTATION_START = 0.01;
+    public const double INFESTATION_START = 0.02;
 
-    public const double GROW_MULT = 0.1;
+    public const double GROW_MULT = 0.2;
 
     public const int MAX_GAME_TIME_YEARS = 40;
 
@@ -245,6 +245,8 @@ public class HexMap : MonoBehaviour
 
                 //overlayTilemap.SetTile(pos, Random.value >= 0.5 ? _bugTile1 : _bugTile2);
 
+                //overlayTilemap.SetTile(pos, _fireTile1);
+
                 if (currentHex.isBurning())
                 {
                     overlayTilemap.SetTile(pos, Random.value >= 0.5 ? _fireTile1 : _fireTile2);
@@ -292,12 +294,12 @@ public class HexMap : MonoBehaviour
         return hex.getWaterLevel() >= vegetation.getWaterRequirement();
     }
     
-    public void plantVegetation(Vector3Int position, Vegetation vegetation)
+    public bool plantVegetation(Vector3Int position, Vegetation vegetation)
     {
         Hex hex = getHexAt(position.y, position.x);
 
         if (hex == null)
-            return;
+            return false;
 
         if (canGrow(position, vegetation))
         {
@@ -309,16 +311,11 @@ public class HexMap : MonoBehaviour
                 popUpInfo.ShowFirstPlantInfoText();
                 firstVeggieTextShown = true;
             }
+
+            return true;
         }
 
-        //if (position.x >= this.startColumn && position.y >= this.startRow && position.x < this.startColumn + this.numColumns && position.y < this.startRow + this.numRows)
-        //{
-            //if (canGrow(position, vegetation))
-            //{
-            //    this.hexes[position.y, position.x].setVegetation(vegetation);
-            //    this.updateMapVisuals();
-            //}
-        //}
+        return false;
     }
 
     public void doWaterTick()

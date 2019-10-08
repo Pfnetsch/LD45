@@ -26,10 +26,10 @@ public class LeafTree: Vegetation
         co2Usage = 1.0;
         
         // low
-        growrate = 0.2;
+        growrate = 0.4;
 
         // low
-        seedOrSaplingDropChance = 0.5;
+        seedOrSaplingDropChance = 0.9;
 
         // high
         durability = 0.8;

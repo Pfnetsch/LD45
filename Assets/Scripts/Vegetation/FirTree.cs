@@ -25,13 +25,13 @@ public class FirTree: Vegetation
         co2Usage = 0.8;
         
         // low
-        growrate = 0.2;
+        growrate = 0.4;
 
         // low
-        seedOrSaplingDropChance = 0.5;
+        seedOrSaplingDropChance = 0.9;
 
         // high
-        durability = 0.8;
+        durability = 0.9;
 
         // Tiles
         tiles = new Dictionary<int, Tile>();

@@ -16,7 +16,7 @@ public class Shrub: Vegetation
         waterMod = 0.3;
         
         // high
-        flammability = 0.8;
+        flammability = 0.9;
         
         // none
         infestability = 0.0;
@@ -25,7 +25,7 @@ public class Shrub: Vegetation
         co2Usage = 0.5;
         
         // mid
-        growrate = 0.5;
+        growrate = 0.7;
 
         // mid
         seedOrSaplingDropChance = 0.5;

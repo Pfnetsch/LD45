@@ -25,10 +25,10 @@ public class Grass : Vegetation
         co2Usage = 0.2;
         
         // high
-        growrate = 0.8;
+        growrate = 0.7;
 
         // high
-        seedOrSaplingDropChance = 0.75;
+        seedOrSaplingDropChance = 0.5;
 
         // low but not needed
         durability = 0.1;

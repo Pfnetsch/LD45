@@ -209,7 +209,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 3, y: -3}
-  m_SizeDelta: {x: 10.43, y: 20.120003}
+  m_SizeDelta: {x: 20, y: 18}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &1547927633
 CanvasRenderer:
@@ -250,7 +250,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1
+  m_Text: 10
 --- !u!1 &2015366174
 GameObject:
   m_ObjectHideFlags: 0
@@ -1925,7 +1925,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 3, y: -3}
-  m_SizeDelta: {x: 10.43, y: 20.120003}
+  m_SizeDelta: {x: 20, y: 18}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &5356157432161516411
 CanvasRenderer:
@@ -1966,7 +1966,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1
+  m_Text: 10
 --- !u!1 &3873500869519029656
 GameObject:
   m_ObjectHideFlags: 0
@@ -2131,7 +2131,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 3, y: -3}
-  m_SizeDelta: {x: 10.43, y: 20.120003}
+  m_SizeDelta: {x: 20, y: 18}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &7426739235918665111
 CanvasRenderer:
@@ -2172,7 +2172,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1
+  m_Text: 10
 --- !u!1 &4274411209658932849
 GameObject:
   m_ObjectHideFlags: 0
@@ -2446,7 +2446,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 3, y: -3}
-  m_SizeDelta: {x: 10.43, y: 20.120003}
+  m_SizeDelta: {x: 20, y: 18}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &2111738520624977557
 CanvasRenderer:
@@ -2487,7 +2487,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1
+  m_Text: 10
 --- !u!1 &6653694078295266488
 GameObject:
   m_ObjectHideFlags: 0
@@ -3295,7 +3295,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 3, y: -3}
-  m_SizeDelta: {x: 10.43, y: 20.120003}
+  m_SizeDelta: {x: 20, y: 18}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &8881817815866817744
 CanvasRenderer:
@@ -3336,4 +3336,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1
+  m_Text: 10

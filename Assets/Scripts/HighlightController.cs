@@ -81,8 +81,8 @@ public class HighlightController : MonoBehaviour
 
             if (veggieToPlant != null && hexMap.canGrow(posInt, veggieToPlant))
             {
-                hexMap.plantVegetation(posInt, veggieToPlant);
-                veggieToPlant.SeedsOrSaplings--;
+                if (hexMap.plantVegetation(posInt, veggieToPlant)) veggieToPlant.SeedsOrSaplings--;
+
                 if (veggieToPlant.SeedsOrSaplings == 0) veggieToPlant = null;
             }
             else

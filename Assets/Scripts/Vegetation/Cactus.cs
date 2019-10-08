@@ -15,7 +15,7 @@ public class Cactus : Vegetation
         waterMod = 0.8;
         
         // low
-        flammability = 0.2;
+        flammability = 0.3;
         
         // low
         infestability = 0.5;
