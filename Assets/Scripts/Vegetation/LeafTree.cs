@@ -34,18 +34,21 @@ public class LeafTree: Vegetation
         // high
         durability = 0.8;
 
-        tiles = new Dictionary<int, Tile>();
-        
-        Tile temp = Resources.Load<Tile>("Tiles/Trees/LeafTree1_1");
-        tiles.Add(0, temp);
-        
-        temp = Resources.Load<Tile>("Tiles/Trees/LeafTree1_2");
-        tiles.Add(1, temp);
-        
-        temp = Resources.Load<Tile>("Tiles/Trees/LeafTree1_3");
-        tiles.Add(2, temp);
-        
-        temp = Resources.Load<Tile>("Tiles/Trees/LeafTree1_4");
-        tiles.Add(3, temp);
+        if (!tiles.ContainsKey(this.GetType().Name))
+        {
+            tiles[this.GetType().Name] = new Dictionary<int, Tile>();
+
+            Tile temp = Resources.Load<Tile>("Tiles/Trees/LeafTree1_1");
+            tiles[this.GetType().Name].Add(0, temp);
+
+            temp = Resources.Load<Tile>("Tiles/Trees/LeafTree1_2");
+            tiles[this.GetType().Name].Add(1, temp);
+
+            temp = Resources.Load<Tile>("Tiles/Trees/LeafTree1_3");
+            tiles[this.GetType().Name].Add(2, temp);
+
+            temp = Resources.Load<Tile>("Tiles/Trees/LeafTree1_4");
+            tiles[this.GetType().Name].Add(3, temp);
+        }
     }
 }

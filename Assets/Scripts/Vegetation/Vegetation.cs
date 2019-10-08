@@ -7,8 +7,8 @@ using UnityEngine.Tilemaps;
 public class Vegetation
 {
     private static Dictionary<string, int> seedsOrSaplings = new Dictionary<string, int>();
+    protected static Dictionary<string, Dictionary<int, Tile>> tiles = new Dictionary<string, Dictionary<int, Tile>>();
 
-    protected Dictionary<int, Tile> tiles = new Dictionary<int, Tile>();
     protected String name = "empty";
     
     // water modifier (<1.0f for reduction, >1.0f for increase)
@@ -47,7 +47,7 @@ public class Vegetation
 
     public int getMaxLevel()
     {
-        return this.tiles.Count - 1;
+        return tiles[this.GetType().Name].Count - 1;
     }
 
     public String getName()
@@ -59,7 +59,7 @@ public class Vegetation
     {
         if (level <= getMaxLevel())
         {
-            return tiles[level];
+            return tiles[this.GetType().Name][level];
         }
 
         Debug.Log("Bad level");

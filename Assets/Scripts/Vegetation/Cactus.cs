@@ -33,18 +33,21 @@ public class Cactus : Vegetation
         durability = 0.8;
 
         // Tiles
-        tiles = new Dictionary<int, Tile>();
+        if (!tiles.ContainsKey(this.GetType().Name))
+        {
+            tiles[this.GetType().Name] = new Dictionary<int, Tile>();
 
-        Tile temp = Resources.Load<Tile>("Tiles/Cactus/Cactus1_1");
-        tiles.Add(0, temp);
-        
-        temp = Resources.Load<Tile>("Tiles/Cactus/Cactus1_2");
-        tiles.Add(1, temp);
-        
-        temp = Resources.Load<Tile>("Tiles/Cactus/Cactus1_3");
-        tiles.Add(2, temp);
-        
-        temp = Resources.Load<Tile>("Tiles/Cactus/Cactus1_4");
-        tiles.Add(3, temp);
+            Tile temp = Resources.Load<Tile>("Tiles/Cactus/Cactus1_1");
+            tiles[this.GetType().Name].Add(0, temp);
+
+            temp = Resources.Load<Tile>("Tiles/Cactus/Cactus1_2");
+            tiles[this.GetType().Name].Add(1, temp);
+
+            temp = Resources.Load<Tile>("Tiles/Cactus/Cactus1_3");
+            tiles[this.GetType().Name].Add(2, temp);
+
+            temp = Resources.Load<Tile>("Tiles/Cactus/Cactus1_4");
+            tiles[this.GetType().Name].Add(3, temp);
+        }
     }
 }

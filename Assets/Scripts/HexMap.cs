@@ -245,7 +245,7 @@ public class HexMap : MonoBehaviour
 
                 //overlayTilemap.SetTile(pos, Random.value >= 0.5 ? _bugTile1 : _bugTile2);
 
-                //overlayTilemap.SetTile(pos, _fireTile1);
+                overlayTilemap.SetTile(pos, _fireTile1);
 
                 if (currentHex.isBurning())
                 {
