@@ -22,12 +22,6 @@ public class TimeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // advance time
-        
-        // calculate co2, water, etc and update ui
-        
-        // calculate chance for infestation, fire, tsunami,  (new and spreading)
-
         if (Input.GetMouseButtonUp(0) && fasterActive)
         {
             ticksPerCylce *= 4;

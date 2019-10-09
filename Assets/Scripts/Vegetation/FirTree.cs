@@ -31,7 +31,7 @@ public class FirTree: Vegetation
         seedOrSaplingDropChance = 0.9;
 
         // high
-        durability = 0.9;
+        durability = 1;
 
         // Tiles
         if (!tiles.ContainsKey(this.GetType().Name))

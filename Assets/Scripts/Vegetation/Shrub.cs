@@ -31,7 +31,7 @@ public class Shrub: Vegetation
         seedOrSaplingDropChance = 0.5;
 
         // low
-        durability = 0.2;
+        durability = 0.6;
 
         if (!tiles.ContainsKey(this.GetType().Name))
         {

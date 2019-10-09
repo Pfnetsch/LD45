@@ -287,12 +287,6 @@ public class HexMap : MonoBehaviour
         if (hex.isWaterSource())
             return false;
 
-        // Not needed because hex should be null already
-        //if (position.x >= this.startColumn && position.y >= this.startRow && position.x < this.startColumn + this.numColumns && position.y < this.startRow + this.numRows)
-        //{
-            //return hex.getWaterLevel() >= vegetation.getWaterRequirement();
-        //}
-
         return hex.getWaterLevel() >= vegetation.getWaterRequirement();
     }
     
@@ -342,7 +336,6 @@ public class HexMap : MonoBehaviour
 
                 // TODO: adjust water spread formula
                 newWater[column, row] = Math.Min(newWaterLevel, newWaterLevel * WATER_SPREAD + (currentHex.hasVegetation() ? ( currentHex.getVegetation().getWaterMod() * 0.5) : 0));
-                //newWater[column, row] = newWaterLevel;
             }
         }
 
@@ -359,7 +352,6 @@ public class HexMap : MonoBehaviour
     {
         List<Hex> vegetationHexes = (from Hex hex in hexes where hex.hasVegetation() select hex).ToList();
 
-        // new fire?
         if (lightning)
         {
             if (vegetationHexes.Count > 0)

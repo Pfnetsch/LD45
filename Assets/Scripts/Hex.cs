@@ -174,10 +174,7 @@ public class Hex
 
     public void doDeathTick()
     {
-        if (Random.value >= 0.25f)  // Lose dirability with a probability of 75%
-        {
-            durabilityInTicks--;
-        }
+        durabilityInTicks--;
 
         if (durabilityInTicks <= 0)
             removeVegetation();
@@ -191,37 +188,6 @@ public class Hex
             return this.neighbours;
 
         List<Hex> neighbours = new List<Hex>();
-        
-        /*
-        int radius = 2;
-
-        if (hasVegetation() && getVegetation().getName() == "Cactus")
-        {
-            // add +1 range
-            radius++;
-        }
-        
-        Vector3Int pos = HexHelper.offsetToCube(new Vector2Int(q, r));
-        //Vector3Int pos = HexHelper.axialToCube(new Vector2Int(q, r));
-        
-        List<Vector3Int> neighbourList = new List<Vector3Int>();
-        
-        neighbourList.Add(HexHelper.cubeNeighbour(pos, 0));
-        neighbourList.Add(HexHelper.cubeNeighbour(pos, 1));
-        neighbourList.Add(HexHelper.cubeNeighbour(pos, 2));
-        neighbourList.Add(HexHelper.cubeNeighbour(pos, 3));
-        neighbourList.Add(HexHelper.cubeNeighbour(pos, 4));
-        neighbourList.Add(HexHelper.cubeNeighbour(pos, 5));
-
-        
-        neighbours = neighbourList.Select(n =>
-        {
-            Vector2Int posO = HexHelper.cubeToOffset(n);
-            //Vector2Int posO = HexHelper.cubeToAxial(n);
-
-            return hexMap.getHexAt(posO.x, posO.y);
-        }).ToList();
-        */
         
         if (q % 2 == 0)
         {

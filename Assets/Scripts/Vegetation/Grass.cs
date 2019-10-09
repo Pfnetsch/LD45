@@ -31,7 +31,7 @@ public class Grass : Vegetation
         seedOrSaplingDropChance = 0.5;
 
         // low but not needed
-        durability = 0.1;
+        durability = 0.4;
 
         if (!tiles.ContainsKey(this.GetType().Name))
         {

@@ -32,7 +32,7 @@ public class LeafTree: Vegetation
         seedOrSaplingDropChance = 0.9;
 
         // high
-        durability = 0.8;
+        durability = 1;
 
         if (!tiles.ContainsKey(this.GetType().Name))
         {
