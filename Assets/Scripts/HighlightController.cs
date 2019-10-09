@@ -59,13 +59,14 @@ public class HighlightController : MonoBehaviour
 		    }
 		    else
             {
-                highlightTilemap.SetTile(posInt, highlightTile);
+                if (hex != null) highlightTilemap.SetTile(posInt, highlightTile);
             }
 
             tooltipList.Hex = hex;
-
             lastTilePos = posInt;
-	    }
+
+            if (Input.GetMouseButton(0) && veggieToPlant == null && hex != null) hex.harvestVegetation();
+        }
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -75,9 +76,9 @@ public class HighlightController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && buttonDown == false)
 	    {
-		    buttonDown = true;
+            buttonDown = true;
 
-		    Debug.Log(posInt);
+            //Debug.Log(posInt);
 
             if (veggieToPlant != null && hexMap.canGrow(posInt, veggieToPlant))
             {
@@ -85,8 +86,7 @@ public class HighlightController : MonoBehaviour
 
                 if (veggieToPlant.SeedsOrSaplings == 0) veggieToPlant = null;
             }
-            else
-                if (hex != null) hex.harvestVegetation();
+            else if (hex != null) hex.harvestVegetation();
 
         }
 

@@ -9,10 +9,10 @@ public class Cactus : Vegetation
         name = "Cactus";
 
         // very low
-        waterReq = 0.1;
+        waterReq = 0.17;
         
         // high
-        waterMod = 0.8;
+        waterMod = 0.75;
         
         // low
         flammability = 0.3;

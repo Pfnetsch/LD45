@@ -44,11 +44,11 @@ public class TimeController : MonoBehaviour
                 hexMap.doCO2Tick();
                 hexMap.doGrowTick();
                 hexMap.doDeathTick();
-                hexMap.updateMapVisuals();
 
                 tickCount = 0;
             }
-            
+
+            hexMap.updateMapVisuals();
             hexMap.updateBackgroundVisuals();
         }
 

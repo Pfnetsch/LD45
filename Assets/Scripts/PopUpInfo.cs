@@ -31,24 +31,28 @@ public class PopUpInfo : MonoBehaviour
 
     public void ShowFirstPlantInfoText()
     {
+        Time.timeScale = 0f;
         gameObject.SetActive(true);
         popUpText.text = textFirstVeggie.text;
     }
 
     public void ShowFirstLightningInfoText()
     {
+        Time.timeScale = 0f;
         gameObject.SetActive(true);
         popUpText.text = textFirstLightning.text;
     }
 
     public void ShowFirstInfestationInfoText()
     {
+        Time.timeScale = 0f;
         gameObject.SetActive(true);
         popUpText.text = textFirstInfestation.text;
     }
 
     public void ShowGameOverInfoText()
     {
+        Time.timeScale = 0f;
         gameObject.SetActive(true);
         popUpText.text = textGameOver.text;
         gameIsOver = true;
@@ -56,6 +60,7 @@ public class PopUpInfo : MonoBehaviour
 
     public void ShowGameFinishedInfoText()
     {
+        Time.timeScale = 0f;
         gameObject.SetActive(true);
         popUpText.text = textGameFinished.text;
         gameIsOver = true;
@@ -63,12 +68,13 @@ public class PopUpInfo : MonoBehaviour
 
     public void OkButtonClicked()
     {
+        // set time back to normal
+        Time.timeScale = 1f;
+
         if (!gameIsOver)
             gameObject.SetActive(false);
         else
         {
-            // set time back to normal
-            Time.timeScale = 1f;
             SceneManager.LoadScene("Menu");
         }
     }

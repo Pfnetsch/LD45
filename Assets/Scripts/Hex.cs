@@ -45,7 +45,7 @@ public class Hex
     public void setVegetation(Vegetation vegetation)
     {
         this.vegetation = vegetation;
-        durabilityInTicks = (int)(vegetation.getDurability() * 10);
+        durabilityInTicks = (int)(vegetation.getDurability() * 100);
 
         this.neighbours = null;
     }
@@ -172,9 +172,9 @@ public class Hex
         }
     }
 
-    public void doDeathTick()
+    public void doDeathTick(int deathTickRate)
     {
-        durabilityInTicks--;
+        durabilityInTicks -= deathTickRate;
 
         if (durabilityInTicks <= 0)
             removeVegetation();

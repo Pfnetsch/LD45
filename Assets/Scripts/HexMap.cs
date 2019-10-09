@@ -14,19 +14,19 @@ public class HexMap : MonoBehaviour
 {
     // adjust water generation
     public const double WATER_SPREAD = 0.7;
-    public const double WATER_LEVEL_HIGH = 0.4;
-    public const double WATER_LEVEL_MID = 0.2;
 
-    public const double FIRE_SPREAD = 0.15;
-    public const double FIRE_START = 0.02;
+    public const double FIRE_SPREAD = 0.25;
+    public const double FIRE_START = 0.03;
 
-    public const double INFESTATION_SPREAD = 0.1;
+    public const double INFESTATION_SPREAD = 0.2;
     public const double INFESTATION_MULT = 0.5;
-    public const double INFESTATION_START = 0.02;
+    public const double INFESTATION_START = 0.025;
 
-    public const double GROW_MULT = 0.2;
+    public const double GROW_MULT = 0.3;
 
     public const int MAX_GAME_TIME_YEARS = 40;
+
+    public const int YEARS_WITHOUT_DISASTERS = 3;
 
     private static bool firstVeggieTextShown = false;
     private static bool firstLightningTextShown = false;
@@ -50,7 +50,6 @@ public class HexMap : MonoBehaviour
     public Tilemap foregroundTilemap;
     public Tilemap backgroundTilemap;
 
-
     private PopUpInfo popUpInfo;
 
     // hexdata
@@ -59,18 +58,21 @@ public class HexMap : MonoBehaviour
     // states
     private Boolean lightning = true;
     private Boolean infestation = true;
+    private Boolean disastersActive = false;
     
     // global co2
-    private double co2Goal = 10000.0;
+    private double co2Goal = 30000.0;
     private double co2change = 0.0;
 
     public DateTime date;
+    private DateTime disasterHitDate;
     private DateTime endDate;
 
     // Start is called before the first frame update
     void Start()
     {
         date = new DateTime(2019, 10, 7);
+        disasterHitDate = date.AddYears(YEARS_WITHOUT_DISASTERS);
         endDate = date.AddYears(MAX_GAME_TIME_YEARS);
 
         Vegetation.setSeedsOrSaplings(typeof(Grass), 4);
@@ -109,12 +111,14 @@ public class HexMap : MonoBehaviour
         
         if (isTimeElapsed())
         {
-            Time.timeScale = 0;
             if (co2change > co2Goal)
                 popUpInfo.ShowGameFinishedInfoText();
             else
                 popUpInfo.ShowGameOverInfoText();
         }
+
+        if (date > disasterHitDate)
+            disastersActive = true;
 
         return date;
     }
@@ -352,7 +356,7 @@ public class HexMap : MonoBehaviour
     {
         List<Hex> vegetationHexes = (from Hex hex in hexes where hex.hasVegetation() select hex).ToList();
 
-        if (lightning)
+        if (disastersActive && lightning)
         {
             if (vegetationHexes.Count > 0)
             {
@@ -397,7 +401,7 @@ public class HexMap : MonoBehaviour
         List<Hex> vegetationHexes = (from Hex hex in hexes where hex.hasVegetation() select hex).ToList();
 
         // new fire?
-        if (infestation)
+        if (disastersActive && infestation)
         {
             if (vegetationHexes.Count > 0)
             {
@@ -443,9 +447,13 @@ public class HexMap : MonoBehaviour
 
         foreach (Hex hex in vegetationHexes)
         {
-            if (hex.isBurning() || hex.isInfested())
+            if (hex.isBurning())
             {
-                hex.doDeathTick();
+                hex.doDeathTick(10);
+            }
+            else if (hex.isInfested())
+            {
+                hex.doDeathTick(5);
             }
         }
     }
